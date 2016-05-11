@@ -1,0 +1,62 @@
+{% extends 'website/base.html' %}
+{% load staticfiles %}
+
+{% block title %}My Neighborhood | NYU mHealth{% endblock %}
+
+{% block css_block %}
+<link rel="stylesheet" type="text/css" href="{% static 'website/css/leaflet.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'website/css/leaflet.label.css' %}"> 
+<link rel="stylesheet" type="text/css" href="{% static 'website/css/leaflet.draw.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'website/css/d3.slider.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block head_js_block %}
+<script type="text/javascript" src="{% static 'website/js/controllers.js' %}"></script>
+{% endblock %}
+	
+{% block body_block %}
+<div id="content">
+  {% include 'website/indexContent.html' %}
+</div>
+{% endblock %}
+
+{% block modal_block %}
+<div class="modal fade" id="introModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        <h3 class="modal-title">Welcome!</h3>
+      </div>
+      <div class="modal-body">
+        <p>This is the place for some introductory text and instruction on what to do. </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Let's Get Started!</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->   
+{% endblock %}
+
+{% block js_block %}
+<script type="text/javascript">
+  var NYC_NTA_topojson = "{% static 'website/data/NYC_NTA.topojson' %}";
+</script>
+<script type="text/javascript" src="{% static 'website/js/leaflet.js' %}"></script>
+<script type="text/javascript" src="{% static 'website/js/leaflet.label-src.js' %}"></script>
+<script type="text/javascript" src="{% static 'website/js/leaflet.draw.js' %}"></script>
+<script type="text/javascript" src="{% static 'website/js/d3.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'website/js/topojson.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'website/js/d3.slider.js' %}"></script>
+<script type="text/javascript" src="{% static 'website/js/ajax.js' %}"></script>
+<script type="text/javascript" src="{% static 'website/js/mapPickNeighborhood.js' %}"></script>
+<script type="text/javascript" src="{% static 'website/js/surveyQuestionsD3Sliders.js' %}"></script>
+<script type="text/javascript" src="{% static 'website/js/mapWhereIGo.js' %}"></script>
+{% endblock %}
+
+
+	
+	
+

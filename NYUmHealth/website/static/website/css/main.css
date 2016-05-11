@@ -1,0 +1,109 @@
+/*!
+ * Main css for NYU mHealth Recruitment Tool
+ */
+
+body {
+	padding: 0;
+	margin: 0;
+}
+
+html, body {
+	height: 100%;
+}
+
+/* full screen background image */
+#background, #background li { 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	right: 0; 
+	bottom: 0; 
+	opacity: 0.8;
+	background: url('images/backgroundNYC.jpg');
+	background-color: transparent; 
+	background-size: cover; 
+	background-position: center center; 
+	background-repeat: no-repeat; 
+}
+
+#background { 
+	z-index: -1;
+	margin: 0; 
+	padding: 0; 
+}
+
+/* Map CSS */
+#content, #map {
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    width:100%;
+	overflow: auto;
+	-webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;	
+}
+
+#content {
+	top:67px;
+}
+
+#map {
+	top:0;
+}
+
+.absolutePostionedDiv {
+	pointer-events: none;
+	position: absolute;
+	top: 20px;
+	bottom: 0;
+	left: 0;
+	right: 0; 
+}
+
+
+/* Fade effects */
+.fadein {
+	display: none;
+}
+
+/* Headings */
+.headingBackground {
+	display:inline;
+	background: rgb(204, 204, 204); 
+    background: rgba(204, 204, 204, .8);
+	line-height: 1.3;
+}
+
+.forceBlock {
+	margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+
+/* Buttons */
+.bottomButtonGroupMap {
+  position: absolute; 
+  bottom: 25px;
+}
+
+/* General Margins / Padding */
+.marginTop20 {
+	margin-top: 20px;
+}
+
+.marginTop5 {
+	margin-top: 5px;
+}
+
+.marginBottom20 {
+	margin-bottom: 20px;
+}
+
+
+/* Media Queries */
+@media (min-width: 768px) { 
+
+}

@@ -1,0 +1,112 @@
+<!-- Content -->
+<div class="fadein">
+
+    <form id="surveyQuestionsForm" method="post" action=".">
+        <div class="container-fluid">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-xs-10 col-sm-8 col-sm-offset-2">
+                    <div class="forceBlock">
+                        <h2 class="headingBackground">
+                            People in {{ NYURespondentsObject.myNeighborhood }}...
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="hidden">
+                        {{ form }}
+                        {{ form.errors }}                 
+                    </div>
+                </div>
+            </div>
+            <!-- Sliders -->
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="marginTop20">
+                        <h3>Go to local restaraunts and bars.</h3>          
+                    </div>
+                    <div class="marginTop5">
+                        <div id="sliderQ1"></div>          
+                    </div>
+                    <div class="marginTop5 marginBottom20">
+                        <p>Never <span class="pull-right">All the Time</span></p>         
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="marginTop20">
+                        <h3>Spend time in local parks.</h3>          
+                    </div>
+                    <div class="marginTop5">
+                        <div id="sliderQ2"></div>          
+                    </div>
+                    <div class="marginTop5 marginBottom20">
+                        <p>Never <span class="pull-right">All the Time</span></p>         
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="marginTop20">
+                        <h3>Smoke or vape on the street.</h3>          
+                    </div>
+                    <div class="marginTop5">
+                        <div id="sliderQ3"></div>          
+                    </div>
+                    <div class="marginTop5 marginBottom20">
+                        <p>Never <span class="pull-right">All the Time</span></p>         
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="marginTop20">
+                        <h3>Use marijuana in public.</h3>          
+                    </div>
+                    <div class="marginTop5">
+                        <div id="sliderQ4"></div>          
+                    </div>
+                    <div class="marginTop5 marginBottom20">
+                        <p>Never <span class="pull-right">All the Time</span></p>         
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="marginTop20">
+                        <h3>Maybe one more question.</h3>          
+                    </div>
+                    <div class="marginTop5">
+                        <div id="sliderQ5"></div>          
+                    </div>
+                    <div class="marginTop5 marginBottom20">
+                        <p>Never <span class="pull-right">All the Time</span></p>         
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">    
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 marginBottom20">
+                    <button id="backNeighborhoodMap" class="btn btn-default" type="submit">Back</button>
+                    <button id="nextWhereIGo" class="btn btn-primary" type="submit">Next</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<script type="text/javascript">
+    var objectID = "{{ NYURespondentsObject.id }}";
+    $( document ).ready(function() {
+        window.setTimeout(function() {
+            surveyQuestionsD3Sliders.initialize();
+        }, 1); 
+    });    
+</script>
+	
+
