@@ -23,7 +23,7 @@ $( document ).ready(function() {
 	});
 
 
-	// listeners for all forms
+	// listeners for all form next buttons
 	$(document).on('click', '#nextPickNeighborhood', function(e) {
 		$(".fadein").fadeOut("fast");
 		ajaxApplication.nextPickNeighborhood();
@@ -53,16 +53,10 @@ $( document ).ready(function() {
 	
 
 	// listeners for back buttons
-	$(document).on('click', '#backIntro', function(e) {
+	$(document).on('click', '#backNeighborhoodMap', function(e) {
 		e.preventDefault();
 		$(".fadein").fadeOut("fast");
-		ajaxApplication.backIntro();
-	});
-
-	$(document).on('click', '#backFirstMove', function(e) {
-		e.preventDefault();
-		$(".fadein").fadeOut("fast");
-		ajaxApplication.backFirstMove(objectID);
+		ajaxApplication.backNeighborhoodMap(objectID);
 	});
 
 

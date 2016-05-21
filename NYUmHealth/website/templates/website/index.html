@@ -4,6 +4,7 @@
 {% block title %}My Neighborhood | NYU mHealth{% endblock %}
 
 {% block css_block %}
+<link rel="stylesheet" type="text/css" href="{% static 'website/css/select2.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'website/css/leaflet.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'website/css/leaflet.label.css' %}"> 
 <link rel="stylesheet" type="text/css" href="{% static 'website/css/leaflet.draw.css' %}">
@@ -44,6 +45,8 @@
 <script type="text/javascript">
   var NYC_NTA_topojson = "{% static 'website/data/NYC_NTA.topojson' %}";
 </script>
+<script type="text/javascript" src="{% static 'website/js/select2.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'website/js/django_select2.js' %}"></script>
 <script type="text/javascript" src="{% static 'website/js/leaflet.js' %}"></script>
 <script type="text/javascript" src="{% static 'website/js/leaflet.label-src.js' %}"></script>
 <script type="text/javascript" src="{% static 'website/js/leaflet.draw.js' %}"></script>

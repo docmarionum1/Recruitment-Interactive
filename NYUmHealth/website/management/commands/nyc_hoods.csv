@@ -1,0 +1,190 @@
+BoroCode,BoroName,CountyFIPS,NTACode,NTAName
+2,Bronx,5,BX31,Allerton-Pelham Gardens
+5,Staten Island,85,SI01,Annadale-Huguenot-Prince's Bay-Eltingville
+5,Staten Island,85,SI48,Arden Heights
+4,Queens,81,QN70,Astoria
+4,Queens,81,QN48,Auburndale
+4,Queens,81,QN76,Baisley Park
+3,Brooklyn,47,BK27,Bath Beach
+1,Manhattan,61,MN25,Battery Park City-Lower Manhattan
+3,Brooklyn,47,BK31,Bay Ridge
+4,Queens,81,QN46,Bayside-Bayside Hills
+3,Brooklyn,47,BK75,Bedford
+2,Bronx,5,BX05,Bedford Park-Fordham North
+4,Queens,81,QN43,Bellerose
+2,Bronx,5,BX06,Belmont
+3,Brooklyn,47,BK29,Bensonhurst East
+3,Brooklyn,47,BK28,Bensonhurst West
+3,Brooklyn,47,BK88,Borough Park
+4,Queens,81,QN10,Breezy Point-Belle Harbor-Rockaway Park-Broad Channel
+4,Queens,81,QN35,Briarwood-Jamaica Hills
+3,Brooklyn,47,BK19,Brighton Beach
+2,Bronx,5,BX07,Bronxdale
+3,Brooklyn,47,BK09,Brooklyn Heights-Cobble Hill
+3,Brooklyn,47,BK81,Brownsville
+3,Brooklyn,47,BK77,Bushwick North
+3,Brooklyn,47,BK78,Bushwick South
+4,Queens,81,QN33,Cambria Heights
+3,Brooklyn,47,BK50,Canarsie
+3,Brooklyn,47,BK33,Carroll Gardens-Columbia Street-Red Hook
+1,Manhattan,61,MN03,Central Harlem North-Polo Grounds
+1,Manhattan,61,MN11,Central Harlem South
+5,Staten Island,85,SI11,Charleston-Richmond Valley-Tottenville
+1,Manhattan,61,MN27,Chinatown
+2,Bronx,5,BX01,Claremont-Bathgate
+1,Manhattan,61,MN15,Clinton
+3,Brooklyn,47,BK69,Clinton Hill
+2,Bronx,5,BX13,Co-op City
+4,Queens,81,QN23,College Point
+4,Queens,81,QN25,Corona
+2,Bronx,5,BX75,Crotona Park East
+3,Brooklyn,47,BK61,Crown Heights North
+3,Brooklyn,47,BK63,Crown Heights South
+3,Brooklyn,47,BK83,Cypress Hills-City Line
+4,Queens,81,QN45,Douglas Manor-Douglaston-Little Neck
+3,Brooklyn,47,BK38,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill
+3,Brooklyn,47,BK30,Dyker Heights
+2,Bronx,5,BX14,East Concourse-Concourse Village
+4,Queens,81,QN27,East Elmhurst
+3,Brooklyn,47,BK91,East Flatbush-Farragut
+4,Queens,81,QN52,East Flushing
+1,Manhattan,61,MN34,East Harlem North
+1,Manhattan,61,MN33,East Harlem South
+3,Brooklyn,47,BK82,East New York
+3,Brooklyn,47,BK85,East New York (Pennsylvania Ave)
+2,Bronx,5,BX17,East Tremont
+1,Manhattan,61,MN22,East Village
+3,Brooklyn,47,BK90,East Williamsburg
+2,Bronx,5,BX03,Eastchester-Edenwald-Baychester
+4,Queens,81,QN29,Elmhurst
+4,Queens,81,QN50,Elmhurst-Maspeth
+3,Brooklyn,47,BK95,Erasmus
+4,Queens,81,QN15,Far Rockaway-Bayswater
+3,Brooklyn,47,BK42,Flatbush
+3,Brooklyn,47,BK58,Flatlands
+4,Queens,81,QN22,Flushing
+2,Bronx,5,BX40,Fordham South
+4,Queens,81,QN17,Forest Hills
+3,Brooklyn,47,BK68,Fort Greene
+4,Queens,81,QN41,Fresh Meadows-Utopia
+4,Queens,81,QN47,Ft. Totten-Bay Terrace-Clearview
+3,Brooklyn,47,BK45,Georgetown-Marine Park-Bergen Beach-Mill Basin
+4,Queens,81,QN44,Glen Oaks-Floral Park-New Hyde Park
+4,Queens,81,QN19,Glendale
+1,Manhattan,61,MN21,Gramercy
+5,Staten Island,85,SI14,Grasmere-Arrochar-Ft. Wadsworth
+3,Brooklyn,47,BK26,Gravesend
+5,Staten Island,85,SI54,Great Kills
+3,Brooklyn,47,BK76,Greenpoint
+5,Staten Island,85,SI08,Grymes Hill-Clifton-Fox Hills
+1,Manhattan,61,MN04,Hamilton Heights
+4,Queens,81,QN12,Hammels-Arverne-Edgemere
+2,Bronx,5,BX26,Highbridge
+4,Queens,81,QN07,Hollis
+3,Brooklyn,47,BK25,Homecrest
+1,Manhattan,61,MN13,Hudson Yards-Chelsea-Flatiron-Union Square
+4,Queens,81,QN31,Hunters Point-Sunnyside-West Maspeth
+2,Bronx,5,BX27,Hunts Point
+4,Queens,81,QN28,Jackson Heights
+4,Queens,81,QN61,Jamaica
+4,Queens,81,QN06,Jamaica Estates-Holliswood
+3,Brooklyn,47,BK41,Kensington-Ocean Parkway
+4,Queens,81,QN60,Kew Gardens
+4,Queens,81,QN37,Kew Gardens Hills
+2,Bronx,5,BX30,Kingsbridge Heights
+4,Queens,81,QN66,Laurelton
+1,Manhattan,61,MN31,Lenox Hill-Roosevelt Island
+1,Manhattan,61,MN14,Lincoln Square
+4,Queens,81,QN57,Lindenwood-Howard Beach
+2,Bronx,5,BX33,Longwood
+1,Manhattan,61,MN28,Lower East Side
+3,Brooklyn,47,BK44,Madison
+1,Manhattan,61,MN06,Manhattanville
+1,Manhattan,61,MN01,Marble Hill-Inwood
+5,Staten Island,85,SI12,Mariner's Harbor-Arlington-Port Ivory-Graniteville
+4,Queens,81,QN30,Maspeth
+2,Bronx,5,BX34,Melrose South-Mott Haven North
+4,Queens,81,QN21,Middle Village
+1,Manhattan,61,MN17,Midtown-Midtown South
+3,Brooklyn,47,BK43,Midwood
+1,Manhattan,61,MN09,Morningside Heights
+2,Bronx,5,BX35,Morrisania-Melrose
+2,Bronx,5,BX39,Mott Haven-Port Morris
+2,Bronx,5,BX41,Mount Hope
+4,Queens,81,QN51,Murray Hill
+1,Manhattan,61,MN20,Murray Hill-Kips Bay
+5,Staten Island,85,SI35,New Brighton-Silver Lake
+5,Staten Island,85,SI45,New Dorp-Midland Beach
+5,Staten Island,85,SI05,New Springville-Bloomfield-Travis
+4,Queens,81,QN26,North Corona
+2,Bronx,5,BX22,North Riverdale-Fieldston-Riverdale
+3,Brooklyn,47,BK73,North Side-South Side
+2,Bronx,5,BX43,Norwood
+4,Queens,81,QN42,Oakland Gardens
+5,Staten Island,85,SI25,Oakwood-Oakwood Beach
+3,Brooklyn,47,BK79,Ocean Hill
+3,Brooklyn,47,BK46,Ocean Parkway South
+4,Queens,81,QN71,Old Astoria
+5,Staten Island,85,SI36,Old Town-Dongan Hills-South Beach
+4,Queens,81,QN56,Ozone Park
+3,Brooklyn,47,BK37,Park Slope-Gowanus
+2,Bronx,5,BX46,Parkchester
+2,Bronx,5,BX10,Pelham Bay-Country Club-City Island
+2,Bronx,5,BX49,Pelham Parkway
+4,Queens,81,QN38,Pomonok-Flushing Heights-Hillcrest
+5,Staten Island,85,SI28,Port Richmond
+3,Brooklyn,47,BK64,Prospect Heights
+3,Brooklyn,47,BK60,Prospect Lefferts Gardens-Wingate
+4,Queens,81,QN34,Queens Village
+4,Queens,81,QN62,Queensboro Hill
+4,Queens,81,QN68,Queensbridge-Ravenswood-Long Island City
+4,Queens,81,QN18,Rego Park
+4,Queens,81,QN54,Richmond Hill
+4,Queens,81,QN20,Ridgewood
+2,Bronx,5,BX98,Rikers Island
+4,Queens,81,QN05,Rosedale
+5,Staten Island,85,SI32,Rossville-Woodrow
+3,Brooklyn,47,BK96,Rugby-Remsen Village
+2,Bronx,5,BX52,Schuylerville-Throgs Neck-Edgewater Park
+3,Brooklyn,47,BK21,Seagate-Coney Island
+3,Brooklyn,47,BK17,Sheepshead Bay-Gerritsen Beach-Manhattan Beach
+1,Manhattan,61,MN24,SoHo-TriBeCa-Civic Center-Little Italy
+2,Bronx,5,BX55,Soundview-Bruckner
+2,Bronx,5,BX09,Soundview-Castle Hill-Clason Point-Harding Park
+4,Queens,81,QN01,South Jamaica
+4,Queens,81,QN55,South Ozone Park
+4,Queens,81,QN02,Springfield Gardens North
+4,Queens,81,QN03,Springfield Gardens South-Brookville
+2,Bronx,5,BX29,Spuyten Duyvil-Kingsbridge
+4,Queens,81,QN08,St. Albans
+5,Staten Island,85,SI37,Stapleton-Rosebank
+3,Brooklyn,47,BK93,Starrett City
+4,Queens,81,QN72,Steinway
+3,Brooklyn,47,BK35,Stuyvesant Heights
+1,Manhattan,61,MN50,Stuyvesant Town-Cooper Village
+3,Brooklyn,47,BK34,Sunset Park East
+3,Brooklyn,47,BK32,Sunset Park West
+5,Staten Island,85,SI24,Todt Hill-Emerson Hill-Heartland Village-Lighthouse Hill
+1,Manhattan,61,MN19,Turtle Bay-East Midtown
+2,Bronx,5,BX36,University Heights-Morris Heights
+1,Manhattan,61,MN40,Upper East Side-Carnegie Hill
+1,Manhattan,61,MN12,Upper West Side
+2,Bronx,5,BX28,Van Cortlandt Village
+2,Bronx,5,BX37,Van Nest-Morris Park-Westchester Square
+1,Manhattan,61,MN35,Washington Heights North
+1,Manhattan,61,MN36,Washington Heights South
+3,Brooklyn,47,BK23,West Brighton
+2,Bronx,5,BX63,West Concourse
+2,Bronx,5,BX08,West Farms-Bronx River
+5,Staten Island,85,SI22,West New Brighton-New Brighton-St. George
+1,Manhattan,61,MN23,West Village
+2,Bronx,5,BX59,Westchester-Unionport
+5,Staten Island,85,SI07,Westerleigh
+4,Queens,81,QN49,Whitestone
+2,Bronx,5,BX44,Williamsbridge-Olinville
+3,Brooklyn,47,BK72,Williamsburg
+3,Brooklyn,47,BK40,Windsor Terrace
+4,Queens,81,QN53,Woodhaven
+2,Bronx,5,BX62,Woodlawn-Wakefield
+4,Queens,81,QN63,Woodside
+1,Manhattan,61,MN32,Yorkville

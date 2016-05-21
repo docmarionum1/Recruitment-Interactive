@@ -1,3 +1,5 @@
+{% load bootstrap_tags %}
+
 <!-- Content -->
 <div class="fadein">
 
@@ -14,9 +16,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-8 col-sm-offset-2">
-                    <div class="invisible">
-                        {{ form }}
+                <div class="col-xs-10 col-sm-3 col-sm-offset-2">
+                    <div class="touch marginTop5 semiTransparent">
+                        {{ form|as_bootstrap }}
                         {{ form.errors }}                 
                     </div>
                 </div>
@@ -35,9 +37,30 @@
 
 <script type="text/javascript">
     var objectID = "{{ NYURespondentsObject.id }}";
+    var $select2object;
     $( document ).ready(function() {
         window.setTimeout(function() {
+            // set up select 2 field
+            $select2object = $('.django-select2').djangoSelect2();
+            $('.select2-selection__placeholder').text('Select a neighborhood.');
             mapPickLocation.initialize();
+            // when select 2 item is selected
+            $select2object.on('select2:select', function(e) {
+                var NTAName = $('#id_myNeighborhood option:selected').text();
+                // if the select event came from the map, don't run the select neighborhood function
+                mapPickLocation.selectNeighborhood(NTAName);
+               
+                // remove disable from next button
+                if ($('#nextSurveyQuestions').prop("disabled")) {
+                    $('#nextSurveyQuestions').prop("disabled", false);
+                }
+            });
+            // when slelect 2 item is released
+            $select2object.on('select2:unselect', function(e) {
+                $('#nextSurveyQuestions').prop("disabled", true);
+                mapPickLocation.unSelectAllNeighborhoods();
+            });
+
         }, 1);
     });
 </script>

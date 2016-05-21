@@ -44,6 +44,7 @@ ajaxApplication.nextSurveyQuestions = function () {
 
 
 ajaxApplication.nextWhereIGo = function () {
+	console.log('ajax');
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
 		// enable id_whenMoved so we can include it in from submission
@@ -56,6 +57,7 @@ ajaxApplication.nextWhereIGo = function () {
 				url: "/nextSurveyQuestions/"+ objectID +"/",
 				data: f.serialize(),
 				success: function(data){
+					console.log(data);
 					$('#content').html(data);
 					$(".fadein").fadeIn("slow");
 		        }
@@ -70,7 +72,6 @@ ajaxApplication.nextWhereIGo = function () {
 
 
 ajaxApplication.nextResults = function () {
-	console.log('hello');
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
 		// enable id_whenMoved so we can include it in from submission
@@ -101,38 +102,15 @@ ajaxApplication.nextResults = function () {
 
 
 // back buttons
-ajaxApplication.backIntro = function () {
+ajaxApplication.backNeighborhoodMap = function (id) {
+	console.log(id);
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
 		$.ajax({
 			type: "GET",
-			url: "/mfa-nyc/",
+			url: "/nextPickNeighborhood/"+id+"/",
 			success: function(data){
 				$('#content').html(data);
-				$(".fadein").fadeIn("slow");
-	        }
-		});
-	}
-}
-
-ajaxApplication.backFirstMove = function (id) {
-	var timeout = window.setTimeout(slow, 200);
-	function slow() {
-		$.ajax({
-			type: "GET",
-			url: "/mfa-nyc/firstMove/"+id+"/",
-			success: function(data){
-				$('#content').html(data);
-				// remove labels
-				$('label').remove();
-				// add a form-control class to the input, disabled attribute and placeholder text
-				$('#id_whenMoved').addClass("form-control");
-				$('#id_whenMoved').prop("disabled", true);
-				if ($('#id_whenMoved').val() == "2010 - Present") {
-					$('.plusStepper').addClass('disabled');
-				} else if ($('#id_whenMoved').val() == "Before 1960") {
-					$('.minusStepper').addClass('disabled');
-				}
 				$(".fadein").fadeIn("slow");
 	        }
 		});

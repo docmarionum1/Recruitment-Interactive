@@ -6,7 +6,7 @@ function mapPickLocation() {}
 
 mapPickLocation.initialize = function () {
 
-    this.map = new L.Map('map', {
+    mapPickLocation.map = new L.Map('map', {
 		minZoom:10,
 		maxZoom:16,
     	center: [40.710508, -73.943825],
@@ -15,11 +15,11 @@ mapPickLocation.initialize = function () {
 	});
 
 	// add zoom control to lower right
-	new L.Control.Zoom({ position: 'bottomright' }).addTo(this.map);
+	new L.Control.Zoom({ position: 'bottomright' }).addTo(mapPickLocation.map);
 
 	// get bounds and set maxBounds so user can't pan outside of a certain extent
-	this.bounds = this.map.getBounds().pad(1);
-	this.map.setMaxBounds(this.bounds);
+	var bounds = mapPickLocation.map.getBounds().pad(1);
+	mapPickLocation.map.setMaxBounds(bounds);
 
 	// set a tile layer to be CartoDB tiles 
 	var CartoDBTiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png', { attribution: 'Map tiles by <a href=\"http://cartodb.com/attributions#basemaps\">CartoDB</a>, under <a href=\"https://creativecommons.org/licenses/by/3.0/\" target=\"_blank\">CC BY 3.0</a>. Data by <a href=\"http://www.openstreetmap.org/\" target=\"_blank\">OpenStreetMap</a>, under ODbL.'
@@ -27,19 +27,19 @@ mapPickLocation.initialize = function () {
 
 
 	// add these tiles to our map
-	this.map.addLayer(CartoDBTiles);
+	mapPickLocation.map.addLayer(CartoDBTiles);
 	
     // enable events
-    this.map.doubleClickZoom.enable();
-    this.map.scrollWheelZoom.enable();
+    mapPickLocation.map.doubleClickZoom.enable();
+    mapPickLocation.map.scrollWheelZoom.enable();
 
     // load Neighborhood Tabulation Areas
-    mapPickLocation.loadNTA(this);
+    mapPickLocation.loadNTA();
 	
 }
 
 
-mapPickLocation.loadNTA = function (thismap){
+mapPickLocation.loadNTA = function (){
 
 	d3.json(NYC_NTA_topojson, function(data) {
 		var polyTopojson = topojson.feature(data, data.objects.NYC_NTA).features;
@@ -47,13 +47,12 @@ mapPickLocation.loadNTA = function (thismap){
 	});
 
 	function drawPolys(polyTopojson) {
-		mapPickLocation.lastClickedLayer;
 		mapPickLocation.NTA = L.geoJson(polyTopojson, {
 		    style: mapPickLocation.getStyleFor_NTA,
 			onEachFeature: mapPickLocation.onEachFeature_NTA,
 			filter: mapPickLocation.filter_NTA,
 		});
-		mapPickLocation.NTA.addTo(thismap.map).bringToBack();
+		mapPickLocation.NTA.addTo(mapPickLocation.map).bringToBack();
 	}
 
 }
@@ -67,23 +66,13 @@ mapPickLocation.filter_NTA = function(feature,layer){
 }
 
 mapPickLocation.onEachFeature_NTA = function(feature,layer){	
-	var hovered = {
-	    fillOpacity: 1
-	};
-	var notHovered = {
-	    fillOpacity: 0.5
-	};
-
-	var clicked = {
-		weight: 3,
-		fillOpacity: 1,
-	    color: '#555',
-	}
 
 	layer.bindLabel("<strong>" + feature.properties.NTAName + "</strong>", { direction:'auto' });
 	
     layer.on('mouseover', function(ev) {
-		layer.setStyle(hovered);
+    	if (layer != mapPickLocation.lastClickedLayer) {
+    		layer.setStyle(mapPickLocation.hovered);
+    	}
     });
 		
     layer.on('mouseout', function(ev) {
@@ -94,48 +83,102 @@ mapPickLocation.onEachFeature_NTA = function(feature,layer){
     });	
 
     layer.on('click', function(ev) {
+    	// look up value in the select combo box
+    	var lookup = $("#id_myNeighborhood option").filter(function() {
+		    return this.text == feature.properties.NTAName; 
+		});
+
+    	// change select 2
+    	$select2object.val(lookup.val()).trigger("change");
+
     	// check to see if any layers have been clicked and if so reset the style
     	if(mapPickLocation.lastClickedLayer){
 		   mapPickLocation.NTA.resetStyle(mapPickLocation.lastClickedLayer);
 		}
 
 		// set style
-		layer.setStyle(clicked);
+		layer.setStyle(mapPickLocation.clicked);
 
 		// bring to front
 		if (!L.Browser.ie && !L.Browser.opera) {
 	        layer.bringToFront();
 	    }
 
-	    // update the form for submission
-	    $('#id_myNeighborhood').val(feature.properties.NTAName);
-
-	    // remove disable from next button
-	    if ($('#nextSurveyQuestions').prop("disabled")) {
-	    	$('#nextSurveyQuestions').prop("disabled", false);
-	    }
+    	// zoom to layer
+		mapPickLocation.map.fitBounds(layer.getBounds().pad(0.5));
 
 	    // assign layer clicked to lastLayerClicked for use later
 	    mapPickLocation.lastClickedLayer = layer;
+
+        // remove disable from next button
+        if ($('#nextSurveyQuestions').prop("disabled")) {
+            $('#nextSurveyQuestions').prop("disabled", false);
+        }
+
 
     });	
 
 }
 
 mapPickLocation.getStyleFor_NTA = function (feature){
-	var color = d3.scale.category20()
-        .domain(d3.range(195));
-
-	return {
-        weight: 1,
-        opacity: 1,
-        color: '#fff',
-        fillOpacity: 0.5,
-        fillColor: color(parseInt(feature.properties.OBJECTID))
-    }		
-    
+	return mapPickLocation.initStyle;
 }
 
+mapPickLocation.selectNeighborhood = function(NTAName) {
+	if(mapPickLocation.lastClickedLayer){
+		mapPickLocation.NTA.resetStyle(mapPickLocation.lastClickedLayer);
+	}
+
+	mapPickLocation.NTA.eachLayer(function (layer) { 
+		if(layer.feature.properties.NTAName == NTAName) {    
+			layer.setStyle(mapPickLocation.clicked);
+			// zoom to layer
+			mapPickLocation.map.fitBounds(layer.getBounds().pad(0.5));
+			mapPickLocation.lastClickedLayer = layer;
+		} 
+	});
+}
+
+mapPickLocation.unSelectAllNeighborhoods = function() {
+	// reset map zoom
+	mapPickLocation.map.setView([40.710508, -73.943825],11);
+	if(mapPickLocation.lastClickedLayer){
+		mapPickLocation.NTA.resetStyle(mapPickLocation.lastClickedLayer);
+	}
+	mapPickLocation.lastClickedLayer = '';
+
+}
+
+
+/* Style states */
+mapPickLocation.initStyle = {
+        weight: 0,
+        opacity: 0,
+        color: '#fff',
+        fillOpacity: 0,
+        fillColor: "#fff",
+    };
+
+mapPickLocation.hovered = {
+        weight: 1,
+        opacity: 1,
+        color: '#111',
+        fillOpacity: 0.5,
+        fillColor: "#ccc",
+    };
+
+mapPickLocation.clicked = {
+		weight: 3,
+		opacity: 1,
+	    color: '#555',		
+		fillOpacity: 0.5,
+		fillColor: "#ccc",
+    };
+
+
+/* Vars */
+mapPickLocation.map;
+mapPickLocation.lastClickedLayer;
 
 
 
