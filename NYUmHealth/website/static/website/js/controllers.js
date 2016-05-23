@@ -2,6 +2,8 @@
  * controllers.js: javascript controllers for all pages
  */
 
+
+
 $( document ).ready(function() {
 
 	// fade in first page on page load
@@ -20,6 +22,12 @@ $( document ).ready(function() {
 	 		$('#content').css("top", "67px");
 	 		$('#map').css("top", "0");	 		
 	 	}
+	});
+
+	// listener for add circle button on where I go map
+	$(document).on('click', '#addAnotherCircle', function(e) {
+		e.preventDefault();
+		mapWhereIGo.addAnotherCircle();
 	});
 
 

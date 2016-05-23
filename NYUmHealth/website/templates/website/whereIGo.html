@@ -7,9 +7,9 @@
         <div class="container-fluid absolutePostionedDiv">
             {% csrf_token %}
             <div class="row">
-                <div class="col-xs-10 col-sm-4 col-sm-offset-2">
+                <div class="col-sm-4 col-sm-offset-2">
                     <h2 class="headingBackground">
-                        Draw where you spend your time.
+                        Drag a circle over where you spend your time.
                     </h2>
                 </div>
             </div>
@@ -26,7 +26,8 @@
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 bottomButtonGroupMap">
                     <button id="backSurveyQuestions" class="btn btn-default" type="submit">Back</button>
-                    <button id="nextResults" class="btn btn-primary" type="submit" disabled="disabled">Next</button>
+                    <button id="addAnotherCircle" class="btn btn-danger">Add Another Circle!</button>
+                    <button id="nextResults" class="btn btn-primary" type="submit">Next</button>
                 </div>
             </div>
         </div>

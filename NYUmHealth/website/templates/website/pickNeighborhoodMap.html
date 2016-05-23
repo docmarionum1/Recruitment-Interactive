@@ -9,14 +9,14 @@
         <div class="container-fluid absolutePostionedDiv">
             {% csrf_token %}
             <div class="row">
-                <div class="col-xs-10 col-sm-4 col-sm-offset-2">
+                <div class="col-sm-4 col-sm-offset-2">
                     <h2 class="headingBackground">
                         Choose the neighborhood you live in.
                     </h2>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-10 col-sm-3 col-sm-offset-2">
+                <div class="col-sm-3 col-sm-offset-2">
                     <div class="touch marginTop5 semiTransparent">
                         {{ form|as_bootstrap }}
                         {{ form.errors }}                 

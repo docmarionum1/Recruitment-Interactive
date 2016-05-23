@@ -44,7 +44,6 @@ ajaxApplication.nextSurveyQuestions = function () {
 
 
 ajaxApplication.nextWhereIGo = function () {
-	console.log('ajax');
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
 		// enable id_whenMoved so we can include it in from submission
@@ -57,7 +56,6 @@ ajaxApplication.nextWhereIGo = function () {
 				url: "/nextSurveyQuestions/"+ objectID +"/",
 				data: f.serialize(),
 				success: function(data){
-					console.log(data);
 					$('#content').html(data);
 					$(".fadein").fadeIn("slow");
 		        }
@@ -103,7 +101,6 @@ ajaxApplication.nextResults = function () {
 
 // back buttons
 ajaxApplication.backNeighborhoodMap = function (id) {
-	console.log(id);
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
 		$.ajax({

@@ -5,10 +5,10 @@
 function mapWhereIGo() {}
 
 mapWhereIGo.initialize = function () {
-	mapWhereIGo.thismap = this;
 
-    this.map = new L.Map('map', {
-		minZoom:10,
+
+    mapWhereIGo.map = new L.Map('map', {
+		minZoom:11,
 		maxZoom:18,
     	center: [40.710508, -73.943825],
    	 	zoom: 11,
@@ -16,11 +16,11 @@ mapWhereIGo.initialize = function () {
 	});
 
 	// add zoom control to lower right
-	new L.Control.Zoom({ position: 'bottomright' }).addTo(this.map);
+	new L.Control.Zoom({ position: 'bottomright' }).addTo(mapWhereIGo.map);
 
 	// get bounds and set maxBounds so user can't pan outside of a certain extent
-	this.bounds = this.map.getBounds().pad(1);
-	this.map.setMaxBounds(this.bounds);
+	var bounds = mapWhereIGo.map.getBounds().pad(1);
+	mapWhereIGo.map.setMaxBounds(bounds);
 
 	// set a tile layer to be CartoDB tiles 
 	var CartoDBTiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png', { attribution: 'Map tiles by <a href=\"http://cartodb.com/attributions#basemaps\">CartoDB</a>, under <a href=\"https://creativecommons.org/licenses/by/3.0/\" target=\"_blank\">CC BY 3.0</a>. Data by <a href=\"http://www.openstreetmap.org/\" target=\"_blank\">OpenStreetMap</a>, under ODbL.'
@@ -28,20 +28,16 @@ mapWhereIGo.initialize = function () {
 
 
 	// add these tiles to our map
-	this.map.addLayer(CartoDBTiles);
+	mapWhereIGo.map.addLayer(CartoDBTiles);
 	
     // enable events
-    this.map.doubleClickZoom.enable();
-    this.map.scrollWheelZoom.enable();
+    mapWhereIGo.map.doubleClickZoom.enable();
+    mapWhereIGo.map.scrollWheelZoom.enable();
 
     // load Neighborhood Tabulation Areas
     mapWhereIGo.loadNTA();
-
-    // load draw tools
-    mapWhereIGo.loadDrawTools();
 	
 }
-
 
 mapWhereIGo.loadNTA = function (){
 
@@ -51,33 +47,115 @@ mapWhereIGo.loadNTA = function (){
 	});
 
 	function drawPolys(polyTopojson) {
-		mapWhereIGo.lastClickedLayer;
 		mapWhereIGo.NTA = L.geoJson(polyTopojson, {
 			onEachFeature: mapWhereIGo.onEachFeature_NTA
 		});
-		// zoom map to the selected neighborhood
 
-		//mapWhereIGo.NTA.addTo(thismap.map).bringToBack();
+		// load draw tools
+    	mapWhereIGo.simpleDrawTools();
 	}
 
 }
 
 mapWhereIGo.onEachFeature_NTA = function(feature,layer){
+	// zoom map to the selected neighborhood
 	if (feature.properties.NTAName == objectMyNeighborhood) {
 		var bounds = layer.getBounds();
-		mapWhereIGo.thismap.map.fitBounds(bounds);
+		mapWhereIGo.map.fitBounds(bounds);
+		mapWhereIGo.zoomCenter = bounds.getCenter();
 	}
 }
 
+mapWhereIGo.simpleDrawTools = function(){
+	// initiate drawing tools
+	mapWhereIGo.FEATURELAYER = new L.FeatureGroup();
+	mapWhereIGo.map.addLayer(mapWhereIGo.FEATURELAYER);
 
+	// create draggable marker that looks like a drawn circle
+	var newCircle = L.marker(mapWhereIGo.zoomCenter, {
+		icon: mapWhereIGo.circleIcon,
+		draggable: true,
+		riseOnHover: true,
+	}).addTo(mapWhereIGo.map);
+
+	newCircle.bindLabel("<strong>Drag me where you spend time!</strong>", { direction:'auto' });
+
+	mapWhereIGo.FEATURELAYER.addLayer(newCircle);
+   	var geojson = mapWhereIGo.FEATURELAYER.toGeoJSON();
+   	$('#id_whereIGo').val(JSON.stringify(geojson));
+
+
+	// set up listeners for drag end
+	newCircle.on('dragend', function(e) {	
+	   	// update the form field with new geojson
+	   	var geojson = mapWhereIGo.FEATURELAYER.toGeoJSON();
+	   	$('#id_whereIGo').val(JSON.stringify(geojson));
+	});
+
+	// set up listener for zoomend
+	mapWhereIGo.map.on('zoomend', function(e){
+		var zoom = mapWhereIGo.map.getZoom();
+		if (zoom > 15) {
+			newCircle.setIcon(mapWhereIGo.circleIconBig);
+		} else if (zoom > 13) {
+			newCircle.setIcon(mapWhereIGo.circleIcon);			
+		} else {
+			newCircle.setIcon(mapWhereIGo.circleIconSmall);						
+		}
+	});
+
+}
+
+mapWhereIGo.addAnotherCircle = function(){
+	// get center of current map position
+	mapWhereIGo.zoomCenter = mapWhereIGo.map.getCenter();
+
+	// create draggable marker that looks like a drawn circle
+	var newCircle = L.marker(mapWhereIGo.zoomCenter, {
+		icon: mapWhereIGo.circleIcon,
+		draggable: true,
+		riseOnHover: true,
+	}).addTo(mapWhereIGo.map);
+
+	newCircle.bindLabel("<strong>Drag me where you spend time!</strong>", { direction:'auto' });
+
+	mapWhereIGo.FEATURELAYER.addLayer(newCircle);
+   	var geojson = mapWhereIGo.FEATURELAYER.toGeoJSON();
+   	$('#id_whereIGo').val(JSON.stringify(geojson));
+
+
+	// set up listeners for drag end
+	newCircle.on('dragend', function(e) {
+	   	// update the form field with new geojson
+	   	var geojson = mapWhereIGo.FEATURELAYER.toGeoJSON();
+	   	$('#id_whereIGo').val(JSON.stringify(geojson));
+	});
+
+	// set up listener for zoomend
+	mapWhereIGo.map.on('zoomend', function(e){
+		var zoom = mapWhereIGo.map.getZoom();
+		if (zoom > 15) {
+			newCircle.setIcon(mapWhereIGo.circleIconBig);
+		} else if (zoom > 13) {
+			newCircle.setIcon(mapWhereIGo.circleIcon);			
+		} else {
+			newCircle.setIcon(mapWhereIGo.circleIconSmall);						
+		}
+	});
+
+}
+
+
+
+// to be depreciated
 mapWhereIGo.loadDrawTools = function(){
 
 	// initiate drawing tools
-	mapWhereIGo.thismap.FEATURELAYER = new L.FeatureGroup();
-	mapWhereIGo.thismap.map.addLayer(mapWhereIGo.thismap.FEATURELAYER);
+	mapWhereIGo.FEATURELAYER = new L.FeatureGroup();
+	mapWhereIGo.map.addLayer(mapWhereIGo.FEATURELAYER);
 
 	// Initialise the draw control and pass it the FeatureGroup of editable layers
-	mapWhereIGo.thismap.drawControl = new L.Control.Draw({
+	mapWhereIGo.drawControl = new L.Control.Draw({
 		draw: {
 			polyline: false,
 			rectangle: false,
@@ -91,20 +169,20 @@ mapWhereIGo.loadDrawTools = function(){
 			polygon: false,
 		},
 	    edit: {
-	        featureGroup: mapWhereIGo.thismap.FEATURELAYER,
+	        featureGroup: mapWhereIGo.FEATURELAYER,
 	        edit: true,
 	        remove: true,
 	    },
 	});
-	mapWhereIGo.thismap.map.addControl(mapWhereIGo.thismap.drawControl);
+	mapWhereIGo.map.addControl(mapWhereIGo.drawControl);
 
-	mapWhereIGo.thismap.map.on('draw:created', function (e) {
+	mapWhereIGo.map.on('draw:created', function (e) {
 	    // add layer to map
-	    mapWhereIGo.thismap.FEATURELAYER.addLayer(e.layer);
-	    mapWhereIGo.thismap.map.addLayer(e.layer);
+	    mapWhereIGo.FEATURELAYER.addLayer(e.layer);
+	    mapWhereIGo.map.addLayer(e.layer);
 
 	   	// update the form field with new geojson
-	   	var geojson = mapWhereIGo.thismap.FEATURELAYER.toGeoJSON();
+	   	var geojson = mapWhereIGo.FEATURELAYER.toGeoJSON();
 	   	console.log(geojson);
 
 	   	$('#id_whereIGo').val(JSON.stringify(geojson));
@@ -114,17 +192,17 @@ mapWhereIGo.loadDrawTools = function(){
 
 	});
 
-	mapWhereIGo.thismap.map.on('draw:edited', function (e) {
+	mapWhereIGo.map.on('draw:edited', function (e) {
 	   	// update the form field with new geojson
-	   	var geojson = mapWhereIGo.thismap.FEATURELAYER.toGeoJSON();
+	   	var geojson = mapWhereIGo.FEATURELAYER.toGeoJSON();
 
 	   	$('#id_whereIGo').val(JSON.stringify(geojson));
 
 	});
 
-	mapWhereIGo.thismap.map.on('draw:deleted', function (e) {
+	mapWhereIGo.map.on('draw:deleted', function (e) {
 	   	// update the form field with new geojson
-	   	var geojson = mapWhereIGo.thismap.FEATURELAYER.toGeoJSON();
+	   	var geojson = mapWhereIGo.FEATURELAYER.toGeoJSON();
 
 	   	$('#id_whereIGo').val(JSON.stringify(geojson));
 
@@ -133,6 +211,30 @@ mapWhereIGo.loadDrawTools = function(){
 }
 
 
+/* Style states */
+mapWhereIGo.circleIcon = L.icon({
+    iconUrl: '/static/website/css/images/circleIcon.png',
+    iconSize:     [103, 103], 
+    iconAnchor:   [52, 52],
+    labelAnchor:  [0, 0],
+});
 
+mapWhereIGo.circleIconSmall = L.icon({
+    iconUrl: '/static/website/css/images/circleIcon.png',
+    iconSize:     [33, 33], 
+    iconAnchor:   [16, 16],
+    labelAnchor:  [0, 0],
+});
 
+mapWhereIGo.circleIconBig = L.icon({
+    iconUrl: '/static/website/css/images/circleIcon.png',
+    iconSize:     [203, 203], 
+    iconAnchor:   [102, 102],
+    labelAnchor:  [0, 0],
+});
+
+/* Vars */
+mapWhereIGo.map;
+mapWhereIGo.zoomCenter;
+mapWhereIGo.FEATURELAYER;
 
