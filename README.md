@@ -2,7 +2,7 @@
 This repository houses code under development for an interactive website that aims to gather anonymous data and recruit participants into further studies. This tool was developed using the [Django Python Web framework](https://www.djangoproject.com/).
 
 ## Local Development Installation
-Note: Do not use this workflow for deployign this tool to production, as this may introduce a number of security concerns. For more information on deploying Django in a production environment, please see the [Django deployment checklist](https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/)
+Note: Do not use this workflow for deploying this tool to production, as this may introduce a number of security concerns. For more information on deploying Django in a production environment, please see the [Django deployment checklist](https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/)
 To install this interactive on your local machine:
 1. [Clone this repository](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository#Cloning-an-Existing-Repository) to your local machine.
 2. In the directory where you placed the cloned repo, create a virtual environment for Python and project dependencies in a directory called "env":
