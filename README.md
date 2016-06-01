@@ -23,9 +23,13 @@ pip install -r requirements.txt
   * Add a ```SECRET_KEY``` of 50 randomly generated characters,
   * Replace default [database settings](https://docs.djangoproject.com/en/1.9/ref/settings/#databases) with preferred database settings (optional) 
   * Add email password to ```EMAIL_HOST_PASSWORD``` setting. Contact JD for email password if needed.
-* Still in the virtual environment, navigate to ```/NYUmHealth/``` (you should see ```manage.py``` in there)and mirror database schema by running:
+* Still in the virtual environment, navigate to ```/NYUmHealth/``` (you should see ```manage.py``` in there) and mirror database schema by running:
 ```shell
 python manage.py migrate
+```
+* Ingest New York City neighborhood list into database by running:
+```shell
+python manage.py import_nyc_hoods
 ```
 * Fire up your local webserver:
 ```shell
