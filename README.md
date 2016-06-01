@@ -37,7 +37,7 @@ python manage.py runserver
 deactivate
 ```
 
-#  Django project in a local web server
+## Django project in a local web server
 Once installed, it's easy to fire up your local web server to view the development version of this site.
 * Navigate to the directory where your virtual environment is installed.
 * Activate your virtual environment
