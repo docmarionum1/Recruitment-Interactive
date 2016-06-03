@@ -54,10 +54,87 @@ source env/bin/activate
 python manage.py runserver
 ```
 * In a web browser, go to [localhost:8000](http://localhost:8000/), and you should see the development site! 
-*  When daily development is complete, terminate the local web server by typing ```CONTROL + C```. Also deactivate the virtual environment:
+* When daily development is complete, terminate the local web server by typing ```CONTROL + C```. Also deactivate the virtual environment:
 ```shell
 deactivate
 ```
+
+## Deploying this Django project on a webserver with Nginx and Gunicorn
+The instructions below replicate our installation of this project on Digital Ocean. Your server configuration may vary. These instructions also assume that your webserver is nginx, you use Gunicorn as your Python WSGI HTTP Server, and you have your preferred database software installed. 
+* Navigate to the directory you would like to depoly the project in 
+* Using git, create local repository and fetch code from GitHub:
+```shell
+git init
+git remote add origin https://github.com/nyu-mhealth/Recruitment-Interactive.git
+git fetch
+git checkout -t origin/master
+```
+* If using a virtual environment, create one now:
+```shell
+pip install virtualenv 
+virtualenv env
+```
+* Activate your virtual environment
+```shell
+source env/bin/activate
+```
+* Install Django and all required packages:
+```shell
+pip install -r requirements.txt
+```
+* In ```/NYUmHealth/NYUmHealth/``` make a copy of ```dummy_settings.py``` called ```settings.py```
+* In ```settings.py```:
+  * Add a ```SECRET_KEY``` of 50 randomly generated characters,
+  * Replace default [database settings](https://docs.djangoproject.com/en/1.9/ref/settings/#databases) with preferred database settings (optional) 
+  * Add email password to ```EMAIL_HOST_PASSWORD``` setting. Contact JD for email password if needed.
+  * Add ```STATIC_ROOT``` and pointer to where static files will live to settings.py:
+  ```shell
+  STATIC_ROOT = '/PATH/TO/PROJECT/NYUmHealth/NYUmHealth/static'
+  ```
+  * Update default [database settings](https://docs.djangoproject.com/en/1.9/ref/settings/#databases) with preferred database settings (optional)
+* Still in the virtual environment, navigate to ```/NYUmHealth/``` (you should see ```manage.py``` in there) and mirror database schema by running:
+```shell
+python manage.py migrate
+```
+* Ingest New York City neighborhood list into database by running:
+```shell
+python manage.py import_nyc_hoods
+```
+* Collect static files to the directory you've pointed to in ```STATIC_ROOT```:
+```shell
+python manage.py collectstatic
+```
+* In your Nginx ```sites_avialable``` directory create a file called ```nyumhealth```
+* Copy content from ```sites_available_nyumhealth``` in the trunk directory of this repository to ```nyumhealth``` in ```sites_avialable```
+* In ```nyumhealth```:
+  * Update ```server_name``` to the name of your server (localhost, IP address, URL...)
+  * Update ```location /media``` alias to your media directory (if one exists)
+  * Update ```location /static``` alias to your static directory in ```STATIC_ROOT```
+  * Update ```location /static/admin``` alias to the location of python in use for this project
+* In your Nginx ```sites-enabled``` directory, remove link to current configuration in ```sites_avialable```
+* Create a new link to ```nyumhealth``` in ```sites-enabled```:
+```shell
+sudo ln -s ../sites-available/nyumhealth/
+```
+* In ```gunicorn.conf``` (Example configuration in trunk directory of this repository):
+  * Point ```chdir /home/django``` to the top of the django project, so that one level down guinicorn can find the manage.py file. In our example case, this is:
+  ```shell
+  chdir /home/django/nyumhealth
+  ```
+  * Update ```exec gunicorn \``` with the following (assuming name of diretory where manage.py is located is NYUmHealth)
+  ```shell
+  --name=nyumhealth \
+  --pythonpath=nyumhealth \
+  --bind=0.0.0.0:9000 \
+  --config /etc/gunicorn.d/gunicorn.py \
+  nyumhealth.wsgi:application
+  ```
+* Restart Nginx and Guincorn (this may be different if you don't have services set up for nginx and/or gunicorn)
+```shell
+sudo service nginx restart
+sudo service gunicorn restart
+```
+
 
 
 
