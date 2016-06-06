@@ -2,3 +2,4 @@
 /NYUmHealth/NYUmHealth/static
 /NYUmHealth/NYUmHealth/settings.py
 *.sqlite3
+/nyu-mhealth.nginx.conf
