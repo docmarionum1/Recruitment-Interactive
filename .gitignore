@@ -1,0 +1,4 @@
+*.pyc
+/NYUmHealth/NYUmHealth/static
+/NYUmHealth/NYUmHealth/settings.py
+/NYUmHealth/db.sqlite3
