@@ -38,6 +38,6 @@ server {
 
     # Webhook handler for GitHub (requires running "gulp githubhook")
     location = /githubhook {
-        proxy_pass http://localhost:3420/github/callback;
+        proxy_pass http://localhost:3422/github/callback;
     }
 }
