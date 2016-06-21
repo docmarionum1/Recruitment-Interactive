@@ -14,7 +14,8 @@ gulp.task('deploy', ['git-pull'], function (done) {
 
 // This task runs forever, listening on port 3420 for the webhook from GitHub
 gulp.task('githubhook', function () {
-    var server = githubhook({host: '127.0.0.1'}), // default to port 3420
+    var port = 3422, // 3420 (default) is mapmob-server, 3421 is mapmob-ui
+        server = githubhook({host: '127.0.0.1', port: port}),
         repo = 'Recruitment-Interactive',
         branch = 'master',
         event = 'push:' + repo + ':refs/heads/' + branch,
