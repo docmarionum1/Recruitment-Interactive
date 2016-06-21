@@ -35,4 +35,9 @@ server {
         proxy_redirect off;
         proxy_pass http://app_server;
     }
+
+    # Webhook handler for GitHub (requires running "gulp githubhook")
+    location = /githubhook {
+        proxy_pass http://localhost:3420/github/callback;
+    }
 }

@@ -43,6 +43,7 @@ Thumbs.db
 *.pyo
 *.pyc
 *~
+node_modules
 
 # Specific project files #
 ##########
