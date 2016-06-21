@@ -168,8 +168,11 @@ Then you can merge the changes into master:
     git merge dev-keith
     git push
 
+Don't forget to return to your dev branch to continue work:
+
+    git checkout dev-keith
+
 Once the changes have been merged to master and pushed to GitHub, they will be automatically published on
 the server at https://recruit.mapmob.com/ .
-
 
 
