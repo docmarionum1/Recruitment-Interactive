@@ -121,7 +121,7 @@ sudo ln -s ../sites-available/nyumhealth/
   ```shell
   chdir /home/django/nyumhealth
   ```
-  * Update ```exec gunicorn \``` with the following (assuming name of diretory where manage.py is located is NYUmHealth)
+  * Update ```exec gunicorn \``` with the following (assuming name of directory where manage.py is located is NYUmHealth)
   ```shell
   --name=nyumhealth \
   --pythonpath=nyumhealth \
