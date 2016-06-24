@@ -1,0 +1,48 @@
+{% load bootstrap_tags %}
+
+<!-- Content -->
+<div class="fadein">
+
+    <div id="map"></div>
+
+    <form id="drawNeighborhoodForm" method="post" action=".">
+        <div class="container-fluid absolutePostionedDiv">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-2">
+                    <h3 class="headingBackground">
+                        This is what the city thinks your neighborhood looks like. Don't agree? Click the button in the upper left corner and grab the handles of the shape to change how it looks.
+                    </h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-sm-offset-2">
+                    <div class="touch marginTop5 invisible">
+                        {{ form|as_bootstrap }}
+                        {{ form.errors }}                 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">    
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 bottomButtonGroupMap">
+                    <button id="nextNameNeighborhood" class="btn btn-primary" type="submit">Next</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<script type="text/javascript">
+    var objectID = "{{ NYURespondentsObject.id }}";
+    var objectMyNeighborhood = "{{ NYURespondentsObject.myNeighborhood }}";
+    $( document ).ready(function() {
+        window.setTimeout(function() {
+            mapDrawNeighborhood.initialize();
+        }, 1);
+    });
+</script>
+	
+

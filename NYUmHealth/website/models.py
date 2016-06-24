@@ -17,6 +17,8 @@ class neighborhoodNYC(models.Model):
 class NYURespondents(models.Model):
 	created = models.DateTimeField(auto_now=True)
 	myNeighborhood = models.ForeignKey(neighborhoodNYC, blank=True, null=True)
+	drawnNeighborhood = models.TextField(default='')
+	nameNeighborhood = models.CharField(max_length=255, default='', blank=False, null=False)
 	q1 = models.CharField(max_length=255, default='', blank=False, null=False)
 	q2 = models.CharField(max_length=255, default='', blank=False, null=False)
 	q3 = models.CharField(max_length=255, default='', blank=False, null=False)

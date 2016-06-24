@@ -18,7 +18,7 @@ ajaxApplication.nextPickNeighborhood = function () {
 	}
 }
 
-ajaxApplication.nextSurveyQuestions = function () {
+ajaxApplication.nextDrawNeighborhood = function () {
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
 		var f = $("#pickNeighborhoodMapForm");
@@ -42,11 +42,34 @@ ajaxApplication.nextSurveyQuestions = function () {
 	}
 }
 
+ajaxApplication.nextSurveyQuestions = function () {
+	var timeout = window.setTimeout(slow, 200);
+	function slow() {
+		var f = $("#drawNeighborhoodForm");
+		//create on submit listener
+		f.on('submit', function(e) {
+			e.preventDefault();
+			$.ajax({
+				type: "POST",
+				url: "/nextDrawNeighborhood/"+ objectID +"/",
+				data: f.serialize(),
+				success: function(data){
+					$('#content').html(data);
+					$(".fadein").fadeIn("slow");
+		        }
+			});
+		});
+
+		//trigger form submit
+		f.submit();
+
+	}
+}
+
 
 ajaxApplication.nextWhereIGo = function () {
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
-		// enable id_whenMoved so we can include it in from submission
 		var f = $("#surveyQuestionsForm");
 		//create on submit listener
 		f.on('submit', function(e) {
@@ -72,7 +95,6 @@ ajaxApplication.nextWhereIGo = function () {
 ajaxApplication.nextResults = function () {
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
-		// enable id_whenMoved so we can include it in from submission
 		var f = $("#whereIGoForm");
 		//create on submit listener
 		f.on('submit', function(e) {

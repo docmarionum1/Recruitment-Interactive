@@ -1,7 +1,7 @@
 {% extends 'website/base.html' %}
 {% load staticfiles %}
 
-{% block title %}My Neighborhood | NYU mHealth{% endblock %}
+{% block title %}MapMob{% endblock %}
 
 {% block css_block %}
 <link rel="stylesheet" type="text/css" href="{% static 'website/css/select2.min.css' %}">
@@ -23,22 +23,6 @@
 {% endblock %}
 
 {% block modal_block %}
-<div class="modal fade" id="introModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h3 class="modal-title">Welcome!</h3>
-      </div>
-      <div class="modal-body">
-        <p>This is the place for some introductory text and instruction on what to do. Small change to test the dev branches.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Let's Get Started!</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->   
 {% endblock %}
 
 {% block js_block %}
@@ -55,6 +39,7 @@
 <script type="text/javascript" src="{% static 'website/js/d3.slider.js' %}"></script>
 <script type="text/javascript" src="{% static 'website/js/ajax.js' %}"></script>
 <script type="text/javascript" src="{% static 'website/js/mapPickNeighborhood.js' %}"></script>
+<script type="text/javascript" src="{% static 'website/js/mapDrawNeighborhood.js' %}"></script>
 <script type="text/javascript" src="{% static 'website/js/surveyQuestionsD3Sliders.js' %}"></script>
 <script type="text/javascript" src="{% static 'website/js/mapWhereIGo.js' %}"></script>
 {% endblock %}

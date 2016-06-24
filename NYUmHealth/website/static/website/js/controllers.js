@@ -37,6 +37,13 @@ $( document ).ready(function() {
 		ajaxApplication.nextPickNeighborhood();
 	});
 
+	$(document).on('click', '#nextDrawNeighborhood', function(e) {
+		e.preventDefault();
+		//fade out, submit form, then fade back in
+		$(".fadein").fadeOut("fast");
+		ajaxApplication.nextDrawNeighborhood();
+	});
+
 	$(document).on('click', '#nextSurveyQuestions', function(e) {
 		e.preventDefault();
 		//fade out, submit form, then fade back in

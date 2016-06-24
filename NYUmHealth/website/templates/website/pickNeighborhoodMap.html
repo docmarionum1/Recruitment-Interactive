@@ -27,7 +27,7 @@
         <div class="container-fluid">    
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 bottomButtonGroupMap">
-                    <button id="nextSurveyQuestions" class="btn btn-primary" type="submit" disabled="disabled">Next</button>
+                    <button id="nextDrawNeighborhood" class="btn btn-primary" type="submit" disabled="disabled">Next</button>
                 </div>
             </div>
         </div>
@@ -51,13 +51,13 @@
                 mapPickLocation.selectNeighborhood(NTAName);
                
                 // remove disable from next button
-                if ($('#nextSurveyQuestions').prop("disabled")) {
-                    $('#nextSurveyQuestions').prop("disabled", false);
+                if ($('#nextDrawNeighborhood').prop("disabled")) {
+                    $('#nextDrawNeighborhood').prop("disabled", false);
                 }
             });
             // when slelect 2 item is released
             $select2object.on('select2:unselect', function(e) {
-                $('#nextSurveyQuestions').prop("disabled", true);
+                $('#nextDrawNeighborhood').prop("disabled", true);
                 mapPickLocation.unSelectAllNeighborhoods();
             });
 

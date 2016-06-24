@@ -22,6 +22,16 @@ class myNeighborhoodForm(forms.ModelForm):
         }
 
 
+class drawNeighborhoodForm(forms.ModelForm):
+    class Meta:
+        model = NYURespondents
+        fields = ('drawnNeighborhood', )
+
+class nameNeighborhoodForm(forms.ModelForm):
+    class Meta:
+        model = NYURespondents
+        fields = ('nameNeighborhood', )
+
 class surveyQuestionsForm(forms.ModelForm):
     class Meta:
         model = NYURespondents
