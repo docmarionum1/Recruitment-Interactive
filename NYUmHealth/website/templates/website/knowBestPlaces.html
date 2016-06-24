@@ -3,13 +3,13 @@
 
     <div id="map"></div>
 
-    <form id="whereIGoForm" method="post" action=".">
+    <form id="knowBestPlacesForm" method="post" action=".">
         <div class="container-fluid absolutePostionedDiv">
             {% csrf_token %}
             <div class="row">
                 <div class="col-sm-4 col-sm-offset-2">
                     <h2 class="headingBackground">
-                        Drag a circle over where you spend your time.
+                        Drag a circle over where you know best.
                     </h2>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                 <div class="col-sm-8 col-sm-offset-2 bottomButtonGroupMap">
                     <button id="backSurveyQuestions" class="btn btn-default" type="submit">Back</button>
                     <button id="addAnotherCircle" class="btn btn-danger">Add Another Circle!</button>
-                    <button id="nextResults" class="btn btn-primary" type="submit">Next</button>
+                    <button id="nextknowBestSurveyQuestions" class="btn btn-primary" type="submit">Next</button>
                 </div>
             </div>
         </div>
@@ -37,10 +37,10 @@
 
 <script type="text/javascript">
     var objectID = "{{ NYURespondentsObject.id }}";
-    var objectMyNeighborhood = "{{ NYURespondentsObject.myNeighborhood }}";
+    var objectKnowBestNeighborhood = "{{ NYURespondentsObject.knowBestNeighborhood }}";
     $( document ).ready(function() {
         window.setTimeout(function() {
-            mapWhereIGo.initialize();
+            mapKnowBest.initialize();
         }, 1);
     });
 </script>

@@ -27,7 +27,7 @@ $( document ).ready(function() {
 	// listener for add circle button on where I go map
 	$(document).on('click', '#addAnotherCircle', function(e) {
 		e.preventDefault();
-		mapWhereIGo.addAnotherCircle();
+		mapKnowBest.addAnotherCircle();
 	});
 
 
@@ -38,7 +38,6 @@ $( document ).ready(function() {
 	});
 
 	$(document).on('click', '#nextDrawNeighborhood', function(e) {
-		console.log('works?');
 		e.preventDefault();
 		//fade out, submit form, then fade back in
 		$(".fadein").fadeOut("fast");
@@ -59,11 +58,25 @@ $( document ).ready(function() {
 		ajaxApplication.nextSurveyQuestions();
 	});
 
-	$(document).on('click', '#nextWhereIGo', function(e) {
+	$(document).on('click', '#nextKnowBestNeighborhood', function(e) {
 		e.preventDefault();
 		//fade out, submit form, then fade back in
 		$(".fadein").fadeOut("fast");
-		ajaxApplication.nextWhereIGo();
+		ajaxApplication.nextKnowBestNeighborhood();
+	});
+
+	$(document).on('click', '#nextKnowBestPlaces', function(e) {
+		e.preventDefault();
+		//fade out, submit form, then fade back in
+		$(".fadein").fadeOut("fast");
+		ajaxApplication.nextKnowBestPlaces();
+	});
+
+	$(document).on('click', '#nextknowBestSurveyQuestions', function(e) {
+		e.preventDefault();
+		//fade out, submit form, then fade back in
+		$(".fadein").fadeOut("fast");
+		ajaxApplication.nextknowBestSurveyQuestions();
 	});
 
 	$(document).on('click', '#nextResults', function(e) {

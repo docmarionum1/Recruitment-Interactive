@@ -54,7 +54,6 @@ ajaxApplication.nextNameNeighborhood = function () {
 				url: "/nextDrawNeighborhood/"+ objectID +"/",
 				data: f.serialize(),
 				success: function(data){
-					console.log(data);
 					$('#content').html(data);
 					$(".fadein").fadeIn("slow");
 		        }
@@ -91,8 +90,7 @@ ajaxApplication.nextSurveyQuestions = function () {
 	}
 }
 
-
-ajaxApplication.nextWhereIGo = function () {
+ajaxApplication.nextKnowBestNeighborhood = function () {
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
 		var f = $("#surveyQuestionsForm");
@@ -116,17 +114,65 @@ ajaxApplication.nextWhereIGo = function () {
 	}
 }
 
-
-ajaxApplication.nextResults = function () {
+ajaxApplication.nextKnowBestPlaces = function () {
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
-		var f = $("#whereIGoForm");
+		var f = $("#knowBestNeighborhoodMapForm");
 		//create on submit listener
 		f.on('submit', function(e) {
 			e.preventDefault();
 			$.ajax({
 				type: "POST",
-				url: "/nextWhereIGo/"+ objectID +"/",
+				url: "/nextKnowBestNeighborhood/"+ objectID +"/",
+				data: f.serialize(),
+				success: function(data){
+					$('#content').html(data);
+					$(".fadein").fadeIn("slow");
+		        }
+			});
+		});
+
+		//trigger form submit
+		f.submit();
+
+	}
+}
+
+ajaxApplication.nextknowBestSurveyQuestions = function () {
+	var timeout = window.setTimeout(slow, 200);
+	function slow() {
+		var f = $("#knowBestPlacesForm");
+		//create on submit listener
+		f.on('submit', function(e) {
+			e.preventDefault();
+			$.ajax({
+				type: "POST",
+				url: "/nextKnowBestPlaces/"+ objectID +"/",
+				data: f.serialize(),
+				success: function(data){
+					$('#content').html(data);
+					$(".fadein").fadeIn("slow");
+		        }
+			});
+		});
+
+		//trigger form submit
+		f.submit();
+
+	}
+}
+
+
+ajaxApplication.nextResults = function () {
+	var timeout = window.setTimeout(slow, 200);
+	function slow() {
+		var f = $("#knowBestSurveyQuestionsForm");
+		//create on submit listener
+		f.on('submit', function(e) {
+			e.preventDefault();
+			$.ajax({
+				type: "POST",
+				url: "/nextKnowBestSurveyQuestions/"+ objectID +"/",
 				data: f.serialize(),
 				success: function(data){
 					$('#content').html(data);

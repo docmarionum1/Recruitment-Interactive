@@ -91,6 +91,10 @@ html, body {
     margin-bottom: 10px;
 }
 
+.forceHeight {
+	height: 75px;
+}
+
 
 /* Buttons */
 .bottomButtonGroupMap {

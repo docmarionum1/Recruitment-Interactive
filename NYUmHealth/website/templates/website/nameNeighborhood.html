@@ -6,8 +6,9 @@
     <form id="nameNeighborhoodForm" method="post" action=".">
         <div class="container-fluid">
             {% csrf_token %}
+            {{ form.non_field_errors }}
             <div class="row">
-                <div class="col-xs-10 col-sm-8 col-sm-offset-2">
+                <div class="col-sm-8 col-sm-offset-2">
                     <div class="forceBlock">
                         <h2 class="headingBackground">
                             This is what the city thinks your neighborhood is called. Don't agree? Change it.
@@ -17,10 +18,35 @@
             </div>
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
-                    {{ form|as_bootstrap }}
-                    {{ form.errors }}                 
+                    {{ form.nameNeighborhood.errors }}
+                    <div id="div_{{ form.nameNeighborhood.auto_id }}" class="form-group {% if form.nameNeighborhood.errors %}has-error{% endif %} {% if form.nameNeighborhood.css_classes %} {{ form.nameNeighborhood.css_classes }}{% endif %}">
+                        {{ form.nameNeighborhood|safe }}
+                        {% include "bootstrap/_field_errors.html" %}
+                        {% include "bootstrap/_field_help_text.html" %}
+                    </div>             
                 </div>
-            </div>                       
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="forceBlock">
+                        <h3 class="headingBackground">
+                            How many years have you lived in this neighborhood?
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    {{ form.howLongLivedNeighborhood.errors }}
+                    <div id="div_{{ form.howLongLivedNeighborhood.auto_id }}" class="form-group {% if form.howLongLivedNeighborhood.errors %}has-error{% endif %} {% if form.howLongLivedNeighborhood.css_classes %} {{ form.howLongLivedNeighborhood.css_classes }}{% endif %}">
+                        <div class="{{ css_classes.wrap }}">
+                            {{ form.howLongLivedNeighborhood|safe }}
+                            {% include "bootstrap/_field_errors.html" %}
+                            {% include "bootstrap/_field_help_text.html" %}
+                        </div>
+                    </div>              
+                </div>
+            </div>                         
         </div>
         <div class="container-fluid">    
             <div class="row">
@@ -39,6 +65,8 @@
     var neighborhoodName = "{{ NYURespondentsObject.myNeighborhood }}";
     $( document ).ready(function() {
         $('#id_nameNeighborhood').val(neighborhoodName);
+        $('#id_nameNeighborhood').addClass('form-control');
+        $('#id_howLongLivedNeighborhood').addClass('form-control');
     });
 </script>
 	

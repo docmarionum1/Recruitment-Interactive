@@ -84,9 +84,15 @@ mapPickLocation.onEachFeature_NTA = function(feature,layer){
 
     layer.on('click', function(ev) {
     	// look up value in the select combo box
-    	var lookup = $("#id_myNeighborhood option").filter(function() {
-		    return this.text == feature.properties.NTAName; 
-		});
+    	if ( $("#id_myNeighborhood option").length ) {
+	    	var lookup = $("#id_myNeighborhood option").filter(function() {
+			    return this.text == feature.properties.NTAName; 
+			});
+    	} else {
+	    	var lookup = $("#id_knowBestNeighborhood option").filter(function() {
+			    return this.text == feature.properties.NTAName; 
+			});
+    	}
 
     	// change select 2
     	$select2object.val(lookup.val()).trigger("change");
@@ -115,6 +121,9 @@ mapPickLocation.onEachFeature_NTA = function(feature,layer){
             $('#nextSurveyQuestions').prop("disabled", false);
         }
 
+        if ($('#nextKnowBestPlaces').prop("disabled")) {
+            $('#nextKnowBestPlaces').prop("disabled", false);
+        }
 
     });	
 

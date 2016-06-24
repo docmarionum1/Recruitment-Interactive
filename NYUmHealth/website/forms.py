@@ -30,9 +30,10 @@ class drawNeighborhoodForm(forms.ModelForm):
 class nameNeighborhoodForm(forms.ModelForm):
     class Meta:
         model = NYURespondents
-        fields = ('nameNeighborhood', )
+        fields = ('nameNeighborhood', 'howLongLivedNeighborhood', )
         labels = {
             'nameNeighborhood': '',
+            'howLongLivedNeighborhood': '',
         }
 
 class surveyQuestionsForm(forms.ModelForm):
@@ -40,8 +41,24 @@ class surveyQuestionsForm(forms.ModelForm):
         model = NYURespondents
         fields = ('q1','q2','q3','q4','q5','q6','q7','q8','q9','q10',)
 
-class whereIGoForm(forms.ModelForm):
+class knowBestNeighborhoodForm(forms.ModelForm):
     class Meta:
         model = NYURespondents
-        fields = ('whereIGo',)
+        fields = ('knowBestNeighborhood',)
+        labels = {
+            'knowBestNeighborhood': '',
+        }
+        widgets = {
+            'knowBestNeighborhood': Select2Widget,
+        }
+
+class knowBestSurveyQuestionsForm(forms.ModelForm):
+    class Meta:
+        model = NYURespondents
+        fields = ('knowBestq1','knowBestq2','knowBestq3','knowBestq4','knowBestq5','knowBestq6','knowBestq7','knowBestq8','knowBestq9','knowBestq10',)
+
+class knowBestPlacesForm(forms.ModelForm):
+    class Meta:
+        model = NYURespondents
+        fields = ('knowBestPlaces',)
 

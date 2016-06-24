@@ -8,7 +8,9 @@ urlpatterns = [
     url(r'^nextDrawNeighborhood/(?P<id>\d+)/$', views.drawNeighborhood, name='drawNeighborhood'),
     url(r'^nextNameNeighborhood/(?P<id>\d+)/$', views.nameNeighborhood, name='nameNeighborhood'),
     url(r'^nextSurveyQuestions/(?P<id>\d+)/$', views.surveyQuestions, name='surveyQuestions'),
-    url(r'^nextWhereIGo/(?P<id>\d+)/$', views.whereIGo, name='whereIGo'),
+    url(r'^nextKnowBestNeighborhood/(?P<id>\d+)/$', views.knowBestNeighborhood, name='knowBestNeighborhood'),
+    url(r'^nextKnowBestPlaces/(?P<id>\d+)/$', views.knowBestPlaces, name='knowBestPlaces'),
+    url(r'^nextKnowBestSurveyQuestions/(?P<id>\d+)/$', views.knowBestSurveyQuestions, name='knowBestSurveyQuestions'),
     url(r'^results/(?P<id>\d+)/$', views.results, name='results'),
 
 ]

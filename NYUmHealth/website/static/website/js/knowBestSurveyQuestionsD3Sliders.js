@@ -1,29 +1,29 @@
 /**
- * surveyQuestionsD3Sliders.js: Creates sliders and controls for survey questions
+ * knowBestSurveyQuestionsD3Sliders.js: Creates sliders and controls for survey questions
  */
 
-function surveyQuestionsD3Sliders() {}
+function knowBestSurveyQuestionsD3Sliders() {}
 
-surveyQuestionsD3Sliders.initialize = function () {
+knowBestSurveyQuestionsD3Sliders.initialize = function () {
 
 	// set values to 50 to begin
-	$('#id_q1').val(50);
-	$('#id_q2').val(50);
-	$('#id_q3').val(50);
-	$('#id_q4').val(50);
-	$('#id_q5').val(50);
-	$('#id_q6').val(50);
-	$('#id_q7').val(50);
-	$('#id_q8').val(50);
-	$('#id_q9').val(50);
-	$('#id_q10').val(50);
+	$('#id_knowBestq1').val(50);
+	$('#id_knowBestq2').val(50);
+	$('#id_knowBestq3').val(50);
+	$('#id_knowBestq4').val(50);
+	$('#id_knowBestq5').val(50);
+	$('#id_knowBestq6').val(50);
+	$('#id_knowBestq7').val(50);
+	$('#id_knowBestq8').val(50);
+	$('#id_knowBestq9').val(50);
+	$('#id_knowBestq10').val(50);
 
 	// create slider 1
 	var paramsQ1 = d3.slider()
 					 .value(50)
 					 .on("slideend", function(evt, value) {
 					 	// set value of input
-					 	$('#id_q1').val(parseInt(value));
+					 	$('#id_knowBestq1').val(parseInt(value));
 					 });
 	d3.select('#sliderQ1').call(paramsQ1);
 
@@ -32,7 +32,7 @@ surveyQuestionsD3Sliders.initialize = function () {
 					 .value(50)
 					 .on("slideend", function(evt, value) {
 					 	// set value of input
-					 	$('#id_q2').val(parseInt(value));
+					 	$('#id_knowBestq2').val(parseInt(value));
 					 });
 	d3.select('#sliderQ2').call(paramsQ2);
 
@@ -41,7 +41,7 @@ surveyQuestionsD3Sliders.initialize = function () {
 					 .value(50)
 					 .on("slideend", function(evt, value) {
 					 	// set value of input
-					 	$('#id_q3').val(parseInt(value));
+					 	$('#id_knowBestq3').val(parseInt(value));
 					 });
 	d3.select('#sliderQ3').call(paramsQ3);
 
@@ -50,7 +50,7 @@ surveyQuestionsD3Sliders.initialize = function () {
 					 .value(50)
 					 .on("slideend", function(evt, value) {
 					 	// set value of input
-					 	$('#id_q4').val(parseInt(value));
+					 	$('#id_knowBestq4').val(parseInt(value));
 					 });
 	d3.select('#sliderQ4').call(paramsQ4);
 
@@ -59,7 +59,7 @@ surveyQuestionsD3Sliders.initialize = function () {
 					 .value(50)
 					 .on("slideend", function(evt, value) {
 					 	// set value of input
-					 	$('#id_q5').val(parseInt(value));
+					 	$('#id_knowBestq5').val(parseInt(value));
 					 });
 	d3.select('#sliderQ5').call(paramsQ5);
 
@@ -68,7 +68,7 @@ surveyQuestionsD3Sliders.initialize = function () {
 					 .value(50)
 					 .on("slideend", function(evt, value) {
 					 	// set value of input
-					 	$('#id_q6').val(parseInt(value));
+					 	$('#id_knowBestq6').val(parseInt(value));
 					 });
 	d3.select('#sliderQ6').call(paramsQ6);	
 
@@ -77,7 +77,7 @@ surveyQuestionsD3Sliders.initialize = function () {
 					 .value(50)
 					 .on("slideend", function(evt, value) {
 					 	// set value of input
-					 	$('#id_q7').val(parseInt(value));
+					 	$('#id_knowBestq7').val(parseInt(value));
 					 });
 	d3.select('#sliderQ7').call(paramsQ7);
 
@@ -86,7 +86,7 @@ surveyQuestionsD3Sliders.initialize = function () {
 					 .value(50)
 					 .on("slideend", function(evt, value) {
 					 	// set value of input
-					 	$('#id_q8').val(parseInt(value));
+					 	$('#id_knowBestq8').val(parseInt(value));
 					 });
 	d3.select('#sliderQ8').call(paramsQ8);	
 
@@ -95,7 +95,7 @@ surveyQuestionsD3Sliders.initialize = function () {
 					 .value(50)
 					 .on("slideend", function(evt, value) {
 					 	// set value of input
-					 	$('#id_q9').val(parseInt(value));
+					 	$('#id_knowBestq9').val(parseInt(value));
 					 });
 	d3.select('#sliderQ9').call(paramsQ9);	
 
@@ -104,7 +104,7 @@ surveyQuestionsD3Sliders.initialize = function () {
 					 .value(50)
 					 .on("slideend", function(evt, value) {
 					 	// set value of input
-					 	$('#id_q10').val(parseInt(value));
+					 	$('#id_knowBestq10').val(parseInt(value));
 					 });
 	d3.select('#sliderQ10').call(paramsQ10);	
 

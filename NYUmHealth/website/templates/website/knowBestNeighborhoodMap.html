@@ -1,0 +1,69 @@
+{% load bootstrap_tags %}
+
+<!-- Content -->
+<div class="fadein">
+
+    <div id="map"></div>
+
+    <form id="knowBestNeighborhoodMapForm" method="post" action=".">
+        <div class="container-fluid absolutePostionedDiv">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <h2 class="headingBackground">
+                        <strong>NOT</strong> including {{ NYURespondentsObject.nameNeighborhood }}, what is the area in the city your know best?
+                    </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-sm-offset-2">
+                    <div class="touch marginTop5 semiTransparent">
+                        {{ form|as_bootstrap }}
+                        {{ form.errors }}                 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">    
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 bottomButtonGroupMap">
+                    <button id="backNeighborhoodMap" class="btn btn-default" type="submit">Back</button>
+                    <button id="nextKnowBestPlaces" class="btn btn-primary" type="submit" disabled="disabled">Next</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<script type="text/javascript">
+    var objectID = "{{ NYURespondentsObject.id }}";
+    var $select2object;
+    $( document ).ready(function() {
+        window.setTimeout(function() {
+            // set up select 2 field
+            $select2object = $('.django-select2').djangoSelect2();
+            $('.select2-selection__placeholder').text('Select a neighborhood.');
+            mapPickLocation.initialize();
+            // when select 2 item is selected
+            $select2object.on('select2:select', function(e) {
+                var NTAName = $('#id_knowBestNeighborhood option:selected').text();
+                // if the select event came from the map, don't run the select neighborhood function
+                mapPickLocation.selectNeighborhood(NTAName);
+               
+                // remove disable from next button
+                if ($('#nextKnowBestPlaces').prop("disabled")) {
+                    $('#nextKnowBestPlaces').prop("disabled", false);
+                }
+            });
+            // when slelect 2 item is released
+            $select2object.on('select2:unselect', function(e) {
+                $('#nextKnowBestPlaces').prop("disabled", true);
+                mapPickLocation.unSelectAllNeighborhoods();
+            });
+
+        }, 1);
+    });
+</script>
+	
+
