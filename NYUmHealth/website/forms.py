@@ -31,6 +31,9 @@ class nameNeighborhoodForm(forms.ModelForm):
     class Meta:
         model = NYURespondents
         fields = ('nameNeighborhood', )
+        labels = {
+            'nameNeighborhood': '',
+        }
 
 class surveyQuestionsForm(forms.ModelForm):
     class Meta:

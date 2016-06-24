@@ -1,0 +1,45 @@
+{% load bootstrap_tags %}
+
+<!-- Content -->
+<div class="fadein">
+
+    <form id="nameNeighborhoodForm" method="post" action=".">
+        <div class="container-fluid">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-xs-10 col-sm-8 col-sm-offset-2">
+                    <div class="forceBlock">
+                        <h2 class="headingBackground">
+                            This is what the city thinks your neighborhood is called. Don't agree? Change it.
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    {{ form|as_bootstrap }}
+                    {{ form.errors }}                 
+                </div>
+            </div>                       
+        </div>
+        <div class="container-fluid">    
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 marginBottom20">
+                    <button id="backDrawNeighborhoodMap" class="btn btn-default" type="submit">Back</button>
+                    <button id="nextSurveyQuestions" class="btn btn-primary" type="submit">Next</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<script type="text/javascript">
+    var objectID = "{{ NYURespondentsObject.id }}";   
+    var neighborhoodName = "{{ NYURespondentsObject.myNeighborhood }}";
+    $( document ).ready(function() {
+        $('#id_nameNeighborhood').val(neighborhoodName);
+    });
+</script>
+	
+

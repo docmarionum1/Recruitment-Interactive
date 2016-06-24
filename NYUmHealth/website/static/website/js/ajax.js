@@ -42,7 +42,7 @@ ajaxApplication.nextDrawNeighborhood = function () {
 	}
 }
 
-ajaxApplication.nextSurveyQuestions = function () {
+ajaxApplication.nextNameNeighborhood = function () {
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
 		var f = $("#drawNeighborhoodForm");
@@ -52,6 +52,31 @@ ajaxApplication.nextSurveyQuestions = function () {
 			$.ajax({
 				type: "POST",
 				url: "/nextDrawNeighborhood/"+ objectID +"/",
+				data: f.serialize(),
+				success: function(data){
+					console.log(data);
+					$('#content').html(data);
+					$(".fadein").fadeIn("slow");
+		        }
+			});
+		});
+
+		//trigger form submit
+		f.submit();
+
+	}
+}
+
+ajaxApplication.nextSurveyQuestions = function () {
+	var timeout = window.setTimeout(slow, 200);
+	function slow() {
+		var f = $("#nameNeighborhoodForm");
+		//create on submit listener
+		f.on('submit', function(e) {
+			e.preventDefault();
+			$.ajax({
+				type: "POST",
+				url: "/nextNameNeighborhood/"+ objectID +"/",
 				data: f.serialize(),
 				success: function(data){
 					$('#content').html(data);

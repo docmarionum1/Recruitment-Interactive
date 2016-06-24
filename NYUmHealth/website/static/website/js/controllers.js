@@ -38,10 +38,18 @@ $( document ).ready(function() {
 	});
 
 	$(document).on('click', '#nextDrawNeighborhood', function(e) {
+		console.log('works?');
 		e.preventDefault();
 		//fade out, submit form, then fade back in
 		$(".fadein").fadeOut("fast");
 		ajaxApplication.nextDrawNeighborhood();
+	});
+
+	$(document).on('click', '#nextNameNeighborhood', function(e) {
+		e.preventDefault();
+		//fade out, submit form, then fade back in
+		$(".fadein").fadeOut("fast");
+		ajaxApplication.nextNameNeighborhood();
 	});
 
 	$(document).on('click', '#nextSurveyQuestions', function(e) {
@@ -59,7 +67,6 @@ $( document ).ready(function() {
 	});
 
 	$(document).on('click', '#nextResults', function(e) {
-		console.log("hello");
 		e.preventDefault();
 		//fade out, submit form, then fade back in
 		$(".fadein").fadeOut("fast");
