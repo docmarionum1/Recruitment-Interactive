@@ -1,0 +1,21 @@
+{
+  "name": "nyu-mhealth-recruitment-interactive",
+  "version": "0.0.1",
+  "description": "Interactive web survey for recruiting new people into NYU mHealth studies",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nyu-mhealth/Recruitment-Interactive.git"
+  },
+  "author": "JD Godchaux <jd@nijel.org>",
+  "bugs": {
+    "url": "https://github.com/nyu-mhealth/Recruitment-Interactive/issues"
+  },
+  "homepage": "https://github.com/nyu-mhealth/Recruitment-Interactive#readme",
+  "dependencies": {
+    "githubhook": "^1.6.1",
+    "gulp": "^3.9.1"
+  }
+}

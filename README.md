@@ -135,8 +135,44 @@ sudo service nginx restart
 sudo service gunicorn restart
 ```
 
+## Git workflow
 
+The idea is for each person to work on their own branch and then merge changes into the master branch once
+they're ready to go. If the individual development branches have a common prefix, then we can set up Jenkins
+later to test and automatically merge changes as they're made, so having a prefix of `dev-` (like `dev-keith`)
+should work.
 
+After cloning the repo, create a branch with the name you're going to use (the second command makes a copy of
+the branch on GitHub and sets it up so that when you push from the local dev branch it will go to that new
+GitHub branch):
 
+    git checkout -b dev-keith
+    git push -u origin dev-keith
+
+You only need to do that once. Then work on your dev branch and commit your changes normally:
+
+    git commit -m'made some changes' .
+    git push
+
+When you're ready to merge your changes into master, first make sure your branch is up-to-date with master:
+
+    git pull
+    git merge origin/master
+
+Hopefully there will be no comflicts. If there are, you'll have to resolve them and commit.
+
+Then you can merge the changes into master:
+
+    git checkout master
+    git pull
+    git merge dev-keith
+    git push
+
+Don't forget to return to your dev branch to continue work:
+
+    git checkout dev-keith
+
+Once the changes have been merged to master and pushed to GitHub, they will be automatically published on
+the server at https://recruit.mapmob.com/ .
 
 

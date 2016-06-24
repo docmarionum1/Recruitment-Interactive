@@ -43,9 +43,11 @@ Thumbs.db
 *.pyo
 *.pyc
 *~
+node_modules
 
 # Specific project files #
 ##########
 env/
 NYUmHealth/NYUmHealth/settings.py
-
+NYUmHealth/NYUmHealth/static
+/nyu-mhealth.nginx.conf
