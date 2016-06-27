@@ -10,61 +10,61 @@ knowBestSurveyQuestionsD3Sliders.initialize = function () {
 	if (knowBestq1) {
 		knowBestq1 = parseInt(knowBestq1);
 	} else {
-		knowBestq1 = knowBestq;
+		knowBestq1 = 50;
 	}
 
 	if (knowBestq2) {
 		knowBestq2 = parseInt(knowBestq2);
 	} else {
-		knowBestq2 = knowBestq;
+		knowBestq2 = 50;
 	}
 
 	if (knowBestq3) {
 		knowBestq3 = parseInt(knowBestq3);
 	} else {
-		knowBestq3 = knowBestq;
+		knowBestq3 = 50;
 	}
 
 	if (knowBestq4) {
 		knowBestq4 = parseInt(knowBestq4);
 	} else {
-		knowBestq4 = knowBestq;
+		knowBestq4 = 50;
 	}
 
 	if (knowBestq5) {
 		knowBestq5 = parseInt(knowBestq5);
 	} else {
-		knowBestq5 = knowBestq;
+		knowBestq5 = 50;
 	}
 
 	if (knowBestq6) {
 		knowBestq6 = parseInt(knowBestq6);
 	} else {
-		knowBestq6 = knowBestq;
+		knowBestq6 = 50;
 	}
 
 	if (knowBestq7) {
 		knowBestq7 = parseInt(knowBestq7);
 	} else {
-		knowBestq7 = knowBestq;
+		knowBestq7 = 50;
 	}
 
 	if (knowBestq8) {
 		knowBestq8 = parseInt(knowBestq8);
 	} else {
-		knowBestq8 = knowBestq;
+		knowBestq8 = 50;
 	}
 
 	if (knowBestq9) {
 		knowBestq9 = parseInt(knowBestq9);
 	} else {
-		knowBestq9 = knowBestq;
+		knowBestq9 = 50;
 	}
 
 	if (knowBestq10) {
 		knowBestq10 = parseInt(knowBestq10);
 	} else {
-		knowBestq10 = knowBestq;
+		knowBestq10 = 50;
 	}
 
 	$('#id_knowBestq1').val(knowBestq1);
