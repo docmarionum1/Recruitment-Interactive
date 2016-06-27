@@ -207,8 +207,91 @@ ajaxApplication.backNeighborhoodMap = function (id) {
 	}
 }
 
+ajaxApplication.backDrawNeighborhoodMap = function (id) {
+	console.log(id);
+	var timeout = window.setTimeout(slow, 200);
+	function slow() {
+		$.ajax({
+			type: "GET",
+			url: "/nextDrawNeighborhood/"+id+"/",
+			success: function(data){
+				$('#content').html(data);
+				$(".fadein").fadeIn("slow");
+	        }
+		});
+	}
+}
 
+ajaxApplication.backNameNeighborhood = function (id) {
+	console.log(id);
+	var timeout = window.setTimeout(slow, 200);
+	function slow() {
+		$.ajax({
+			type: "GET",
+			url: "/nextNameNeighborhood/"+id+"/",
+			success: function(data){
+				$('#content').html(data);
+				$(".fadein").fadeIn("slow");
+	        }
+		});
+	}
+}
 
+ajaxApplication.backSurveyQuestions = function (id) {
+	var timeout = window.setTimeout(slow, 200);
+	function slow() {
+		$.ajax({
+			type: "GET",
+			url: "/nextSurveyQuestions/"+id+"/",
+			success: function(data){
+				$('#content').html(data);
+				$(".fadein").fadeIn("slow");
+	        }
+		});
+	}
+}
+
+ajaxApplication.backKnowBestNeighborhood = function (id) {
+	var timeout = window.setTimeout(slow, 200);
+	function slow() {
+		$.ajax({
+			type: "GET",
+			url: "/nextKnowBestNeighborhood/"+id+"/",
+			success: function(data){
+				$('#content').html(data);
+				$(".fadein").fadeIn("slow");
+	        }
+		});
+	}
+}
+
+ajaxApplication.backKnowBestPlaces = function (id) {
+	var timeout = window.setTimeout(slow, 200);
+	function slow() {
+		$.ajax({
+			type: "GET",
+			url: "/nextKnowBestPlaces/"+id+"/",
+			success: function(data){
+				$('#content').html(data);
+				$(".fadein").fadeIn("slow");
+	        }
+		});
+	}
+}
+
+ajaxApplication.backKnowBestSurveyQuestions= function (id) {
+	var timeout = window.setTimeout(slow, 200);
+	function slow() {
+		$.ajax({
+			type: "GET",
+			url: "/nextKnowBestSurveyQuestions/"+id+"/",
+			success: function(data){
+				$('#content').html(data);
+				$(".fadein").fadeIn("slow");
+	        }
+		});
+	}
+}
 
 
 

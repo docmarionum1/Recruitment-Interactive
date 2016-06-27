@@ -2,8 +2,6 @@
  * controllers.js: javascript controllers for all pages
  */
 
-
-
 $( document ).ready(function() {
 
 	// fade in first page on page load
@@ -92,6 +90,42 @@ $( document ).ready(function() {
 		e.preventDefault();
 		$(".fadein").fadeOut("fast");
 		ajaxApplication.backNeighborhoodMap(objectID);
+	});
+
+	$(document).on('click', '#backDrawNeighborhoodMap', function(e) {
+		e.preventDefault();
+		$(".fadein").fadeOut("fast");
+		ajaxApplication.backDrawNeighborhoodMap(objectID);
+	});
+
+	$(document).on('click', '#backNameNeighborhood', function(e) {
+		e.preventDefault();
+		$(".fadein").fadeOut("fast");
+		ajaxApplication.backNameNeighborhood(objectID);
+	});
+
+	$(document).on('click', '#backSurveyQuestions', function(e) {
+		e.preventDefault();
+		$(".fadein").fadeOut("fast");
+		ajaxApplication.backSurveyQuestions(objectID);
+	});
+
+	$(document).on('click', '#backKnowBestNeighborhood', function(e) {
+		e.preventDefault();
+		$(".fadein").fadeOut("fast");
+		ajaxApplication.backKnowBestNeighborhood(objectID);
+	});
+
+	$(document).on('click', '#backKnowBestPlaces', function(e) {
+		e.preventDefault();
+		$(".fadein").fadeOut("fast");
+		ajaxApplication.backKnowBestPlaces(objectID);
+	});
+
+	$(document).on('click', '#backKnowBestSurveyQuestions', function(e) {
+		e.preventDefault();
+		$(".fadein").fadeOut("fast");
+		ajaxApplication.backKnowBestSurveyQuestions(objectID);
 	});
 
 

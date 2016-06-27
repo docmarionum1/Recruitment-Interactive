@@ -151,7 +151,7 @@
         <div class="container-fluid">    
             <div class="row">
                 <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 marginBottom20">
-                    <button id="backNeighborhoodMap" class="btn btn-default" type="submit">Back</button>
+                    <button id="backNameNeighborhood" class="btn btn-default" type="submit">Back</button>
                     <button id="nextKnowBestNeighborhood" class="btn btn-primary" type="submit">Next</button>
                 </div>
             </div>
@@ -162,6 +162,16 @@
 
 <script type="text/javascript">
     var objectID = "{{ NYURespondentsObject.id }}";
+    var q1 = "{{ NYURespondentsObject.q1 }}";
+    var q2 = "{{ NYURespondentsObject.q2 }}";
+    var q3 = "{{ NYURespondentsObject.q3 }}";
+    var q4 = "{{ NYURespondentsObject.q4 }}";
+    var q5 = "{{ NYURespondentsObject.q5 }}";
+    var q6 = "{{ NYURespondentsObject.q6 }}";
+    var q7 = "{{ NYURespondentsObject.q7 }}";
+    var q8 = "{{ NYURespondentsObject.q8 }}";
+    var q9 = "{{ NYURespondentsObject.q9 }}";
+    var q10 = "{{ NYURespondentsObject.q10 }}";
     $( document ).ready(function() {
         window.setTimeout(function() {
             surveyQuestionsD3Sliders.initialize();

@@ -38,8 +38,35 @@ mapDrawNeighborhood.initialize = function () {
 	mapDrawNeighborhood.map.addLayer(mapDrawNeighborhood.FEATURELAYER);
 
 
-    // load Neighborhood Tabulation Areas
-    mapDrawNeighborhood.loadNTA();
+    // load drawnNeighborhood if it exists, if not load the neighborhood geojson
+    mapDrawNeighborhood.loadDrawnGeojson();
+
+}
+
+
+mapDrawNeighborhood.loadDrawnGeojson = function (){
+	$.ajax({
+		type: "GET",
+		url: "/getdrawngeojson/"+ objectID +"/",
+		success: function(data){
+			// load the draw tools
+			if (data) {
+				var geojson = L.geoJson(JSON.parse(data));
+				geojson.eachLayer(function(layer) {
+					mapDrawNeighborhood.FEATURELAYER.addLayer(layer);
+				});				
+				var bounds = mapDrawNeighborhood.FEATURELAYER.getBounds();
+				mapDrawNeighborhood.map.fitBounds(bounds);
+				mapDrawNeighborhood.zoomCenter = bounds.getCenter();
+
+				// load draw tools
+	    		mapDrawNeighborhood.loadDrawTools();
+
+			} else {
+				mapDrawNeighborhood.loadNTA();
+			}
+        }
+	});
 
 }
 
@@ -101,6 +128,16 @@ mapDrawNeighborhood.loadDrawTools = function(){
 	   	var geojson = mapDrawNeighborhood.FEATURELAYER.toGeoJSON();
 	   	$('#id_drawnNeighborhood').val(JSON.stringify(geojson));
 
+	});
+
+	mapDrawNeighborhood.map.on('draw:editstart', function (e) {
+		// disable next button
+        $('#nextNameNeighborhood').prop("disabled", true);
+	});
+
+	mapDrawNeighborhood.map.on('draw:editstop', function (e) {
+		// disable next button
+        $('#nextNameNeighborhood').prop("disabled", false);
 	});
 
 }

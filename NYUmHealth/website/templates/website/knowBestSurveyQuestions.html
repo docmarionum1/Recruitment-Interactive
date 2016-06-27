@@ -151,7 +151,7 @@
         <div class="container-fluid">    
             <div class="row">
                 <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 marginBottom20">
-                    <button id="backNeighborhoodMap" class="btn btn-default" type="submit">Back</button>
+                    <button id="backKnowBestPlaces" class="btn btn-default" type="submit">Back</button>
                     <button id="nextResults" class="btn btn-primary" type="submit">Next</button>
                 </div>
             </div>
@@ -162,6 +162,16 @@
 
 <script type="text/javascript">
     var objectID = "{{ NYURespondentsObject.id }}";
+    var knowBestq1 = "{{ NYURespondentsObject.knowBestq1 }}";
+    var knowBestq2 = "{{ NYURespondentsObject.knowBestq2 }}";
+    var knowBestq3 = "{{ NYURespondentsObject.knowBestq3 }}";
+    var knowBestq4 = "{{ NYURespondentsObject.knowBestq4 }}";
+    var knowBestq5 = "{{ NYURespondentsObject.knowBestq5 }}";
+    var knowBestq6 = "{{ NYURespondentsObject.knowBestq6 }}";
+    var knowBestq7 = "{{ NYURespondentsObject.knowBestq7 }}";
+    var knowBestq8 = "{{ NYURespondentsObject.knowBestq8 }}";
+    var knowBestq9 = "{{ NYURespondentsObject.knowBestq9 }}";
+    var knowBestq10 = "{{ NYURespondentsObject.knowBestq10 }}";
     $( document ).ready(function() {
         window.setTimeout(function() {
             knowBestSurveyQuestionsD3Sliders.initialize();

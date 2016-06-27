@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 
 #import all website models and forms
 from website.models import *
@@ -66,6 +66,13 @@ def drawNeighborhood(request, id=None):
 	# Bad form (or form details), no form supplied...
 	# Render the form with error messages (if any).
 	return render(request, 'website/drawNeighborhood.html', {'form':form, 'NYURespondentsObject': NYURespondentsObject})
+
+
+def getdrawngeojson(request, id=None):
+
+	NYURespondentsObject = NYURespondents.objects.get(pk=id)
+
+	return JsonResponse(NYURespondentsObject.drawnNeighborhood, safe=False)
 
 
 def nameNeighborhood(request, id=None):
@@ -179,6 +186,14 @@ def knowBestPlaces(request, id=None):
 	# Bad form (or form details), no form supplied...
 	# Render the form with error messages (if any).
 	return render(request, 'website/knowBestPlaces.html', {'form':form, 'NYURespondentsObject': NYURespondentsObject})
+
+
+def getknowbestplaces(request, id=None):
+
+	NYURespondentsObject = NYURespondents.objects.get(pk=id)
+
+	return JsonResponse(NYURespondentsObject.knowBestPlaces, safe=False)
+
 
 def knowBestSurveyQuestions(request, id=None):
 	if id:

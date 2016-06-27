@@ -34,10 +34,76 @@ mapKnowBest.initialize = function () {
     mapKnowBest.map.doubleClickZoom.enable();
     mapKnowBest.map.scrollWheelZoom.enable();
 
-    // load Neighborhood Tabulation Areas
-    mapKnowBest.loadNTA();
+    // load drawings if they exist
+    mapKnowBest.loadDrawnGeojson();
 	
 }
+
+mapKnowBest.loadDrawnGeojson = function (){
+	$.ajax({
+		type: "GET",
+		url: "/getknowbestplaces/"+ objectID +"/",
+		success: function(data){
+			console.log(data);
+			// load the draw tools
+			if (data) {
+				// initiate drawing tools
+				mapKnowBest.FEATURELAYER = new L.FeatureGroup();
+				mapKnowBest.map.addLayer(mapKnowBest.FEATURELAYER);
+
+				var geojson = L.geoJson(JSON.parse(data));
+				geojson.eachLayer(function(layer) {
+					console.log(layer);
+
+					var lat = layer.feature.geometry.coordinates[1]
+					var lon = layer.feature.geometry.coordinates[0]
+
+					// create draggable marker that looks like a drawn circle
+					var newCircle = L.marker([lat, lon], {
+						icon: mapKnowBest.circleIcon,
+						draggable: true,
+						riseOnHover: true,
+					}).addTo(mapKnowBest.map);
+
+					newCircle.bindLabel("<strong>Drag me where you know best!</strong>", { direction:'auto' });
+
+					mapKnowBest.FEATURELAYER.addLayer(newCircle);
+
+					// set up listeners for drag end
+					newCircle.on('dragend', function(e) {	
+					   	// update the form field with new geojson
+					   	var geojson = mapKnowBest.FEATURELAYER.toGeoJSON();
+					   	$('#id_knowBestPlaces').val(JSON.stringify(geojson));
+					});
+
+					// set up listener for zoomend
+					mapKnowBest.map.on('zoomend', function(e){
+						var zoom = mapKnowBest.map.getZoom();
+						if (zoom > 15) {
+							newCircle.setIcon(mapKnowBest.circleIconBig);
+						} else if (zoom > 13) {
+							newCircle.setIcon(mapKnowBest.circleIcon);			
+						} else {
+							newCircle.setIcon(mapKnowBest.circleIconSmall);						
+						}
+					});
+
+				});		
+
+				var bounds = mapKnowBest.FEATURELAYER.getBounds();
+				mapKnowBest.map.fitBounds(bounds);
+				mapKnowBest.zoomCenter = bounds.getCenter();
+
+
+
+			} else {
+				mapKnowBest.loadNTA();
+			}
+        }
+	});
+
+}
+
 
 mapKnowBest.loadNTA = function (){
 
