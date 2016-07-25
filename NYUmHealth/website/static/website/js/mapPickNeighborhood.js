@@ -117,8 +117,8 @@ mapPickLocation.onEachFeature_NTA = function(feature,layer){
 	    mapPickLocation.lastClickedLayer = layer;
 
         // remove disable from next button
-        if ($('#nextSurveyQuestions').prop("disabled")) {
-            $('#nextSurveyQuestions').prop("disabled", false);
+        if ($('#nextDrawNeighborhood').prop("disabled")) {
+            $('#nextDrawNeighborhood').prop("disabled", false);
         }
 
         if ($('#nextKnowBestPlaces').prop("disabled")) {
