@@ -176,3 +176,30 @@ Once the changes have been merged to master and pushed to GitHub, they will be a
 the server at https://recruit.mapmob.com/ .
 
 
+## Drawn Neighborhood Geojson API
+At the following URL, one can access an array of geojsons with the geometry of neighborhood drawings and properties that include individual responses to each neighborhood level survey question:
+
+[https://recruit.mapmob.com/getdrawngeojsons/](https://recruit.mapmob.com/getdrawngeojsons/)
+
+The response includes the following:
+* ```feature.geometry``` includes an object with the geometry of the drawn polygon
+* ```feature.properties``` includes an object with data related to the drawn polygon, including individual responses to each neighborhood level survey question
+  * ```feature.properties.ID```: An ID number for the response
+  * ```feature.properties.craeted```: The date and time the visitor started their survey
+  * ```feature.properties.nameNeighborhood```: The name the visitor used for this neighborhood.
+  * ```feature.properties.howLongLivedNeighborhood```: The number of years the visitor reported living in the neighborhood.
+  * ```feature.properties.q1```: The response on a scale of 1 (never) to 100 (all the time) to the question "People in this neighborhood litter."
+  * ```feature.properties.q2```: The response on a scale of 1 (never) to 100 (all the time) to the question "People in this neighborhood allow children (under 16) to walk to school by themselves."
+  * ```feature.properties.q3```: The response on a scale of 1 (never) to 100 (all the time) to the question "People in this neighborhood smoke marijuana in public."
+  * ```feature.properties.q4```: The response on a scale of 1 (never) to 100 (all the time) to the question "People in this neighborhood relax in front of homes or apartments."
+  * ```feature.properties.q5```: The response on a scale of 1 (never) to 100 (all the time) to the question "People in this neighborhood vape tobacco or marijuana in public."
+  * ```feature.properties.q6```: The response on a scale of 1 (never acceptable) to 100 (completely acceptable) to the question "It’s acceptable in this neighborhood to litter."
+  * ```feature.properties.q7```: The response on a scale of 1 (never acceptable) to 100 (completely acceptable) to the question "It’s acceptable in this neighborhood to allow children (under 16) to walk to school by themselves."
+  * ```feature.properties.q8```: The response on a scale of 1 (never acceptable) to 100 (completely acceptable) to the question "It’s acceptable in this neighborhood to smoke marijuana in public."
+  * ```feature.properties.q9```: The response on a scale of 1 (never acceptable) to 100 (completely acceptable) to the question "It’s acceptable in this neighborhood to relax in front of homes or apartments."
+  * ```feature.properties.q10```: The response on a scale of 1 (never acceptable) to 100 (completely acceptable) to the question "It’s acceptable in this neighborhood to vape tobacco or marijuana in public."
+
+
+
+
+
