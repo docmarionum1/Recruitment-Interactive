@@ -75,6 +75,18 @@ def getdrawngeojson(request, id=None):
 	return JsonResponse(NYURespondentsObject.drawnNeighborhood, safe=False)
 
 
+def getdrawngeojsons(request, id=None):
+
+	NYURespondentsObjects = NYURespondents.objects.all()
+	geojsons = []
+
+	for obj in NYURespondentsObjects:
+		changed = obj.drawnNeighborhood.replace('\"properties\":{}', '\"properties\":{\"ID\":\"'+ str(obj.id) +'\", \"created\":\"'+ str(obj.created) +'\", \"nameNeighborhood\":\"' + str(obj.nameNeighborhood) +'\", \"howLongLivedNeighborhood\":\"' + str(obj.howLongLivedNeighborhood) +'\", \"q1\":\"' + str(obj.q1) +'\", \"q2\":\"' + str(obj.q2) +'\", \"q3\":\"' + str(obj.q3) +'\", \"q4\":\"' + str(obj.q4) +'\", \"q5\":\"' + str(obj.q5) +'\", \"q6\":\"' + str(obj.q6) +'\", \"q7\":\"' + str(obj.q7) +'\", \"q8\":\"' + str(obj.q8) +'\", \"q9\":\"' + str(obj.q9) +'\", \"q10\":\"' + str(obj.q10) +'\"}')
+		geojsons.append(changed) 
+
+	return JsonResponse(geojsons, safe=False)
+
+
 def nameNeighborhood(request, id=None):
 	if id:
 		NYURespondentsObject = NYURespondents.objects.get(pk=id)

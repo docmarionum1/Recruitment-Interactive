@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^nextPickNeighborhood/(?P<id>\d+)/$', views.pickNeighborhood, name='pickNeighborhood'),
     url(r'^nextDrawNeighborhood/(?P<id>\d+)/$', views.drawNeighborhood, name='drawNeighborhood'),
     url(r'^getdrawngeojson/(?P<id>\d+)/$', views.getdrawngeojson, name='getdrawngeojson'),
+    url(r'^getdrawngeojsons/$', views.getdrawngeojsons, name='getdrawngeojsons'),
     url(r'^nextNameNeighborhood/(?P<id>\d+)/$', views.nameNeighborhood, name='nameNeighborhood'),
     url(r'^nextSurveyQuestions/(?P<id>\d+)/$', views.surveyQuestions, name='surveyQuestions'),
     url(r'^nextKnowBestNeighborhood/(?P<id>\d+)/$', views.knowBestNeighborhood, name='knowBestNeighborhood'),
