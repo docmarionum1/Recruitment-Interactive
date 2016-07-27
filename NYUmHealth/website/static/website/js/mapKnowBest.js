@@ -44,7 +44,6 @@ mapKnowBest.loadDrawnGeojson = function (){
 		type: "GET",
 		url: "/getknowbestplaces/"+ objectID +"/",
 		success: function(data){
-			console.log(data);
 			// load the draw tools
 			if (data) {
 				// initiate drawing tools
@@ -53,19 +52,19 @@ mapKnowBest.loadDrawnGeojson = function (){
 
 				var geojson = L.geoJson(JSON.parse(data));
 				geojson.eachLayer(function(layer) {
-					console.log(layer);
 
 					var lat = layer.feature.geometry.coordinates[1]
 					var lon = layer.feature.geometry.coordinates[0]
 
 					// create draggable marker that looks like a drawn circle
+					var icon = mapKnowBest.setIconBasedOnZoom();
 					var newCircle = L.marker([lat, lon], {
-						icon: mapKnowBest.circleIcon,
+						icon: icon,
 						draggable: true,
 						riseOnHover: true,
 					}).addTo(mapKnowBest.map);
 
-					newCircle.bindLabel("<strong>Drag me where you know best!</strong>", { direction:'auto' });
+					newCircle.bindLabel("<strong>Drag me where you spend your time!</strong>", { direction:'auto' });
 
 					mapKnowBest.FEATURELAYER.addLayer(newCircle);
 
@@ -78,14 +77,8 @@ mapKnowBest.loadDrawnGeojson = function (){
 
 					// set up listener for zoomend
 					mapKnowBest.map.on('zoomend', function(e){
-						var zoom = mapKnowBest.map.getZoom();
-						if (zoom > 15) {
-							newCircle.setIcon(mapKnowBest.circleIconBig);
-						} else if (zoom > 13) {
-							newCircle.setIcon(mapKnowBest.circleIcon);			
-						} else {
-							newCircle.setIcon(mapKnowBest.circleIconSmall);						
-						}
+						var icon = mapKnowBest.setIconBasedOnZoom();
+						newCircle.setIcon(icon);
 					});
 
 				});		
@@ -138,13 +131,16 @@ mapKnowBest.simpleDrawTools = function(){
 	mapKnowBest.map.addLayer(mapKnowBest.FEATURELAYER);
 
 	// create draggable marker that looks like a drawn circle
+	var icon = mapKnowBest.setIconBasedOnZoom();
 	var newCircle = L.marker(mapKnowBest.zoomCenter, {
-		icon: mapKnowBest.circleIcon,
+		icon: icon,
 		draggable: true,
 		riseOnHover: true,
 	}).addTo(mapKnowBest.map);
 
-	newCircle.bindLabel("<strong>Drag me where you know best!</strong>", { direction:'auto' });
+	L.circle(mapKnowBest.zoomCenter, 200).addTo(mapKnowBest.map);					
+
+	newCircle.bindLabel("<strong>Drag me where you spend your time!</strong>", { direction:'auto' });
 
 	mapKnowBest.FEATURELAYER.addLayer(newCircle);
    	var geojson = mapKnowBest.FEATURELAYER.toGeoJSON();
@@ -160,14 +156,8 @@ mapKnowBest.simpleDrawTools = function(){
 
 	// set up listener for zoomend
 	mapKnowBest.map.on('zoomend', function(e){
-		var zoom = mapKnowBest.map.getZoom();
-		if (zoom > 15) {
-			newCircle.setIcon(mapKnowBest.circleIconBig);
-		} else if (zoom > 13) {
-			newCircle.setIcon(mapKnowBest.circleIcon);			
-		} else {
-			newCircle.setIcon(mapKnowBest.circleIconSmall);						
-		}
+		var icon = mapKnowBest.setIconBasedOnZoom();
+		newCircle.setIcon(icon);
 	});
 
 }
@@ -177,13 +167,14 @@ mapKnowBest.addAnotherCircle = function(){
 	mapKnowBest.zoomCenter = mapKnowBest.map.getCenter();
 
 	// create draggable marker that looks like a drawn circle
+	var icon = mapKnowBest.setIconBasedOnZoom();
 	var newCircle = L.marker(mapKnowBest.zoomCenter, {
-		icon: mapKnowBest.circleIcon,
+		icon: icon,
 		draggable: true,
 		riseOnHover: true,
 	}).addTo(mapKnowBest.map);
 
-	newCircle.bindLabel("<strong>Drag me where you know best!</strong>", { direction:'auto' });
+	newCircle.bindLabel("<strong>Drag me where you spend your time!</strong>", { direction:'auto' });
 
 	mapKnowBest.FEATURELAYER.addLayer(newCircle);
    	var geojson = mapKnowBest.FEATURELAYER.toGeoJSON();
@@ -199,40 +190,92 @@ mapKnowBest.addAnotherCircle = function(){
 
 	// set up listener for zoomend
 	mapKnowBest.map.on('zoomend', function(e){
-		var zoom = mapKnowBest.map.getZoom();
-		if (zoom > 15) {
-			newCircle.setIcon(mapKnowBest.circleIconBig);
-		} else if (zoom > 13) {
-			newCircle.setIcon(mapKnowBest.circleIcon);			
-		} else {
-			newCircle.setIcon(mapKnowBest.circleIconSmall);						
-		}
+		var icon = mapKnowBest.setIconBasedOnZoom();
+		newCircle.setIcon(icon);
 	});
 
 }
 
+mapKnowBest.setIconBasedOnZoom = function () {
+	// set icon size based on zoom level
+	var zoom = mapKnowBest.map.getZoom();
+	if (zoom > 17) {
+		return mapKnowBest.circleIcon18;
+	} else if (zoom > 16) {
+		return mapKnowBest.circleIcon17;			
+	} else if (zoom > 15) {
+		return mapKnowBest.circleIcon16;			
+	} else if (zoom > 14) {
+		return mapKnowBest.circleIcon15;			
+	} else if (zoom > 13) {
+		return mapKnowBest.circleIcon14;			
+	} else if (zoom > 12) {
+		return mapKnowBest.circleIcon13;			
+	} else if (zoom > 12) {
+		return mapKnowBest.circleIcon12;			
+	} else {
+		return mapKnowBest.circleIcon11;						
+	}
+}
+
 
 /* Style states */
-mapKnowBest.circleIcon = L.icon({
+mapKnowBest.circleIcon18 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [103, 103], 
-    iconAnchor:   [52, 52],
+    iconSize:     [1000, 1000], 
+    iconAnchor:   [500, 500],
     labelAnchor:  [0, 0],
 });
 
-mapKnowBest.circleIconSmall = L.icon({
+mapKnowBest.circleIcon17 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [33, 33], 
-    iconAnchor:   [16, 16],
+    iconSize:     [500, 500], 
+    iconAnchor:   [250, 250],
     labelAnchor:  [0, 0],
 });
 
-mapKnowBest.circleIconBig = L.icon({
+mapKnowBest.circleIcon16 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [203, 203], 
-    iconAnchor:   [102, 102],
+    iconSize:     [225, 225], 
+    iconAnchor:   [112, 112],
     labelAnchor:  [0, 0],
 });
+
+mapKnowBest.circleIcon15 = L.icon({
+    iconUrl: '/static/website/css/images/circleIcon.png',
+    iconSize:     [110, 110], 
+    iconAnchor:   [55, 55],
+    labelAnchor:  [0, 0],
+});
+
+mapKnowBest.circleIcon14 = L.icon({
+    iconUrl: '/static/website/css/images/circleIcon.png',
+    iconSize:     [60, 60], 
+    iconAnchor:   [30, 30],
+    labelAnchor:  [0, 0],
+});
+
+mapKnowBest.circleIcon13 = L.icon({
+    iconUrl: '/static/website/css/images/circleIcon.png',
+    iconSize:     [30, 30], 
+    iconAnchor:   [15, 15],
+    labelAnchor:  [0, 0],
+});
+
+mapKnowBest.circleIcon12 = L.icon({
+    iconUrl: '/static/website/css/images/circleIcon.png',
+    iconSize:     [18, 18], 
+    iconAnchor:   [9, 9],
+    labelAnchor:  [0, 0],
+});
+
+mapKnowBest.circleIcon11 = L.icon({
+    iconUrl: '/static/website/css/images/circleIcon.png',
+    iconSize:     [8, 8], 
+    iconAnchor:   [4, 4],
+    labelAnchor:  [0, 0],
+});
+
 
 /* Vars */
 mapKnowBest.map;

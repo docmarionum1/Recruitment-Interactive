@@ -1,5 +1,5 @@
 /**
- * mapDrawNeighborhood.js: Creates map for selecting your neighborhood
+ * mapDrawNeighborhood.js: Creates map for editing your neighborhood
  */
 
 function mapDrawNeighborhood() {}
@@ -35,8 +35,10 @@ mapDrawNeighborhood.initialize = function () {
 
     // create feature group for draw tools 
 	mapDrawNeighborhood.FEATURELAYER = new L.FeatureGroup();
-	mapDrawNeighborhood.map.addLayer(mapDrawNeighborhood.FEATURELAYER);
 
+	// clear previous data
+	mapDrawNeighborhood.GEOJSON = null;
+	mapDrawNeighborhood.LATLNGS = [];
 
     // load drawnNeighborhood if it exists, if not load the neighborhood geojson
     mapDrawNeighborhood.loadDrawnGeojson();
@@ -51,8 +53,12 @@ mapDrawNeighborhood.loadDrawnGeojson = function (){
 		success: function(data){
 			// load the draw tools
 			if (data) {
-				var geojson = L.geoJson(JSON.parse(data));
-				geojson.eachLayer(function(layer) {
+				mapDrawNeighborhood.GEOJSON = L.geoJson(JSON.parse(data), {
+					style: mapDrawNeighborhood.getStyleFor_NTA,
+				});
+				mapDrawNeighborhood.GEOJSON.eachLayer(function(layer) {
+					// create latlngs array from feature layer
+					mapDrawNeighborhood.LATLNGS.push(layer.getLatLngs());
 					mapDrawNeighborhood.FEATURELAYER.addLayer(layer);
 				});				
 				var bounds = mapDrawNeighborhood.FEATURELAYER.getBounds();
@@ -80,7 +86,8 @@ mapDrawNeighborhood.loadNTA = function (){
 
 	function drawPolys(polyTopojson) {
 		mapDrawNeighborhood.NTA = L.geoJson(polyTopojson, {
-			onEachFeature: mapDrawNeighborhood.onEachFeature_NTA
+			style: mapDrawNeighborhood.getStyleFor_NTA,
+			onEachFeature: mapDrawNeighborhood.onEachFeature_NTA,
 		});
 
 	    // load draw tools
@@ -93,57 +100,65 @@ mapDrawNeighborhood.loadNTA = function (){
 mapDrawNeighborhood.onEachFeature_NTA = function(feature,layer){	
 	// zoom map to the selected neighborhood
 	if (feature.properties.NTAName == objectMyNeighborhood) {
+		// create latlngs array from feature layer
+		mapDrawNeighborhood.LATLNGS.push(layer.getLatLngs());
 		var bounds = layer.getBounds();
 		mapDrawNeighborhood.map.fitBounds(bounds);
 		mapDrawNeighborhood.zoomCenter = bounds.getCenter();
 		// add layer to featureGroup
 		mapDrawNeighborhood.FEATURELAYER.addLayer(layer);
-	   	var geojson = mapDrawNeighborhood.FEATURELAYER.toGeoJSON();
-	   	$('#id_drawnNeighborhood').val(JSON.stringify(geojson));		
 	}
+
+
+	// add geojson to form field 
+	mapDrawNeighborhood.GEOJSON = mapDrawNeighborhood.FEATURELAYER.toGeoJSON();
+	$('#id_drawnNeighborhood').val(JSON.stringify(mapDrawNeighborhood.GEOJSON));		
+
+}
+
+mapDrawNeighborhood.getStyleFor_NTA = function (feature){
+	return mapDrawNeighborhood.initStyle;
 }
 
 
 mapDrawNeighborhood.loadDrawTools = function(){
 
-	// Initialise the draw control and pass it the FeatureGroup of editable layers
-	mapDrawNeighborhood.drawControl = new L.Control.Draw({
-		draw: {
-			polyline: false,
-			rectangle: false,
-			circle: false,
-			marker: false,
-			polygon: false,
-		},
-	    edit: {
-	        featureGroup: mapDrawNeighborhood.FEATURELAYER,
-	        edit: true,
-	        remove: false,
-	    },
-	});
-	mapDrawNeighborhood.map.addControl(mapDrawNeighborhood.drawControl);
+	mapDrawNeighborhood.freedraw = new L.FreeDraw({
+        mode: L.FreeDraw.MODES.EDIT,
+    });
 
-	mapDrawNeighborhood.map.on('draw:edited', function (e) {
-	   	// update the form field with new geojson
-	   	var geojson = mapDrawNeighborhood.FEATURELAYER.toGeoJSON();
-	   	$('#id_drawnNeighborhood').val(JSON.stringify(geojson));
+    mapDrawNeighborhood.freedraw.options.setSmoothFactor(1);
 
-	});
+	mapDrawNeighborhood.freedraw.on('markers', function getMarkers(eventData) {
+		mapDrawNeighborhood.FEATURELAYER.clearLayers();
+		for (var i = mapDrawNeighborhood.freedraw.polygons.length - 1; i >= 0; i--) {
+			mapDrawNeighborhood.FEATURELAYER.addLayer(mapDrawNeighborhood.freedraw.polygons[i]); 
+		}
+		mapDrawNeighborhood.GEOJSON = mapDrawNeighborhood.FEATURELAYER.toGeoJSON();
+		$('#id_drawnNeighborhood').val(JSON.stringify(mapDrawNeighborhood.GEOJSON));
+    });
 
-	mapDrawNeighborhood.map.on('draw:editstart', function (e) {
-		// disable next button
-        $('#nextNameNeighborhood').prop("disabled", true);
-	});
+	mapDrawNeighborhood.map.addLayer(mapDrawNeighborhood.freedraw);
 
-	mapDrawNeighborhood.map.on('draw:editstop', function (e) {
-		// disable next button
-        $('#nextNameNeighborhood').prop("disabled", false);
-	});
+	for (var i = mapDrawNeighborhood.LATLNGS.length - 1; i >= 0; i--) {
+    	mapDrawNeighborhood.freedraw.createPolygon(mapDrawNeighborhood.LATLNGS[i], true);
+    }
 
 }
 
 /* Vars */
 mapDrawNeighborhood.map;
 mapDrawNeighborhood.FEATURELAYER;
+mapDrawNeighborhood.GEOJSON;
+mapDrawNeighborhood.LATLNGS = [];
+
+
+mapDrawNeighborhood.initStyle = {
+        weight: 4,
+        opacity: 1,
+        color: '#D7217E',
+        fillOpacity: 0.5,
+        fillColor: "#D7217E",
+    };
 
 

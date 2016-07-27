@@ -119,7 +119,8 @@ def surveyQuestions(request, id=None):
 			# Save the new data to the database.
 			f = form.save()
 			lookupObject = NYURespondents.objects.get(pk=f.pk)
-			return HttpResponseRedirect(reverse('knowBestNeighborhood', args=(lookupObject.pk,)))
+			# go directly to knowBestPlaces bypassing knowBestNeighborhood
+			return HttpResponseRedirect(reverse('knowBestPlaces', args=(lookupObject.pk,)))
 		else:
 			# The supplied form contained errors - just print them to the terminal.
 			print form.errors
@@ -132,6 +133,7 @@ def surveyQuestions(request, id=None):
 	return render(request, 'website/surveyQuestions.html', {'form':form, 'NYURespondentsObject': NYURespondentsObject})
 
 
+# not currently using this view, going straight to knowBestPlaces from first set of survey questions
 def knowBestNeighborhood(request, id=None):
 	if id:
 		NYURespondentsObject = NYURespondents.objects.get(pk=id)
