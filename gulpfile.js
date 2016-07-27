@@ -8,8 +8,12 @@ gulp.task('git-pull', function (done) {
 });
 
 gulp.task('deploy', ['git-pull'], function (done) {
-    spawn('python', ['manage.py', 'collectstatic', '--no-input'], {stdio: 'inherit', cwd: 'NYUmHealth'})
-        .on('close', done);
+    var options = {stdio: 'inherit', cwd: 'NYUmHealth'};
+    spawn('python', ['manage.py', 'migrate', '--no-input'], options)
+        .on('close', function () {
+            spawn('python', ['manage.py', 'collectstatic', '--no-input'], options)
+                .on('close', done);
+        });
 });
 
 // This task runs forever, listening on port 3420 for the webhook from GitHub
