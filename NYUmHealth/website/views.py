@@ -75,9 +75,9 @@ def getdrawngeojson(request, id=None):
 	return JsonResponse(NYURespondentsObject.drawnNeighborhood, safe=False)
 
 
-def getdrawngeojsons(request, id=None):
+def getdrawngeojsons(request, nameNeighborhood=None):
 
-	NYURespondentsObjects = NYURespondents.objects.all()
+	NYURespondentsObjects = NYURespondents.objects.filter(nameNeighborhood=nameNeighborhood)
 	geojsons = []
 
 	for obj in NYURespondentsObjects:
@@ -85,6 +85,19 @@ def getdrawngeojsons(request, id=None):
 		geojsons.append(changed) 
 
 	return JsonResponse(geojsons, safe=False)
+
+def getneighborhoodnames(request):
+
+	names = []
+
+	NYURespondentsObjects = NYURespondents.objects.all().order_by('nameNeighborhood')
+	for obj in NYURespondentsObjects:
+		names.append(obj.nameNeighborhood)
+
+	setnames = set(names)
+	uniquelist = sorted(list(setnames))
+
+	return JsonResponse(uniquelist, safe=False)
 
 
 def nameNeighborhood(request, id=None):
