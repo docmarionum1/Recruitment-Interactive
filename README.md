@@ -175,11 +175,15 @@ Don't forget to return to your dev branch to continue work:
 Once the changes have been merged to master and pushed to GitHub, they will be automatically published on
 the server at https://recruit.mapmob.com/ .
 
+## Neighborhood Name API
+At the following URL, one can access a JSON object of a unique list of neighborhood names reported by users who have completed the survey:
+
+[https://recruit.mapmob.com/getneighborhoodnames/](https://recruit.mapmob.com/getneighborhoodnames/)
 
 ## Drawn Neighborhood Geojson API
-At the following URL, one can access an array of geojsons with the geometry of neighborhood drawings and properties that include individual responses to each neighborhood level survey question:
+At the following URL, one can access an array of geojsons with the geometry of neighborhood drawings and properties that include individual responses to each neighborhood level survey question. This API requires a neighborhood name and returns geojsons only where the neighborhood name enter in the URL is equivalent to the ```nameNeighborhood``` the users report in the survey.
 
-[https://recruit.mapmob.com/getdrawngeojsons/](https://recruit.mapmob.com/getdrawngeojsons/)
+[https://recruit.mapmob.com/getdrawngeojsons/[Neighborhood-Name]](https://recruit.mapmob.com/getdrawngeojsons/Astoria/)
 
 The response includes the following:
 * ```feature.geometry``` includes an object with the geometry of the drawn polygon
