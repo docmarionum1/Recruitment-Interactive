@@ -49,12 +49,12 @@ $( document ).ready(function() {
 		ajaxApplication.nextNameNeighborhood();
 	});
 
-	$(document).on('click', '#nextSurveyQuestions', function(e) {
+/*	$(document).on('click', '#nextSurveyQuestions', function(e) {
 		e.preventDefault();
 		//fade out, submit form, then fade back in
 		$(".fadein").fadeOut("fast");
 		ajaxApplication.nextSurveyQuestions();
-	});
+	});*/
 
 	$(document).on('click', '#nextKnowBestNeighborhood', function(e) {
 		e.preventDefault();
@@ -104,11 +104,11 @@ $( document ).ready(function() {
 		ajaxApplication.backNameNeighborhood(objectID);
 	});
 
-	$(document).on('click', '#backSurveyQuestions', function(e) {
+/*	$(document).on('click', '#backSurveyQuestions', function(e) {
 		e.preventDefault();
 		$(".fadein").fadeOut("fast");
 		ajaxApplication.backSurveyQuestions(objectID);
-	});
+	});*/
 
 	$(document).on('click', '#backKnowBestNeighborhood', function(e) {
 		e.preventDefault();

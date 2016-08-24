@@ -9,10 +9,13 @@
         <div class="container-fluid absolutePostionedDiv">
             {% csrf_token %}
             <div class="row">
-                <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                <div class="col-xs-10 col-sm-7 col-sm-offset-2">
                     <h3 class="headingBackground">
-                        This is what the city thinks your neighborhood looks like. Don't agree? Click the button in the upper left corner and grab the handles of the shape to change how it looks.
+                        This is a simplified drawing of what the city thinks your neighborhood looks like. Don't agree? Click the handles or edges to reshape the polygon to what you think the neighborhood boundaries are.
                     </h3>
+                </div>
+                <div class="col-xs-2 col-sm-1">
+                    <h4 class="headingBackground pull-right">2/5</h4>
                 </div>
             </div>
             <div class="row">
@@ -26,7 +29,7 @@
         </div>
         <div class="container-fluid">    
             <div class="row">
-                <div class="col-sm-8 col-sm-offset-2 bottomButtonGroupMap">
+                <div class="col-sm-3 col-sm-offset-2 bottomButtonGroupMap">
                     <button id="backNeighborhoodMap" class="btn btn-default" type="submit">Back</button>
                     <button id="nextNameNeighborhood" class="btn btn-primary" type="submit">Next</button>
                 </div>

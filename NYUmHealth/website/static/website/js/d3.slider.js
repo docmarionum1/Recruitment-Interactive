@@ -111,6 +111,7 @@ return function module() {
           drag.on("drag", onDragHorizontal);
 
         } else {
+          console.log('fires on load?');
           handle1.style("left", formatPercent(scale(value)));
           drag.on("drag", onDragHorizontal);
         }
@@ -210,6 +211,7 @@ return function module() {
       }
 
       function onClickHorizontal() {
+        // update handle css
         if (toType(value) != "array") {
           var pos = Math.max(0, Math.min(sliderLength, d3.event.offsetX || d3.event.layerX));
           moveHandle(scale.invert ? 

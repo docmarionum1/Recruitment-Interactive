@@ -5,77 +5,250 @@
         <div class="container-fluid">
             {% csrf_token %}
             <div class="row">
-                <div class="col-sm-8 col-sm-offset-2">
-                    <div class="hidden">
+                <div class="col-xs-10 col-sm-7 col-sm-offset-2">
+                    <div class="">
                         {{ form }}
                         {{ form.errors }}                 
                     </div>
                 </div>
+                <div class="col-xs-2 col-sm-2">
+                    <div class="forceBlock">
+                        <h4 class="headingBackground pull-right">5/5</h4>
+                    </div>
+                </div>  
             </div>
             <div class="row">
                 <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1">
                     <div class="container-fluid">
                         <div class="row">
+                            <div id="miniHoodMap" class="miniMap"></div>
+                        </div>
+                        <div class="row">
                             <div class="forceBlock forceHeight">
                                 <h2 class="headingBackground">
-                                    People where you know best...
+                                    Thinking about {{ NYURespondentsObject.nameNeighborhood }}, what percentage of residents...
                                 </h2>
                             </div>                        
                         </div>
                         <!-- Sliders -->
                         <div class="row">
                             <div class="marginTop20">
-                                <h3>Litter.</h3>          
+                                <h3>Go for walks.</h3>          
                             </div>
                             <div class="marginTop5">
                                 <div id="sliderQ1"></div>          
                             </div>
                             <div class="marginTop5 marginBottom20">
-                                <p>Never <span class="pull-right">All the Time</span></p>         
+                                <p>0% <span class="pull-right">100%</span></p>         
                             </div>
                         </div>
                         <div class="row">
                             <div class="marginTop20">
-                                <h3>Allow children (under 16) to walk to school by themselves.</h3>          
+                                <h3>Go for walks at night.</h3>          
                             </div>
                             <div class="marginTop5">
                                 <div id="sliderQ2"></div>          
                             </div>
                             <div class="marginTop5 marginBottom20">
-                                <p>Never <span class="pull-right">All the Time</span></p>         
+                                <p>0% <span class="pull-right">100%</span></p>                  
                             </div>
                         </div>
                         <div class="row">
                             <div class="marginTop20">
-                                <h3>Smoke marijuana in public.</h3>          
+                                <h3>Visit local park(s).</h3>          
                             </div>
                             <div class="marginTop5">
                                 <div id="sliderQ3"></div>          
                             </div>
                             <div class="marginTop5 marginBottom20">
-                                <p>Never <span class="pull-right">All the Time</span></p>         
+                                <p>0% <span class="pull-right">100%</span></p>         
                             </div>
                         </div>
                         <div class="row">
                             <div class="marginTop20">
-                                <h3>Relax in front of homes or apartments.</h3>          
+                                <h3>Exercise (jog, bike..).</h3>          
                             </div>
                             <div class="marginTop5">
                                 <div id="sliderQ4"></div>          
                             </div>
                             <div class="marginTop5 marginBottom20">
-                                <p>Never <span class="pull-right">All the Time</span></p>         
+                                <p>0% <span class="pull-right">100%</span></p>         
                             </div>
                         </div>
                         <div class="row">
                             <div class="marginTop20">
-                                <h3>Vape tobacco or marijuana in public.</h3>          
+                                <h3>Litter.</h3>          
                             </div>
                             <div class="marginTop5">
                                 <div id="sliderQ5"></div>          
                             </div>
                             <div class="marginTop5 marginBottom20">
-                                <p>Never <span class="pull-right">All the Time</span></p>         
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Get stopped / questionned by police.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderQ6"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Allow their kids to walk to school alone.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderQ7"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Regularly use public tranportation.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderQ8"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Eat at local restaurants.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderQ9"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Shop at local convenience or "corner" stores.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderQ10"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Shop at farmer's markets.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderQ11"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Go out to bars / clubs at night.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderQ12"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Are homeless.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderQ13"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Drink alcohol.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderQ14"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Smoke cigarettes.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderQ15"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Use electronic cigarettes or vaporizors.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderQ16"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Smoke marijuana at home.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderQ17"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Smoke marijuana on the street or in parks.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderQ18"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Purchase marijuana from legal dispensories (medical / recreational).</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderQ19"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Grow marijuana at home.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderQ20"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
                             </div>
                         </div>
                     </div>
@@ -83,10 +256,57 @@
                 <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0">
                     <div class="container-fluid">
                         <div class="row">
+                            <div id="miniSpendTimeMap" class="miniMap"></div>
+                        </div>
+                        <div class="row">
                             <div class="forceBlock forceHeight">
                                 <h2 class="headingBackground">
-                                    It’s acceptable where you know best to...
+                                    Thinking about the circle you placed above, what percentage of people you know...
                                 </h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Go for walks.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderCircleQ1"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Go for walks at night.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderCircleQ2"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>                  
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Visit local park(s).</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderCircleQ3"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Exercise (jog, bike..).</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderCircleQ4"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
                             </div>
                         </div>
                         <div class="row">
@@ -94,54 +314,175 @@
                                 <h3>Litter.</h3>          
                             </div>
                             <div class="marginTop5">
-                                <div id="sliderQ6"></div>          
+                                <div id="sliderCircleQ5"></div>          
                             </div>
                             <div class="marginTop5 marginBottom20">
-                                <p>Never Acceptable <span class="pull-right">Completely Acceptable</span></p>         
+                                <p>0% <span class="pull-right">100%</span></p>         
                             </div>
                         </div>
                         <div class="row">
                             <div class="marginTop20">
-                                <h3>Allow children (under 16) to walk to school by themselves.</h3>          
+                                <h3>Get stopped / questionned by police.</h3>          
                             </div>
                             <div class="marginTop5">
-                                <div id="sliderQ7"></div>          
+                                <div id="sliderCircleQ6"></div>          
                             </div>
                             <div class="marginTop5 marginBottom20">
-                                <p>Never Acceptable <span class="pull-right">Completely Acceptable</span></p>         
+                                <p>0% <span class="pull-right">100%</span></p>         
                             </div>
                         </div>
                         <div class="row">
                             <div class="marginTop20">
-                                <h3>Smoke marijuana in public.</h3>          
+                                <h3>Allow their kids to walk to school alone.</h3>          
                             </div>
                             <div class="marginTop5">
-                                <div id="sliderQ8"></div>          
+                                <div id="sliderCircleQ7"></div>          
                             </div>
                             <div class="marginTop5 marginBottom20">
-                                <p>Never Acceptable <span class="pull-right">Completely Acceptable</span></p>         
+                                <p>0% <span class="pull-right">100%</span></p>         
                             </div>
                         </div>
                         <div class="row">
                             <div class="marginTop20">
-                                <h3>Relax in front of homes or apartments.</h3>          
+                                <h3>Regularly use public tranportation.</h3>          
                             </div>
                             <div class="marginTop5">
-                                <div id="sliderQ9"></div>          
+                                <div id="sliderCircleQ8"></div>          
                             </div>
                             <div class="marginTop5 marginBottom20">
-                                <p>Never Acceptable <span class="pull-right">Completely Acceptable</span></p>         
+                                <p>0% <span class="pull-right">100%</span></p>         
                             </div>
                         </div>
                         <div class="row">
                             <div class="marginTop20">
-                                <h3>Vape tobacco or marijuana in public.</h3>          
+                                <h3>Eat at local restaurants.</h3>          
                             </div>
                             <div class="marginTop5">
-                                <div id="sliderQ10"></div>          
+                                <div id="sliderCircleQ9"></div>          
                             </div>
                             <div class="marginTop5 marginBottom20">
-                                <p>Never Acceptable <span class="pull-right">Completely Acceptable</span></p>         
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Shop at local convenience or "corner" stores.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderCircleQ10"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Shop at farmer's markets.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderCircleQ11"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Go out to bars / clubs at night.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderCircleQ12"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Are homeless.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderCircleQ13"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Drink alcohol.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderCircleQ14"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Smoke cigarettes.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderCircleQ15"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Use electronic cigarettes or vaporizors.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderCircleQ16"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Smoke marijuana at home.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderCircleQ17"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Smoke marijuana on the street or in parks.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderCircleQ18"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Purchase marijuana from legal dispensories (medical / recreational).</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderCircleQ19"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="marginTop20">
+                                <h3>Grow marijuana at home.</h3>          
+                            </div>
+                            <div class="marginTop5">
+                                <div id="sliderCircleQ20"></div>          
+                            </div>
+                            <div class="marginTop5 marginBottom20">
+                                <p>0% <span class="pull-right">100%</span></p>         
                             </div>
                         </div>
                     </div>
@@ -162,18 +503,50 @@
 
 <script type="text/javascript">
     var objectID = "{{ NYURespondentsObject.id }}";
-    var knowBestq1 = "{{ NYURespondentsObject.knowBestq1 }}";
-    var knowBestq2 = "{{ NYURespondentsObject.knowBestq2 }}";
-    var knowBestq3 = "{{ NYURespondentsObject.knowBestq3 }}";
-    var knowBestq4 = "{{ NYURespondentsObject.knowBestq4 }}";
-    var knowBestq5 = "{{ NYURespondentsObject.knowBestq5 }}";
-    var knowBestq6 = "{{ NYURespondentsObject.knowBestq6 }}";
-    var knowBestq7 = "{{ NYURespondentsObject.knowBestq7 }}";
-    var knowBestq8 = "{{ NYURespondentsObject.knowBestq8 }}";
-    var knowBestq9 = "{{ NYURespondentsObject.knowBestq9 }}";
-    var knowBestq10 = "{{ NYURespondentsObject.knowBestq10 }}";
+    var q1 = "{{ NYURespondentsObject.q1 }}";
+    var q2 = "{{ NYURespondentsObject.q2 }}";
+    var q3 = "{{ NYURespondentsObject.q3 }}";
+    var q4 = "{{ NYURespondentsObject.q4 }}";
+    var q5 = "{{ NYURespondentsObject.q5 }}";
+    var q6 = "{{ NYURespondentsObject.q6 }}";
+    var q7 = "{{ NYURespondentsObject.q7 }}";
+    var q8 = "{{ NYURespondentsObject.q8 }}";
+    var q9 = "{{ NYURespondentsObject.q9 }}";
+    var q10 = "{{ NYURespondentsObject.q10 }}";
+    var q11 = "{{ NYURespondentsObject.q11 }}";
+    var q12 = "{{ NYURespondentsObject.q12 }}";
+    var q13 = "{{ NYURespondentsObject.q13 }}";
+    var q14 = "{{ NYURespondentsObject.q14 }}";
+    var q15 = "{{ NYURespondentsObject.q15 }}";
+    var q16 = "{{ NYURespondentsObject.q16 }}";
+    var q17 = "{{ NYURespondentsObject.q17 }}";
+    var q18 = "{{ NYURespondentsObject.q18 }}";
+    var q19 = "{{ NYURespondentsObject.q19 }}";
+    var q20 = "{{ NYURespondentsObject.q20 }}";
+    var circleq1 = "{{ NYURespondentsObject.circleq1 }}";
+    var circleq2 = "{{ NYURespondentsObject.circleq2 }}";
+    var circleq3 = "{{ NYURespondentsObject.circleq3 }}";
+    var circleq4 = "{{ NYURespondentsObject.circleq4 }}";
+    var circleq5 = "{{ NYURespondentsObject.circleq5 }}";
+    var circleq6 = "{{ NYURespondentsObject.circleq6 }}";
+    var circleq7 = "{{ NYURespondentsObject.circleq7 }}";
+    var circleq8 = "{{ NYURespondentsObject.circleq8 }}";
+    var circleq9 = "{{ NYURespondentsObject.circleq9 }}";
+    var circleq10 = "{{ NYURespondentsObject.circleq10 }}";
+    var circleq11 = "{{ NYURespondentsObject.circleq11 }}";
+    var circleq12 = "{{ NYURespondentsObject.circleq12 }}";
+    var circleq13 = "{{ NYURespondentsObject.circleq13 }}";
+    var circleq14 = "{{ NYURespondentsObject.circleq14 }}";
+    var circleq15 = "{{ NYURespondentsObject.circleq15 }}";
+    var circleq16 = "{{ NYURespondentsObject.circleq16 }}";
+    var circleq17 = "{{ NYURespondentsObject.circleq17 }}";
+    var circleq18 = "{{ NYURespondentsObject.circleq18 }}";
+    var circleq19 = "{{ NYURespondentsObject.circleq19 }}";
+    var circleq20 = "{{ NYURespondentsObject.circleq20 }}";
     $( document ).ready(function() {
         window.setTimeout(function() {
+            miniHoodMap.initialize();
+            miniMapKnowBest.initialize();
             knowBestSurveyQuestionsD3Sliders.initialize();
         }, 1); 
     });    

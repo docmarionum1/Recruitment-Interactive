@@ -123,11 +123,10 @@ mapDrawNeighborhood.getStyleFor_NTA = function (feature){
 
 mapDrawNeighborhood.loadDrawTools = function(){
 
-	mapDrawNeighborhood.freedraw = new L.FreeDraw({
-        mode: L.FreeDraw.MODES.EDIT,
-    });
+	mapDrawNeighborhood.freedraw = new L.FreeDraw();
+	mapDrawNeighborhood.freedraw.setMode(L.FreeDraw.MODES.EDIT | L.FreeDraw.MODES.APPEND);
 
-    mapDrawNeighborhood.freedraw.options.setSmoothFactor(1);
+	mapDrawNeighborhood.freedraw.options.simplifyPolygon = false;
 
 	mapDrawNeighborhood.freedraw.on('markers', function getMarkers(eventData) {
 		mapDrawNeighborhood.FEATURELAYER.clearLayers();
@@ -140,8 +139,17 @@ mapDrawNeighborhood.loadDrawTools = function(){
 
 	mapDrawNeighborhood.map.addLayer(mapDrawNeighborhood.freedraw);
 
-	for (var i = mapDrawNeighborhood.LATLNGS.length - 1; i >= 0; i--) {
-    	mapDrawNeighborhood.freedraw.createPolygon(mapDrawNeighborhood.LATLNGS[i], true);
+	for (var i = mapDrawNeighborhood.LATLNGS.length - 1; i >= 0; i--) {	
+		// test if mapDrawNeighborhood.LATLNGS is and array of arrays
+		if (typeof mapDrawNeighborhood.LATLNGS[0][0].lat === "undefined") {
+		    // loop again
+		    for (var j = mapDrawNeighborhood.LATLNGS[i].length - 1; j >= 0; j--) {
+		    	mapDrawNeighborhood.freedraw.createPolygon(mapDrawNeighborhood.LATLNGS[i][j]);
+		    }
+		} else {
+			// add our poly
+			mapDrawNeighborhood.freedraw.createPolygon(mapDrawNeighborhood.LATLNGS[i]);
+		}
     }
 
 }

@@ -66,7 +66,7 @@ ajaxApplication.nextNameNeighborhood = function () {
 	}
 }
 
-ajaxApplication.nextSurveyQuestions = function () {
+ajaxApplication.nextKnowBestNeighborhood = function () {
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
 		var f = $("#nameNeighborhoodForm");
@@ -90,7 +90,7 @@ ajaxApplication.nextSurveyQuestions = function () {
 	}
 }
 
-ajaxApplication.nextKnowBestNeighborhood = function () {
+/*ajaxApplication.nextKnowBestNeighborhood = function () {
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
 		var f = $("#surveyQuestionsForm");
@@ -112,7 +112,7 @@ ajaxApplication.nextKnowBestNeighborhood = function () {
 		f.submit();
 
 	}
-}
+}*/
 
 ajaxApplication.nextKnowBestPlaces = function () {
 	var timeout = window.setTimeout(slow, 200);
@@ -237,7 +237,7 @@ ajaxApplication.backNameNeighborhood = function (id) {
 	}
 }
 
-ajaxApplication.backSurveyQuestions = function (id) {
+/*ajaxApplication.backSurveyQuestions = function (id) {
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
 		$.ajax({
@@ -249,7 +249,7 @@ ajaxApplication.backSurveyQuestions = function (id) {
 	        }
 		});
 	}
-}
+}*/
 
 ajaxApplication.backKnowBestNeighborhood = function (id) {
 	var timeout = window.setTimeout(slow, 200);

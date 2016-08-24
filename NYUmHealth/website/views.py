@@ -77,7 +77,7 @@ def getdrawngeojson(request, id=None):
 
 def getdrawngeojsons(request, nameNeighborhood=None):
 
-	NYURespondentsObjects = NYURespondents.objects.filter(nameNeighborhood=nameNeighborhood)
+	NYURespondentsObjects = NYURespondents.objects.filter(nameNeighborhood=nameNeighborhood).exclude(drawnNeighborhood='')
 	geojsons = []
 
 	for obj in NYURespondentsObjects:
@@ -115,7 +115,7 @@ def nameNeighborhood(request, id=None):
 			# Save the new data to the database.
 			f = form.save()
 			lookupObject = NYURespondents.objects.get(pk=f.pk)
-			return HttpResponseRedirect(reverse('surveyQuestions', args=(lookupObject.pk,)))
+			return HttpResponseRedirect(reverse('knowBestPlaces', args=(lookupObject.pk,)))
 		else:
 			# The supplied form contained errors - just print them to the terminal.
 			print form.errors
@@ -128,63 +128,63 @@ def nameNeighborhood(request, id=None):
 	return render(request, 'website/nameNeighborhood.html', {'form':form, 'NYURespondentsObject': NYURespondentsObject})
 
 
+# DEPRECIATING this step
+# def surveyQuestions(request, id=None):
+# 	if id:
+# 		NYURespondentsObject = NYURespondents.objects.get(pk=id)
+# 	else:
+# 		NYURespondentsObject = NYURespondents()
 
-def surveyQuestions(request, id=None):
-	if id:
-		NYURespondentsObject = NYURespondents.objects.get(pk=id)
-	else:
-		NYURespondentsObject = NYURespondents()
+# 	# A HTTP POST?
+# 	if request.method == 'POST':
+# 		form = surveyQuestionsForm(request.POST, instance=NYURespondentsObject)
 
-	# A HTTP POST?
-	if request.method == 'POST':
-		form = surveyQuestionsForm(request.POST, instance=NYURespondentsObject)
+# 		# Have we been provided with a valid form?
+# 		if form.is_valid():
+# 			# Save the new data to the database.
+# 			f = form.save()
+# 			lookupObject = NYURespondents.objects.get(pk=f.pk)
+# 			# go directly to knowBestPlaces bypassing knowBestNeighborhood
+# 			return HttpResponseRedirect(reverse('knowBestPlaces', args=(lookupObject.pk,)))
+# 		else:
+# 			# The supplied form contained errors - just print them to the terminal.
+# 			print form.errors
+# 	else:
+# 		# If the request was not a POST, display the form to enter details.
+# 		form = surveyQuestionsForm(instance=NYURespondentsObject)
 
-		# Have we been provided with a valid form?
-		if form.is_valid():
-			# Save the new data to the database.
-			f = form.save()
-			lookupObject = NYURespondents.objects.get(pk=f.pk)
-			# go directly to knowBestPlaces bypassing knowBestNeighborhood
-			return HttpResponseRedirect(reverse('knowBestPlaces', args=(lookupObject.pk,)))
-		else:
-			# The supplied form contained errors - just print them to the terminal.
-			print form.errors
-	else:
-		# If the request was not a POST, display the form to enter details.
-		form = surveyQuestionsForm(instance=NYURespondentsObject)
-
-	# Bad form (or form details), no form supplied...
-	# Render the form with error messages (if any).
-	return render(request, 'website/surveyQuestions.html', {'form':form, 'NYURespondentsObject': NYURespondentsObject})
+# 	# Bad form (or form details), no form supplied...
+# 	# Render the form with error messages (if any).
+# 	return render(request, 'website/surveyQuestions.html', {'form':form, 'NYURespondentsObject': NYURespondentsObject})
 
 
 # not currently using this view, going straight to knowBestPlaces from first set of survey questions
-def knowBestNeighborhood(request, id=None):
-	if id:
-		NYURespondentsObject = NYURespondents.objects.get(pk=id)
-	else:
-		NYURespondentsObject = NYURespondents()
+# def knowBestNeighborhood(request, id=None):
+# 	if id:
+# 		NYURespondentsObject = NYURespondents.objects.get(pk=id)
+# 	else:
+# 		NYURespondentsObject = NYURespondents()
 
-	# A HTTP POST?
-	if request.method == 'POST':
-		form = knowBestNeighborhoodForm(request.POST, instance=NYURespondentsObject)
+# 	# A HTTP POST?
+# 	if request.method == 'POST':
+# 		form = knowBestNeighborhoodForm(request.POST, instance=NYURespondentsObject)
 
-		# Have we been provided with a valid form?
-		if form.is_valid():
-			# Save the new data to the database.
-			f = form.save()
-			lookupObject = NYURespondents.objects.get(pk=f.pk)
-			return HttpResponseRedirect(reverse('knowBestPlaces', args=(lookupObject.pk,)))
-		else:
-			# The supplied form contained errors - just print them to the terminal.
-			print form.errors
-	else:
-		# If the request was not a POST, display the form to enter details.
-		form = knowBestNeighborhoodForm(instance=NYURespondentsObject)
+# 		# Have we been provided with a valid form?
+# 		if form.is_valid():
+# 			# Save the new data to the database.
+# 			f = form.save()
+# 			lookupObject = NYURespondents.objects.get(pk=f.pk)
+# 			return HttpResponseRedirect(reverse('knowBestPlaces', args=(lookupObject.pk,)))
+# 		else:
+# 			# The supplied form contained errors - just print them to the terminal.
+# 			print form.errors
+# 	else:
+# 		# If the request was not a POST, display the form to enter details.
+# 		form = knowBestNeighborhoodForm(instance=NYURespondentsObject)
 
-	# Bad form (or form details), no form supplied...
-	# Render the form with error messages (if any).
-	return render(request, 'website/knowBestNeighborhoodMap.html', {'form':form, 'NYURespondentsObject': NYURespondentsObject})
+# 	# Bad form (or form details), no form supplied...
+# 	# Render the form with error messages (if any).
+# 	return render(request, 'website/knowBestNeighborhoodMap.html', {'form':form, 'NYURespondentsObject': NYURespondentsObject})
 
 
 def knowBestPlaces(request, id=None):
