@@ -135,7 +135,7 @@ for (i in neighb_name_api){
     # normjson<- geojson_json(normrasp)
     # send to server
     #POST(url=url, body = normjson, encode = "json")
-    writeOGR(normrasp, paste0(i,"_norm_",k,".geojson"), layer="layer", driver="GeoJSON", check_exists = F)
+    writeOGR(normrasp, paste0("../NYUmHealth/NYUmHealth/media/",i,"_norm_",k,".geojson"), layer="layer", driver="GeoJSON", check_exists = F)
   }
   
   # export neighborhood count polygon
@@ -143,7 +143,7 @@ for (i in neighb_name_api){
   #neighb_countjson<- geojson_json(neighb_countp)
   # send to server
   
-  writeOGR(neighb_countp, paste0(i,"_agreement.geojson"), layer="layer", driver="GeoJSON", check_exists = F)
+  writeOGR(neighb_countp, paste0("../NYUmHealth/NYUmHealth/media/",i,"_agreement.geojson"), layer="layer", driver="GeoJSON", check_exists = F)
   } 
   } else if (i==""){
     tryCatch({
