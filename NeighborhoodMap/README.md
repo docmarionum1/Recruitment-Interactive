@@ -28,4 +28,5 @@ Rscript api_neighb_count_norms.R
 Some example for discussion: 
 
 Astoria
-<img src="/Images/astoria_poly.png"> 
+
+<img src="/NeighborhoodMap/Images/astoria_poly.png"> 
