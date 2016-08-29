@@ -30,3 +30,7 @@ Some example for discussion:
 Astoria
 
 <img src="/NeighborhoodMap/Images/astoria_poly.png"> 
+
+Midtown 
+
+<img src="/NeighborhoodMap/Images/midtown_poly.png">
