@@ -1,7 +1,11 @@
 Django==1.9.5
 Django-Select2==5.8.4
+django-allauth==0.27.0
 django-appconf==1.0.2
 django-forms-bootstrap==3.0.1
-django-registration-redux==1.4
+oauthlib==1.1.2
+python-openid==2.2.5
+requests==2.11.1
+requests-oauthlib==0.6.2
 six==1.10.0
 wsgiref==0.1.2

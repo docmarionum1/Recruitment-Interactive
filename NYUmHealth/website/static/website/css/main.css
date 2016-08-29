@@ -158,7 +158,38 @@ html, body {
   bottom: 25px;
 }
 
+.btn {
+  position: relative;
+}
+
+.button-googleLogin:before {
+    background: url('images/sign-in-google.svg');
+    background-size: cover;
+    content: "";
+    height: 25px;
+    left: 8px;
+    position: absolute;
+    top: 4px;
+    width: 25px;
+}
+
+.button-twitterLogin:before {
+    background: url('images/sign-in-twitter.svg');
+    background-size: cover;
+    content: "";
+    height: 21px;
+    left: 8px;
+    position: absolute;
+    top: 6px;
+    width: 25px;
+}
+
+
 /* General Margins / Padding */
+.marginTop40 {
+  margin-top: 40px;
+}
+
 .marginTop20 {
 	margin-top: 20px;
 }
@@ -169,6 +200,14 @@ html, body {
 
 .marginBottom20 {
 	margin-bottom: 20px;
+}
+
+.paddingRight30 {
+  padding-right: 30px;
+}
+
+.overflowAuto {
+  overflow: auto;
 }
 
 
