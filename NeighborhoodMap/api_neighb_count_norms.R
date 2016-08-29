@@ -1,9 +1,9 @@
 library(rgdal)
 library(raster)
 library(jsonlite)
-dyn.load('/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/server/libjvm.dylib')
+#dyn.load('/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/server/libjvm.dylib')
 require(rJava)
-library(ggmap)
+#library(ggmap)
 library(foreach)
 library(doParallel)
 library(rgeos)
@@ -34,6 +34,7 @@ api<- "https://recruit.mapmob.com/getdrawngeojsons/"
 #registerDoParallel(cores=4)
 #foreach (i=neighb_name) %dopar% {
 for (i in neighb_name_api){
+file_name<- gsub("%20", "-", i)
   if (i!=""){
     # setup api
     api_neighb<- paste0(api, i)
@@ -135,7 +136,7 @@ for (i in neighb_name_api){
     # normjson<- geojson_json(normrasp)
     # send to server
     #POST(url=url, body = normjson, encode = "json")
-    writeOGR(normrasp, paste0(i,"_norm_",k), layer="layer", driver="GeoJSON")
+    writeOGR(normrasp, paste0("../NYUmHealth/NYUmHealth/media/",file_name,"_norm_",k,".geojson"), layer="layer", driver="GeoJSON", check_exists = F)
   }
   
   # export neighborhood count polygon
@@ -143,7 +144,7 @@ for (i in neighb_name_api){
   #neighb_countjson<- geojson_json(neighb_countp)
   # send to server
   
-  writeOGR(neighb_countp, paste0(i,"_agreement"), layer="layer", driver="GeoJSON")
+  writeOGR(neighb_countp, paste0("../NYUmHealth/NYUmHealth/media/",file_name,"_agreement.geojson"), layer="layer", driver="GeoJSON", check_exists = F)
   } 
   } else if (i==""){
     tryCatch({
