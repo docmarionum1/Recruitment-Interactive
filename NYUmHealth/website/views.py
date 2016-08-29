@@ -77,7 +77,7 @@ def getdrawngeojson(request, id=None):
 
 def getdrawngeojsons(request, nameNeighborhood=None):
 
-	NYURespondentsObjects = NYURespondents.objects.filter(nameNeighborhood=nameNeighborhood).exclude(drawnNeighborhood='')
+	NYURespondentsObjects = NYURespondents.objects.filter(nameNeighborhood=nameNeighborhood).exclude(drawnNeighborhood='', q1='', q2='', q3='', q4='', q5='', q6='', q7='', q8='', q9='', q10='')
 	geojsons = []
 
 	for obj in NYURespondentsObjects:
