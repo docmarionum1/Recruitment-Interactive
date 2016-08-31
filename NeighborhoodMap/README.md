@@ -20,3 +20,17 @@ Rscript R_installpackages.R
 ```
 Rscript api_neighb_count_norms.R
 ```
+
+## Neighborhood Map for Start Page
+
+[*Map_file_circles*](Map_file_circles) has aggregated polygons for all the neighborhoods forked from DNAInfo. It also has some circles generated from OpenPaths dataset in NYC ([ny_circles.geojson](https://github.com/nyu-mhealth/Recruitment-Interactive/blob/master/NeighborhoodMap/Map_file_circles/nyc_circles.geojson)). These files might be helpful for the recruit start page. 
+
+Some example for discussion: 
+
+Astoria
+
+<img src="/NeighborhoodMap/Images/astoria_poly.png"> 
+
+Midtown 
+
+<img src="/NeighborhoodMap/Images/midtown_poly.png">
