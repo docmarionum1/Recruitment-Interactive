@@ -217,16 +217,16 @@
     "@jumbotron-heading-color": "inherit",
     "@jumbotron-font-size": "ceil((@font-size-base * 1.5))",
     "@jumbotron-heading-font-size": "ceil((@font-size-base * 4.5))",
-    "@state-success-text": "#01939A",
+    "@state-success-text": "#FFFFFF",
     "@state-success-bg": "#47AFB3",
     "@state-success-border": "darken(spin(@state-success-bg, -10), 5%)",
-    "@state-info-text": "#3659B0",
+    "@state-info-text": "#FFFFFF",
     "@state-info-bg": "#5775C0",
     "@state-info-border": "darken(spin(@state-info-bg, -10), 7%)",
-    "@state-warning-text": "#FFAB00",
+    "@state-warning-text": "#FFFFFF",
     "@state-warning-bg": "#FFCC63",
     "@state-warning-border": "darken(spin(@state-warning-bg, -10), 5%)",
-    "@state-danger-text": "#FF7600",
+    "@state-danger-text": "#FFFFFF",
     "@state-danger-bg": "#FFAB63",
     "@state-danger-border": "darken(spin(@state-danger-bg, -10), 5%)",
     "@tooltip-max-width": "200px",
@@ -431,5 +431,5 @@
     "scrollspy.js",
     "transition.js"
   ],
-  "customizerUrl": "https://getbootstrap.com/customize/?id=336148b138c5a11fa3aecb96c56ff287"
+  "customizerUrl": "https://getbootstrap.com/customize/?id=95c8b4e5f6821a8a782afa536377b0fd"
 }

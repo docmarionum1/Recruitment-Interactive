@@ -6,10 +6,15 @@ function ajaxApplication() {}
 
 ajaxApplication.nextPickNeighborhood = function () {
 	var timeout = window.setTimeout(slow, 200);
+	if (objectID != '') {
+		var url = "/nextPickNeighborhood/"+ objectID +"/";
+	} else {
+		var url = "/nextPickNeighborhood/";
+	}
 	function slow() {
 		$.ajax({
 			type: "GET",
-			url: "/nextPickNeighborhood/",
+			url: url,
 			success: function(data){
 				$('#content').html(data);
 				$('.fadein').fadeIn("slow");
@@ -20,6 +25,11 @@ ajaxApplication.nextPickNeighborhood = function () {
 
 ajaxApplication.nextDrawNeighborhood = function () {
 	var timeout = window.setTimeout(slow, 200);
+	if (objectID != '') {
+		var url = "/nextPickNeighborhood/"+ objectID +"/";
+	} else {
+		var url = "/nextPickNeighborhood/";
+	}
 	function slow() {
 		var f = $("#pickNeighborhoodMapForm");
 		//create on submit listener
@@ -27,7 +37,7 @@ ajaxApplication.nextDrawNeighborhood = function () {
 			e.preventDefault();
 			$.ajax({
 				type: "POST",
-				url: "/nextPickNeighborhood/",
+				url: url,
 				data: f.serialize(),
 				success: function(data){
 					$('#content').html(data);
@@ -44,6 +54,11 @@ ajaxApplication.nextDrawNeighborhood = function () {
 
 ajaxApplication.nextNameNeighborhood = function () {
 	var timeout = window.setTimeout(slow, 200);
+	if (objectID != '') {
+		var url = "/nextDrawNeighborhood/"+ objectID +"/";
+	} else {
+		var url = "/nextDrawNeighborhood/";
+	}
 	function slow() {
 		var f = $("#drawNeighborhoodForm");
 		//create on submit listener
@@ -51,7 +66,7 @@ ajaxApplication.nextNameNeighborhood = function () {
 			e.preventDefault();
 			$.ajax({
 				type: "POST",
-				url: "/nextDrawNeighborhood/"+ objectID +"/",
+				url: url,
 				data: f.serialize(),
 				success: function(data){
 					$('#content').html(data);
@@ -68,6 +83,11 @@ ajaxApplication.nextNameNeighborhood = function () {
 
 ajaxApplication.nextKnowBestNeighborhood = function () {
 	var timeout = window.setTimeout(slow, 200);
+	if (objectID != '') {
+		var url = "/nextNameNeighborhood/"+ objectID +"/";
+	} else {
+		var url = "/nextNameNeighborhood/";
+	}
 	function slow() {
 		var f = $("#nameNeighborhoodForm");
 		//create on submit listener
@@ -75,7 +95,7 @@ ajaxApplication.nextKnowBestNeighborhood = function () {
 			e.preventDefault();
 			$.ajax({
 				type: "POST",
-				url: "/nextNameNeighborhood/"+ objectID +"/",
+				url: url,
 				data: f.serialize(),
 				success: function(data){
 					$('#content').html(data);
@@ -116,6 +136,11 @@ ajaxApplication.nextKnowBestNeighborhood = function () {
 
 ajaxApplication.nextKnowBestPlaces = function () {
 	var timeout = window.setTimeout(slow, 200);
+	if (objectID != '') {
+		var url = "/nextKnowBestNeighborhood/"+ objectID +"/";
+	} else {
+		var url = "/nextKnowBestNeighborhood/";
+	}
 	function slow() {
 		var f = $("#knowBestNeighborhoodMapForm");
 		//create on submit listener
@@ -123,7 +148,7 @@ ajaxApplication.nextKnowBestPlaces = function () {
 			e.preventDefault();
 			$.ajax({
 				type: "POST",
-				url: "/nextKnowBestNeighborhood/"+ objectID +"/",
+				url: url,
 				data: f.serialize(),
 				success: function(data){
 					$('#content').html(data);
@@ -140,6 +165,11 @@ ajaxApplication.nextKnowBestPlaces = function () {
 
 ajaxApplication.nextknowBestSurveyQuestions = function () {
 	var timeout = window.setTimeout(slow, 200);
+	if (objectID != '') {
+		var url = "/nextKnowBestPlaces/"+ objectID +"/";
+	} else {
+		var url = "/nextKnowBestPlaces/";
+	}
 	function slow() {
 		var f = $("#knowBestPlacesForm");
 		//create on submit listener
@@ -147,7 +177,7 @@ ajaxApplication.nextknowBestSurveyQuestions = function () {
 			e.preventDefault();
 			$.ajax({
 				type: "POST",
-				url: "/nextKnowBestPlaces/"+ objectID +"/",
+				url: url,
 				data: f.serialize(),
 				success: function(data){
 					$('#content').html(data);
@@ -165,6 +195,11 @@ ajaxApplication.nextknowBestSurveyQuestions = function () {
 
 ajaxApplication.nextResults = function () {
 	var timeout = window.setTimeout(slow, 200);
+	if (objectID != '') {
+		var url = "/nextKnowBestSurveyQuestions/"+ objectID +"/";
+	} else {
+		var url = "/nextKnowBestSurveyQuestions/";
+	}
 	function slow() {
 		var f = $("#knowBestSurveyQuestionsForm");
 		//create on submit listener
@@ -172,7 +207,7 @@ ajaxApplication.nextResults = function () {
 			e.preventDefault();
 			$.ajax({
 				type: "POST",
-				url: "/nextKnowBestSurveyQuestions/"+ objectID +"/",
+				url: url,
 				data: f.serialize(),
 				success: function(data){
 					$('#content').html(data);

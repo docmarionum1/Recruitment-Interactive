@@ -3,6 +3,7 @@ from website import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^(?P<id>\d+)/$', views.index, name='index'),
     url(r'^nextPickNeighborhood/$', views.pickNeighborhood, name='pickNeighborhood'),
     url(r'^nextPickNeighborhood/(?P<id>\d+)/$', views.pickNeighborhood, name='pickNeighborhood'),
     url(r'^nextDrawNeighborhood/(?P<id>\d+)/$', views.drawNeighborhood, name='drawNeighborhood'),
@@ -16,6 +17,7 @@ urlpatterns = [
     url(r'^getknowbestplaces/(?P<id>\d+)/$', views.getknowbestplaces, name='getknowbestplaces'),
     url(r'^nextKnowBestSurveyQuestions/(?P<id>\d+)/$', views.knowBestSurveyQuestions, name='knowBestSurveyQuestions'),
     url(r'^results/(?P<id>\d+)/$', views.results, name='results'),
+    url(r'^dashboard/$', views.dashboard, name='dashboard'),
 
 ]
 

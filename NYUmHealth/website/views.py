@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, JsonResponse
+from django.contrib.auth.decorators import login_required
 
 #import all website models and forms
 from website.models import *
@@ -9,8 +10,13 @@ from website.forms import *
 
 
 # views for NYU mHealth Recruitment tool site
-def index(request):
-	return render(request, 'website/index.html', {})
+def index(request, id=None):
+	if id:
+		NYURespondentsObject = NYURespondents.objects.get(pk=id)
+	else:
+		NYURespondentsObject = NYURespondents()
+
+	return render(request, 'website/index.html', {'NYURespondentsObject':NYURespondentsObject})
 
 def pickNeighborhood(request, id=None):
 	if id:
@@ -252,3 +258,17 @@ def knowBestSurveyQuestions(request, id=None):
 
 def results(request, id=None):
 	return render(request, 'website/results.html', {})
+
+@login_required
+def dashboard(request):
+	try:
+		NYURespondentsObject = NYURespondents.objects.get(user=request.user)
+	except Exception, e:
+		NYURespondentsObject = NYURespondents()
+		NYURespondentsObject.user = request.user
+		NYURespondentsObject.save()
+
+	return render(request, 'website/dashboard.html', {'NYURespondentsObject': NYURespondentsObject})
+
+# creating a listener signal for when a user creates an account
+

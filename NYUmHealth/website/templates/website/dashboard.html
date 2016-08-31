@@ -1,0 +1,53 @@
+{% extends 'website/base.html' %}
+{% load staticfiles %}
+
+{% block title %}MapMob{% endblock %}
+
+{% block css_block %}
+{% endblock %}
+
+{% block head_js_block %}
+<script type="text/javascript" src="{% static 'website/js/controllers.js' %}"></script>
+{% endblock %}
+	
+{% block body_block %}
+<div id="content">
+	<div class="fadein">
+
+	    <!-- Content -->
+	    <div class="container-fluid">
+	        <div id="mainContent">
+	            <div class="row">
+	                <div class="col-sm-8 col-sm-offset-2">
+	                    <div class="forceBlock">
+	                    	<h4>Hello {{ request.user.first_name }}</h4>
+	                    	<ul>
+	                    	{% for name, value in NYURespondentsObject.get_fields %}
+							  {% if value %}
+							    <li>{{ name }} => {{ value }}</li>
+							  {% endif %}
+							{% endfor %}
+							</ul>
+	                    </div>
+	                    <a class="btn btn-primary" href="{% url 'index' id=NYURespondentsObject.id %}">Back to Survey</a>
+	                    <a class="btn btn-primary" href="#">Link here to MapMob Tracking</a>
+
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+
+	</div>  
+</div>
+{% endblock %}
+
+{% block modal_block %}
+{% endblock %}
+
+{% block js_block %}
+{% endblock %}
+
+
+	
+	
+

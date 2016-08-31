@@ -35,7 +35,6 @@ html, body {
 /* Map CSS */
 #content, #map {
     position:absolute;
-    top:0;
     left:0;
     right:0;
     bottom:0;
@@ -46,13 +45,13 @@ html, body {
     transition: all 0.5s ease;	
 }
 
-/*#content {
+#content {
 	top:67px;
 }
 
 #map {
 	top:0;
-}*/
+}
 
 .miniMap {
     height: 180px;

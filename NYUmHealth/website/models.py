@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 class neighborhoodNYC(models.Model):
@@ -16,6 +18,7 @@ class neighborhoodNYC(models.Model):
 
 class NYURespondents(models.Model):
 	created = models.DateTimeField(auto_now=True)
+	user = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
 	myNeighborhood = models.ForeignKey(neighborhoodNYC, blank=True, null=True, related_name='myneighborhoods')
 	drawnNeighborhood = models.TextField(default='')
 	nameNeighborhood = models.CharField(max_length=255, default='', blank=False, null=False)
@@ -62,3 +65,7 @@ class NYURespondents(models.Model):
 	circleq18 = models.CharField(max_length=255, default='', blank=False, null=False)
 	circleq19 = models.CharField(max_length=255, default='', blank=False, null=False)
 	circleq20 = models.CharField(max_length=255, default='', blank=False, null=False)
+
+	def get_fields(self):
+		return [(field.name, field.value_to_string(self)) for field in NYURespondents._meta.fields]
+
