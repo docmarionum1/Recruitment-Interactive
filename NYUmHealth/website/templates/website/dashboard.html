@@ -20,7 +20,7 @@
 	            <div class="row">
 	                <div class="col-sm-8 col-sm-offset-2">
 	                    <div class="forceBlock">
-	                    	<h4>Hello {{ request.user.first_name }}</h4>
+	                    	<h4>Hello {{ request.user }}</h4>
 	                    	<ul>
 	                    	{% for name, value in NYURespondentsObject.get_fields %}
 							  {% if value %}

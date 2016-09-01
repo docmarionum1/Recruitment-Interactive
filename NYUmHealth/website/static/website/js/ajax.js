@@ -6,7 +6,7 @@ function ajaxApplication() {}
 
 ajaxApplication.nextPickNeighborhood = function () {
 	var timeout = window.setTimeout(slow, 200);
-	if (objectID != '') {
+	if (objectID != 'None') {
 		var url = "/nextPickNeighborhood/"+ objectID +"/";
 	} else {
 		var url = "/nextPickNeighborhood/";
@@ -25,7 +25,7 @@ ajaxApplication.nextPickNeighborhood = function () {
 
 ajaxApplication.nextDrawNeighborhood = function () {
 	var timeout = window.setTimeout(slow, 200);
-	if (objectID != '') {
+	if (objectID != 'None') {
 		var url = "/nextPickNeighborhood/"+ objectID +"/";
 	} else {
 		var url = "/nextPickNeighborhood/";
@@ -54,7 +54,7 @@ ajaxApplication.nextDrawNeighborhood = function () {
 
 ajaxApplication.nextNameNeighborhood = function () {
 	var timeout = window.setTimeout(slow, 200);
-	if (objectID != '') {
+	if (objectID != 'None') {
 		var url = "/nextDrawNeighborhood/"+ objectID +"/";
 	} else {
 		var url = "/nextDrawNeighborhood/";
@@ -83,7 +83,7 @@ ajaxApplication.nextNameNeighborhood = function () {
 
 ajaxApplication.nextKnowBestNeighborhood = function () {
 	var timeout = window.setTimeout(slow, 200);
-	if (objectID != '') {
+	if (objectID != 'None') {
 		var url = "/nextNameNeighborhood/"+ objectID +"/";
 	} else {
 		var url = "/nextNameNeighborhood/";
@@ -136,7 +136,7 @@ ajaxApplication.nextKnowBestNeighborhood = function () {
 
 ajaxApplication.nextKnowBestPlaces = function () {
 	var timeout = window.setTimeout(slow, 200);
-	if (objectID != '') {
+	if (objectID != 'None') {
 		var url = "/nextKnowBestNeighborhood/"+ objectID +"/";
 	} else {
 		var url = "/nextKnowBestNeighborhood/";
@@ -165,7 +165,7 @@ ajaxApplication.nextKnowBestPlaces = function () {
 
 ajaxApplication.nextknowBestSurveyQuestions = function () {
 	var timeout = window.setTimeout(slow, 200);
-	if (objectID != '') {
+	if (objectID != 'None') {
 		var url = "/nextKnowBestPlaces/"+ objectID +"/";
 	} else {
 		var url = "/nextKnowBestPlaces/";
@@ -195,7 +195,7 @@ ajaxApplication.nextknowBestSurveyQuestions = function () {
 
 ajaxApplication.nextResults = function () {
 	var timeout = window.setTimeout(slow, 200);
-	if (objectID != '') {
+	if (objectID != 'None') {
 		var url = "/nextKnowBestSurveyQuestions/"+ objectID +"/";
 	} else {
 		var url = "/nextKnowBestSurveyQuestions/";
