@@ -32,9 +32,11 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'website',
-    'registration',
     'allauth',
+    'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.twitter',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -91,6 +93,8 @@ DATABASES = {
         'NAME': os.path.join(DB_DIR, 'db.sqlite3')
     }
 }
+
+AUTHENTICATION_BACKENDS = ['website.mapmobBackend.mapmobBackend']
 
 
 # Password validation
