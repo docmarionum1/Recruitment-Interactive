@@ -33,6 +33,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'website',
     'registration',
+    'allauth',
+    'allauth.socialaccount',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,13 +78,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'NYUmHealth.wsgi.application'
 
 
+# Create the database directory if it doesn't exist
+DB_DIR = os.path.join(BASE_DIR, 'db')
+if not os.path.exists(DB_DIR):
+    os.makedirs(DB_DIR)
+
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db/db.sqlite3'),
+        'NAME': os.path.join(DB_DIR, 'db.sqlite3')
     }
 }
 
@@ -131,9 +137,9 @@ MEDIA_URL = '/media/'
 
 
 # Registration Settings
-REGISTRATION_OPEN = True                
-ACCOUNT_ACTIVATION_DAYS = 7     
-LOGIN_REDIRECT_URL = '/'  
+REGISTRATION_OPEN = True
+ACCOUNT_ACTIVATION_DAYS = 7
+LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login/'
 
 # site ID for registration
