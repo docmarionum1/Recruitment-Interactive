@@ -11,25 +11,39 @@ from website.forms import *
 
 # views for NYU mHealth Recruitment tool site
 def index(request, id=None):
-	if id:
-		NYURespondentsObject = NYURespondents.objects.get(pk=id)
-	elif request.user.is_authenticated():
+	# If the user is logged in
+	if request.user.is_authenticated():
+
+		# Try to get an existing response
 		try:
 			NYURespondentsObject = NYURespondents.objects.get(user=request.user)
 		except:
-			NYURespondentsObject = NYURespondents()
+			# If it doesn't exist, see if they have one associated with the
+			# current session and associate that to the user
+			if 'id' in request.session:
+				NYURespondentsObject = NYURespondents.objects.get(pk=request.session['id'])
+			else: # Otherwise create a new object
+				NYURespondentsObject = NYURespondents()
+
+			# Now associate the response to the user
 			NYURespondentsObject.user = request.user
 			NYURespondentsObject.save()
+
+	elif 'id' in request.session:
+		# If they're not logged in, check if they have a session
+		NYURespondentsObject = NYURespondents.objects.get(pk=request.session['id'])
 	else:
+		# Otherwise make a new response object
 		NYURespondentsObject = NYURespondents()
+		NYURespondentsObject.save()
+
+	# Store the response ID in the session
+	request.session['id'] = NYURespondentsObject.pk
 
 	return render(request, 'website/index.html', {'NYURespondentsObject':NYURespondentsObject})
 
 def pickNeighborhood(request, id=None):
-	if id:
-		NYURespondentsObject = NYURespondents.objects.get(pk=id)
-	else:
-		NYURespondentsObject = NYURespondents()
+	NYURespondentsObject = NYURespondents.objects.get(pk=request.session['id'])
 
 	# A HTTP POST?
 	if request.method == 'POST':
@@ -54,10 +68,7 @@ def pickNeighborhood(request, id=None):
 
 
 def drawNeighborhood(request, id=None):
-	if id:
-		NYURespondentsObject = NYURespondents.objects.get(pk=id)
-	else:
-		NYURespondentsObject = NYURespondents()
+	NYURespondentsObject = NYURespondents.objects.get(pk=request.session['id'])
 
 	# A HTTP POST?
 	if request.method == 'POST':
@@ -82,8 +93,7 @@ def drawNeighborhood(request, id=None):
 
 
 def getdrawngeojson(request, id=None):
-
-	NYURespondentsObject = NYURespondents.objects.get(pk=id)
+	NYURespondentsObject = NYURespondents.objects.get(pk=request.session['id'])
 
 	return JsonResponse(NYURespondentsObject.drawnNeighborhood, safe=False)
 
@@ -114,10 +124,7 @@ def getneighborhoodnames(request):
 
 
 def nameNeighborhood(request, id=None):
-	if id:
-		NYURespondentsObject = NYURespondents.objects.get(pk=id)
-	else:
-		NYURespondentsObject = NYURespondents()
+	NYURespondentsObject = NYURespondents.objects.get(pk=request.session['id'])
 
 	# A HTTP POST?
 	if request.method == 'POST':
@@ -201,10 +208,7 @@ def nameNeighborhood(request, id=None):
 
 
 def knowBestPlaces(request, id=None):
-	if id:
-		NYURespondentsObject = NYURespondents.objects.get(pk=id)
-	else:
-		NYURespondentsObject = NYURespondents()
+	NYURespondentsObject = NYURespondents.objects.get(pk=request.session['id'])
 
 	# A HTTP POST?
 	if request.method == 'POST':
@@ -229,17 +233,13 @@ def knowBestPlaces(request, id=None):
 
 
 def getknowbestplaces(request, id=None):
-
-	NYURespondentsObject = NYURespondents.objects.get(pk=id)
+	NYURespondentsObject = NYURespondents.objects.get(pk=request.session['id'])
 
 	return JsonResponse(NYURespondentsObject.knowBestPlaces, safe=False)
 
 
 def knowBestSurveyQuestions(request, id=None):
-	if id:
-		NYURespondentsObject = NYURespondents.objects.get(pk=id)
-	else:
-		NYURespondentsObject = NYURespondents()
+	NYURespondentsObject = NYURespondents.objects.get(pk=request.session['id'])
 
 	# A HTTP POST?
 	if request.method == 'POST':
