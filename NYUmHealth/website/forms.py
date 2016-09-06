@@ -1,6 +1,7 @@
 from django.db import models
 from django import forms
-
+from allauth.account.forms import SignupForm as allauthSignupForm
+from mapmobBackend import signup
 # import all website models
 from website.models import *
 
@@ -62,3 +63,21 @@ class knowBestPlacesForm(forms.ModelForm):
         model = NYURespondents
         fields = ('knowBestPlaces',)
 
+# Override default signup form to validate email/user/password against
+# Mapmob API.
+class SignupForm(allauthSignupForm):
+	def is_valid(self):
+		if super(SignupForm, self).is_valid():
+			r = signup(
+				self.cleaned_data['username'],
+				self.cleaned_data['password1'],
+				self.cleaned_data['email']
+			)
+			if r.status_code == 201:
+				return True
+			else:
+				for v in r.json()['violations']:
+					self.add_error(v['propertyPath'], v['message'])
+				return False
+		else:
+			return False

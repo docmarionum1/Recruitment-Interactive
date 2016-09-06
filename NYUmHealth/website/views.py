@@ -13,6 +13,13 @@ from website.forms import *
 def index(request, id=None):
 	if id:
 		NYURespondentsObject = NYURespondents.objects.get(pk=id)
+	elif request.user.is_authenticated():
+		try:
+			NYURespondentsObject = NYURespondents.objects.get(user=request.user)
+		except:
+			NYURespondentsObject = NYURespondents()
+			NYURespondentsObject.user = request.user
+			NYURespondentsObject.save()
 	else:
 		NYURespondentsObject = NYURespondents()
 
@@ -88,7 +95,7 @@ def getdrawngeojsons(request, nameNeighborhood=None):
 
 	for obj in NYURespondentsObjects:
 		changed = obj.drawnNeighborhood.replace('\"properties\":{}', '\"properties\":{\"ID\":\"'+ str(obj.id) +'\", \"created\":\"'+ str(obj.created) +'\", \"nameNeighborhood\":\"' + str(obj.nameNeighborhood) +'\", \"howLongLivedNeighborhood\":\"' + str(obj.howLongLivedNeighborhood) +'\", \"q1\":\"' + str(obj.q1) +'\", \"q2\":\"' + str(obj.q2) +'\", \"q3\":\"' + str(obj.q3) +'\", \"q4\":\"' + str(obj.q4) +'\", \"q5\":\"' + str(obj.q5) +'\", \"q6\":\"' + str(obj.q6) +'\", \"q7\":\"' + str(obj.q7) +'\", \"q8\":\"' + str(obj.q8) +'\", \"q9\":\"' + str(obj.q9) +'\", \"q10\":\"' + str(obj.q10) +'\"}')
-		geojsons.append(changed) 
+		geojsons.append(changed)
 
 	return JsonResponse(geojsons, safe=False)
 
@@ -271,4 +278,3 @@ def dashboard(request):
 	return render(request, 'website/dashboard.html', {'NYURespondentsObject': NYURespondentsObject})
 
 # creating a listener signal for when a user creates an account
-

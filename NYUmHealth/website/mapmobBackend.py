@@ -2,22 +2,39 @@ from django.conf import settings
 from django.contrib.auth.models import User
 import requests
 
+# Authenticate against mapmob API
+def authenticate(username, password):
+    params = {
+        'username': username,
+        'password': password
+    }
+
+    r = requests.post(
+        'https://mapmob.com/api/security/login',
+        params=params
+    )
+
+    return r
+
+# Attempt to sign up with mapmob API
+def signup(username, password, email):
+    params = {
+        'username': username,
+        'plainPassword': password,
+        'email': email
+    }
+
+    r = requests.post('https://mapmob.com/api/security/register', json=params)
+
+    return r
+
 class mapmobBackend(object):
     """
     Authenticate a user against mapmob's API.
     """
 
     def authenticate(self, username=None, password=None):
-        params = {
-            'username': username,
-            'password': password
-        }
-        r = requests.post(
-            'https://mapmob.com/api/security/login',
-            params=params
-        )
-
-        # User exists in mapmob
+        r = authenticate(username, password)
         if r.status_code == 200:
             try:
                 user = User.objects.get(username=username)

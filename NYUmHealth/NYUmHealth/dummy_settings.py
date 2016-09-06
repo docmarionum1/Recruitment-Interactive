@@ -95,6 +95,8 @@ DATABASES = {
 }
 
 AUTHENTICATION_BACKENDS = ['website.mapmobBackend.mapmobBackend']
+ACCOUNT_FORMS = {'signup': 'website.forms.SignupForm'}
+ACCOUNT_EMAIL_REQUIRED = True
 
 
 # Password validation
