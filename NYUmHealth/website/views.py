@@ -10,7 +10,7 @@ from website.forms import *
 
 
 # views for NYU mHealth Recruitment tool site
-def index(request, id=None):
+def index(request):
 	# If the user is logged in
 	if request.user.is_authenticated():
 
@@ -42,7 +42,7 @@ def index(request, id=None):
 
 	return render(request, 'website/index.html', {'NYURespondentsObject':NYURespondentsObject})
 
-def pickNeighborhood(request, id=None):
+def pickNeighborhood(request):
 	NYURespondentsObject = NYURespondents.objects.get(pk=request.session['id'])
 
 	# A HTTP POST?
@@ -54,7 +54,7 @@ def pickNeighborhood(request, id=None):
 			# Save the new data to the database.
 			f = form.save()
 			lookupObject = NYURespondents.objects.get(pk=f.pk)
-			return HttpResponseRedirect(reverse('drawNeighborhood', args=(lookupObject.pk,)))
+			return HttpResponseRedirect(reverse('drawNeighborhood'))
 		else:
 			# The supplied form contained errors - just print them to the terminal.
 			print form.errors
@@ -67,7 +67,7 @@ def pickNeighborhood(request, id=None):
 	return render(request, 'website/pickNeighborhoodMap.html', {'form':form, 'NYURespondentsObject': NYURespondentsObject})
 
 
-def drawNeighborhood(request, id=None):
+def drawNeighborhood(request):
 	NYURespondentsObject = NYURespondents.objects.get(pk=request.session['id'])
 
 	# A HTTP POST?
@@ -79,7 +79,7 @@ def drawNeighborhood(request, id=None):
 			# Save the new data to the database.
 			f = form.save()
 			lookupObject = NYURespondents.objects.get(pk=f.pk)
-			return HttpResponseRedirect(reverse('nameNeighborhood', args=(lookupObject.pk,)))
+			return HttpResponseRedirect(reverse('nameNeighborhood'))
 		else:
 			# The supplied form contained errors - just print them to the terminal.
 			print form.errors
@@ -92,7 +92,7 @@ def drawNeighborhood(request, id=None):
 	return render(request, 'website/drawNeighborhood.html', {'form':form, 'NYURespondentsObject': NYURespondentsObject})
 
 
-def getdrawngeojson(request, id=None):
+def getdrawngeojson(request):
 	NYURespondentsObject = NYURespondents.objects.get(pk=request.session['id'])
 
 	return JsonResponse(NYURespondentsObject.drawnNeighborhood, safe=False)
@@ -123,7 +123,7 @@ def getneighborhoodnames(request):
 	return JsonResponse(uniquelist, safe=False)
 
 
-def nameNeighborhood(request, id=None):
+def nameNeighborhood(request):
 	NYURespondentsObject = NYURespondents.objects.get(pk=request.session['id'])
 
 	# A HTTP POST?
@@ -135,7 +135,7 @@ def nameNeighborhood(request, id=None):
 			# Save the new data to the database.
 			f = form.save()
 			lookupObject = NYURespondents.objects.get(pk=f.pk)
-			return HttpResponseRedirect(reverse('knowBestPlaces', args=(lookupObject.pk,)))
+			return HttpResponseRedirect(reverse('knowBestPlaces'))
 		else:
 			# The supplied form contained errors - just print them to the terminal.
 			print form.errors
@@ -207,7 +207,7 @@ def nameNeighborhood(request, id=None):
 # 	return render(request, 'website/knowBestNeighborhoodMap.html', {'form':form, 'NYURespondentsObject': NYURespondentsObject})
 
 
-def knowBestPlaces(request, id=None):
+def knowBestPlaces(request):
 	NYURespondentsObject = NYURespondents.objects.get(pk=request.session['id'])
 
 	# A HTTP POST?
@@ -219,7 +219,7 @@ def knowBestPlaces(request, id=None):
 			# Save the new data to the database.
 			f = form.save()
 			lookupObject = NYURespondents.objects.get(pk=f.pk)
-			return HttpResponseRedirect(reverse('knowBestSurveyQuestions', args=(lookupObject.pk,)))
+			return HttpResponseRedirect(reverse('knowBestSurveyQuestions'))
 		else:
 			# The supplied form contained errors - just print them to the terminal.
 			print form.errors
@@ -232,13 +232,13 @@ def knowBestPlaces(request, id=None):
 	return render(request, 'website/knowBestPlaces.html', {'form':form, 'NYURespondentsObject': NYURespondentsObject})
 
 
-def getknowbestplaces(request, id=None):
+def getknowbestplaces(request):
 	NYURespondentsObject = NYURespondents.objects.get(pk=request.session['id'])
 
 	return JsonResponse(NYURespondentsObject.knowBestPlaces, safe=False)
 
 
-def knowBestSurveyQuestions(request, id=None):
+def knowBestSurveyQuestions(request):
 	NYURespondentsObject = NYURespondents.objects.get(pk=request.session['id'])
 
 	# A HTTP POST?
@@ -250,7 +250,7 @@ def knowBestSurveyQuestions(request, id=None):
 			# Save the new data to the database.
 			f = form.save()
 			lookupObject = NYURespondents.objects.get(pk=f.pk)
-			return HttpResponseRedirect(reverse('results', args=(lookupObject.pk,)))
+			return HttpResponseRedirect(reverse('results'))
 		else:
 			# The supplied form contained errors - just print them to the terminal.
 			print form.errors
@@ -263,7 +263,7 @@ def knowBestSurveyQuestions(request, id=None):
 	return render(request, 'website/knowBestSurveyQuestions.html', {'form':form, 'NYURespondentsObject': NYURespondentsObject})
 
 
-def results(request, id=None):
+def results(request):
 	return render(request, 'website/results.html', {})
 
 @login_required

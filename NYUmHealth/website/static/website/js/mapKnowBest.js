@@ -22,27 +22,27 @@ mapKnowBest.initialize = function () {
 	var bounds = mapKnowBest.map.getBounds().pad(1);
 	mapKnowBest.map.setMaxBounds(bounds);
 
-	// set a tile layer to be CartoDB tiles 
+	// set a tile layer to be CartoDB tiles
 	var CartoDBTiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png', { attribution: 'Map tiles by <a href=\"http://cartodb.com/attributions#basemaps\">CartoDB</a>, under <a href=\"https://creativecommons.org/licenses/by/3.0/\" target=\"_blank\">CC BY 3.0</a>. Data by <a href=\"http://www.openstreetmap.org/\" target=\"_blank\">OpenStreetMap</a>, under ODbL.'
 	});
 
 
 	// add these tiles to our map
 	mapKnowBest.map.addLayer(CartoDBTiles);
-	
+
     // enable events
     mapKnowBest.map.doubleClickZoom.enable();
     mapKnowBest.map.scrollWheelZoom.enable();
 
     // load drawings if they exist
     mapKnowBest.loadDrawnGeojson();
-	
+
 }
 
 mapKnowBest.loadDrawnGeojson = function (){
 	$.ajax({
 		type: "GET",
-		url: "/getknowbestplaces/"+ objectID +"/",
+		url: "/getknowbestplaces/",
 		success: function(data){
 			// load the draw tools
 			if (data) {
@@ -64,7 +64,7 @@ mapKnowBest.loadDrawnGeojson = function (){
 						var icon = mapKnowBest.setIconBasedOnZoom();
 						var selected = false;
 					}
-					
+
 					var newCircle = L.marker([lat, lon], {
 						icon: icon,
 						draggable: true,
@@ -77,7 +77,7 @@ mapKnowBest.loadDrawnGeojson = function (){
 					mapKnowBest.FEATURELAYER.addLayer(newCircle);
 
 					// set up listeners for drag end
-					newCircle.on('dragend', function(e) {	
+					newCircle.on('dragend', function(e) {
 					   	// update the form field with new geojson
 					   	var geojson = mapKnowBest.FEATURELAYER.toGeoJSON();
 					    geojson = mapKnowBest.addSelectedPropToCircle(geojson);
@@ -95,7 +95,7 @@ mapKnowBest.loadDrawnGeojson = function (){
 					});
 
 					//set up click listener
-					newCircle.on('click', function(e) {	
+					newCircle.on('click', function(e) {
 						if (!this.options.selected) {
 							mapKnowBest.removeSelectedFromFEATURELAYER();
 							this.options.selected = true;
@@ -107,7 +107,7 @@ mapKnowBest.loadDrawnGeojson = function (){
 						}
 					});
 
-				});		
+				});
 
 				var bounds = mapKnowBest.FEATURELAYER.getBounds();
 				mapKnowBest.map.fitBounds(bounds);
@@ -175,7 +175,7 @@ mapKnowBest.simpleDrawTools = function(){
    	$('#id_knowBestPlaces').val(JSON.stringify(geojson));
 
 	// set up listeners for drag end
-	firstCircle.on('dragend', function(e) {	
+	firstCircle.on('dragend', function(e) {
 	   	// update the form field with new geojson
 	   	var geojson = mapKnowBest.FEATURELAYER.toGeoJSON();
 	    geojson = mapKnowBest.addSelectedPropToCircle(geojson);
@@ -193,7 +193,7 @@ mapKnowBest.simpleDrawTools = function(){
 	});
 
 	//set up click listener
-	firstCircle.on('click', function(e) {	
+	firstCircle.on('click', function(e) {
 		if (!this.options.selected) {
 			mapKnowBest.removeSelectedFromFEATURELAYER();
 			this.options.selected = true;
@@ -272,7 +272,7 @@ mapKnowBest.addAnotherCircle = function(){
 	});
 
 	//set up click listener
-	newCircle.on('click', function(e) {	
+	newCircle.on('click', function(e) {
 		if (!this.options.selected) {
 			mapKnowBest.removeSelectedFromFEATURELAYER();
 			this.options.selected = true;
@@ -292,19 +292,19 @@ mapKnowBest.setIconBasedOnZoom = function () {
 	if (zoom > 17) {
 		return mapKnowBest.circleIcon18;
 	} else if (zoom > 16) {
-		return mapKnowBest.circleIcon17;			
+		return mapKnowBest.circleIcon17;
 	} else if (zoom > 15) {
-		return mapKnowBest.circleIcon16;			
+		return mapKnowBest.circleIcon16;
 	} else if (zoom > 14) {
-		return mapKnowBest.circleIcon15;			
+		return mapKnowBest.circleIcon15;
 	} else if (zoom > 13) {
-		return mapKnowBest.circleIcon14;			
+		return mapKnowBest.circleIcon14;
 	} else if (zoom > 12) {
-		return mapKnowBest.circleIcon13;			
+		return mapKnowBest.circleIcon13;
 	} else if (zoom > 12) {
-		return mapKnowBest.circleIcon12;			
+		return mapKnowBest.circleIcon12;
 	} else {
-		return mapKnowBest.circleIcon11;						
+		return mapKnowBest.circleIcon11;
 	}
 }
 
@@ -314,19 +314,19 @@ mapKnowBest.setSelectedIconBasedOnZoom = function () {
 	if (zoom > 17) {
 		return mapKnowBest.circleIconSelected18;
 	} else if (zoom > 16) {
-		return mapKnowBest.circleIconSelected17;			
+		return mapKnowBest.circleIconSelected17;
 	} else if (zoom > 15) {
-		return mapKnowBest.circleIconSelected16;			
+		return mapKnowBest.circleIconSelected16;
 	} else if (zoom > 14) {
-		return mapKnowBest.circleIconSelected15;			
+		return mapKnowBest.circleIconSelected15;
 	} else if (zoom > 13) {
-		return mapKnowBest.circleIconSelected14;			
+		return mapKnowBest.circleIconSelected14;
 	} else if (zoom > 12) {
-		return mapKnowBest.circleIconSelected13;			
+		return mapKnowBest.circleIconSelected13;
 	} else if (zoom > 12) {
-		return mapKnowBest.circleIconSelected12;			
+		return mapKnowBest.circleIconSelected12;
 	} else {
-		return mapKnowBest.circleIconSelected11;						
+		return mapKnowBest.circleIconSelected11;
 	}
 }
 
@@ -335,56 +335,56 @@ mapKnowBest.setSelectedIconBasedOnZoom = function () {
 /* non-selected circles */
 mapKnowBest.circleIcon18 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [1000, 1000], 
+    iconSize:     [1000, 1000],
     iconAnchor:   [500, 500],
     labelAnchor:  [0, 0],
 });
 
 mapKnowBest.circleIcon17 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [500, 500], 
+    iconSize:     [500, 500],
     iconAnchor:   [250, 250],
     labelAnchor:  [0, 0],
 });
 
 mapKnowBest.circleIcon16 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [225, 225], 
+    iconSize:     [225, 225],
     iconAnchor:   [112, 112],
     labelAnchor:  [0, 0],
 });
 
 mapKnowBest.circleIcon15 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [110, 110], 
+    iconSize:     [110, 110],
     iconAnchor:   [55, 55],
     labelAnchor:  [0, 0],
 });
 
 mapKnowBest.circleIcon14 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [60, 60], 
+    iconSize:     [60, 60],
     iconAnchor:   [30, 30],
     labelAnchor:  [0, 0],
 });
 
 mapKnowBest.circleIcon13 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [30, 30], 
+    iconSize:     [30, 30],
     iconAnchor:   [15, 15],
     labelAnchor:  [0, 0],
 });
 
 mapKnowBest.circleIcon12 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [18, 18], 
+    iconSize:     [18, 18],
     iconAnchor:   [9, 9],
     labelAnchor:  [0, 0],
 });
 
 mapKnowBest.circleIcon11 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [8, 8], 
+    iconSize:     [8, 8],
     iconAnchor:   [4, 4],
     labelAnchor:  [0, 0],
 });
@@ -392,56 +392,56 @@ mapKnowBest.circleIcon11 = L.icon({
 /* selected circles */
 mapKnowBest.circleIconSelected18 = L.icon({
     iconUrl: '/static/website/css/images/circleIconSelected.png',
-    iconSize:     [1000, 1000], 
+    iconSize:     [1000, 1000],
     iconAnchor:   [500, 500],
     labelAnchor:  [0, 0],
 });
 
 mapKnowBest.circleIconSelected17 = L.icon({
     iconUrl: '/static/website/css/images/circleIconSelected.png',
-    iconSize:     [500, 500], 
+    iconSize:     [500, 500],
     iconAnchor:   [250, 250],
     labelAnchor:  [0, 0],
 });
 
 mapKnowBest.circleIconSelected16 = L.icon({
     iconUrl: '/static/website/css/images/circleIconSelected.png',
-    iconSize:     [225, 225], 
+    iconSize:     [225, 225],
     iconAnchor:   [112, 112],
     labelAnchor:  [0, 0],
 });
 
 mapKnowBest.circleIconSelected15 = L.icon({
     iconUrl: '/static/website/css/images/circleIconSelected.png',
-    iconSize:     [110, 110], 
+    iconSize:     [110, 110],
     iconAnchor:   [55, 55],
     labelAnchor:  [0, 0],
 });
 
 mapKnowBest.circleIconSelected14 = L.icon({
     iconUrl: '/static/website/css/images/circleIconSelected.png',
-    iconSize:     [60, 60], 
+    iconSize:     [60, 60],
     iconAnchor:   [30, 30],
     labelAnchor:  [0, 0],
 });
 
 mapKnowBest.circleIconSelected13 = L.icon({
     iconUrl: '/static/website/css/images/circleIconSelected.png',
-    iconSize:     [30, 30], 
+    iconSize:     [30, 30],
     iconAnchor:   [15, 15],
     labelAnchor:  [0, 0],
 });
 
 mapKnowBest.circleIconSelected12 = L.icon({
     iconUrl: '/static/website/css/images/circleIconSelected.png',
-    iconSize:     [18, 18], 
+    iconSize:     [18, 18],
     iconAnchor:   [9, 9],
     labelAnchor:  [0, 0],
 });
 
 mapKnowBest.circleIconSelected11 = L.icon({
     iconUrl: '/static/website/css/images/circleIconSelected.png',
-    iconSize:     [8, 8], 
+    iconSize:     [8, 8],
     iconAnchor:   [4, 4],
     labelAnchor:  [0, 0],
 });
@@ -453,4 +453,3 @@ mapKnowBest.circleIconSelected11 = L.icon({
 mapKnowBest.map;
 mapKnowBest.zoomCenter;
 mapKnowBest.FEATURELAYER;
-

@@ -21,27 +21,27 @@ miniMapKnowBest.initialize = function () {
 	var bounds = miniMapKnowBest.map.getBounds().pad(1);
 	miniMapKnowBest.map.setMaxBounds(bounds);
 
-	// set a tile layer to be CartoDB tiles 
+	// set a tile layer to be CartoDB tiles
 	var CartoDBTiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png', { attribution: 'Map tiles by <a href=\"http://cartodb.com/attributions#basemaps\">CartoDB</a>, under <a href=\"https://creativecommons.org/licenses/by/3.0/\" target=\"_blank\">CC BY 3.0</a>. Data by <a href=\"http://www.openstreetmap.org/\" target=\"_blank\">OpenStreetMap</a>, under ODbL.'
 	});
 
 
 	// add these tiles to our map
 	miniMapKnowBest.map.addLayer(CartoDBTiles);
-	
+
     // enable events
     miniMapKnowBest.map.doubleClickZoom.enable();
     miniMapKnowBest.map.scrollWheelZoom.enable();
 
     // load drawings if they exist
     miniMapKnowBest.loadDrawnGeojson();
-	
+
 }
 
 miniMapKnowBest.loadDrawnGeojson = function (){
 	$.ajax({
 		type: "GET",
-		url: "/getknowbestplaces/"+ objectID +"/",
+		url: "/getknowbestplaces/",
 		success: function(data){
 			// load the draw tools
 			if (data) {
@@ -79,12 +79,12 @@ miniMapKnowBest.loadDrawnGeojson = function (){
 						newCircle.setIcon(icon);
 					});
 
-				});		
+				});
 
 				console.log(center);
 				miniMapKnowBest.map.setView(center, 15);
 
-			} 
+			}
         }
 	});
 
@@ -97,19 +97,19 @@ miniMapKnowBest.setIconBasedOnZoom = function () {
 	if (zoom > 17) {
 		return miniMapKnowBest.circleIcon18;
 	} else if (zoom > 16) {
-		return miniMapKnowBest.circleIcon17;			
+		return miniMapKnowBest.circleIcon17;
 	} else if (zoom > 15) {
-		return miniMapKnowBest.circleIcon16;			
+		return miniMapKnowBest.circleIcon16;
 	} else if (zoom > 14) {
-		return miniMapKnowBest.circleIcon15;			
+		return miniMapKnowBest.circleIcon15;
 	} else if (zoom > 13) {
-		return miniMapKnowBest.circleIcon14;			
+		return miniMapKnowBest.circleIcon14;
 	} else if (zoom > 12) {
-		return miniMapKnowBest.circleIcon13;			
+		return miniMapKnowBest.circleIcon13;
 	} else if (zoom > 12) {
-		return miniMapKnowBest.circleIcon12;			
+		return miniMapKnowBest.circleIcon12;
 	} else {
-		return miniMapKnowBest.circleIcon11;						
+		return miniMapKnowBest.circleIcon11;
 	}
 }
 
@@ -119,19 +119,19 @@ miniMapKnowBest.setSelectedIconBasedOnZoom = function () {
 	if (zoom > 17) {
 		return miniMapKnowBest.circleIconSelected18;
 	} else if (zoom > 16) {
-		return miniMapKnowBest.circleIconSelected17;			
+		return miniMapKnowBest.circleIconSelected17;
 	} else if (zoom > 15) {
-		return miniMapKnowBest.circleIconSelected16;			
+		return miniMapKnowBest.circleIconSelected16;
 	} else if (zoom > 14) {
-		return miniMapKnowBest.circleIconSelected15;			
+		return miniMapKnowBest.circleIconSelected15;
 	} else if (zoom > 13) {
-		return miniMapKnowBest.circleIconSelected14;			
+		return miniMapKnowBest.circleIconSelected14;
 	} else if (zoom > 12) {
-		return miniMapKnowBest.circleIconSelected13;			
+		return miniMapKnowBest.circleIconSelected13;
 	} else if (zoom > 12) {
-		return miniMapKnowBest.circleIconSelected12;			
+		return miniMapKnowBest.circleIconSelected12;
 	} else {
-		return miniMapKnowBest.circleIconSelected11;						
+		return miniMapKnowBest.circleIconSelected11;
 	}
 }
 
@@ -140,56 +140,56 @@ miniMapKnowBest.setSelectedIconBasedOnZoom = function () {
 /* non-selected circles */
 miniMapKnowBest.circleIcon18 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [1000, 1000], 
+    iconSize:     [1000, 1000],
     iconAnchor:   [500, 500],
     labelAnchor:  [0, 0],
 });
 
 miniMapKnowBest.circleIcon17 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [500, 500], 
+    iconSize:     [500, 500],
     iconAnchor:   [250, 250],
     labelAnchor:  [0, 0],
 });
 
 miniMapKnowBest.circleIcon16 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [225, 225], 
+    iconSize:     [225, 225],
     iconAnchor:   [112, 112],
     labelAnchor:  [0, 0],
 });
 
 miniMapKnowBest.circleIcon15 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [110, 110], 
+    iconSize:     [110, 110],
     iconAnchor:   [55, 55],
     labelAnchor:  [0, 0],
 });
 
 miniMapKnowBest.circleIcon14 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [60, 60], 
+    iconSize:     [60, 60],
     iconAnchor:   [30, 30],
     labelAnchor:  [0, 0],
 });
 
 miniMapKnowBest.circleIcon13 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [30, 30], 
+    iconSize:     [30, 30],
     iconAnchor:   [15, 15],
     labelAnchor:  [0, 0],
 });
 
 miniMapKnowBest.circleIcon12 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [18, 18], 
+    iconSize:     [18, 18],
     iconAnchor:   [9, 9],
     labelAnchor:  [0, 0],
 });
 
 miniMapKnowBest.circleIcon11 = L.icon({
     iconUrl: '/static/website/css/images/circleIcon.png',
-    iconSize:     [8, 8], 
+    iconSize:     [8, 8],
     iconAnchor:   [4, 4],
     labelAnchor:  [0, 0],
 });
@@ -197,56 +197,56 @@ miniMapKnowBest.circleIcon11 = L.icon({
 /* selected circles */
 miniMapKnowBest.circleIconSelected18 = L.icon({
     iconUrl: '/static/website/css/images/circleIconSelected.png',
-    iconSize:     [1000, 1000], 
+    iconSize:     [1000, 1000],
     iconAnchor:   [500, 500],
     labelAnchor:  [0, 0],
 });
 
 miniMapKnowBest.circleIconSelected17 = L.icon({
     iconUrl: '/static/website/css/images/circleIconSelected.png',
-    iconSize:     [500, 500], 
+    iconSize:     [500, 500],
     iconAnchor:   [250, 250],
     labelAnchor:  [0, 0],
 });
 
 miniMapKnowBest.circleIconSelected16 = L.icon({
     iconUrl: '/static/website/css/images/circleIconSelected.png',
-    iconSize:     [225, 225], 
+    iconSize:     [225, 225],
     iconAnchor:   [112, 112],
     labelAnchor:  [0, 0],
 });
 
 miniMapKnowBest.circleIconSelected15 = L.icon({
     iconUrl: '/static/website/css/images/circleIconSelected.png',
-    iconSize:     [110, 110], 
+    iconSize:     [110, 110],
     iconAnchor:   [55, 55],
     labelAnchor:  [0, 0],
 });
 
 miniMapKnowBest.circleIconSelected14 = L.icon({
     iconUrl: '/static/website/css/images/circleIconSelected.png',
-    iconSize:     [60, 60], 
+    iconSize:     [60, 60],
     iconAnchor:   [30, 30],
     labelAnchor:  [0, 0],
 });
 
 miniMapKnowBest.circleIconSelected13 = L.icon({
     iconUrl: '/static/website/css/images/circleIconSelected.png',
-    iconSize:     [30, 30], 
+    iconSize:     [30, 30],
     iconAnchor:   [15, 15],
     labelAnchor:  [0, 0],
 });
 
 miniMapKnowBest.circleIconSelected12 = L.icon({
     iconUrl: '/static/website/css/images/circleIconSelected.png',
-    iconSize:     [18, 18], 
+    iconSize:     [18, 18],
     iconAnchor:   [9, 9],
     labelAnchor:  [0, 0],
 });
 
 miniMapKnowBest.circleIconSelected11 = L.icon({
     iconUrl: '/static/website/css/images/circleIconSelected.png',
-    iconSize:     [8, 8], 
+    iconSize:     [8, 8],
     iconAnchor:   [4, 4],
     labelAnchor:  [0, 0],
 });
@@ -256,4 +256,3 @@ miniMapKnowBest.circleIconSelected11 = L.icon({
 
 /* Vars */
 miniMapKnowBest.map;
-

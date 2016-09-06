@@ -21,19 +21,19 @@ mapDrawNeighborhood.initialize = function () {
 	var bounds = mapDrawNeighborhood.map.getBounds().pad(1);
 	mapDrawNeighborhood.map.setMaxBounds(bounds);
 
-	// set a tile layer to be CartoDB tiles 
+	// set a tile layer to be CartoDB tiles
 	var CartoDBTiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png', { attribution: 'Map tiles by <a href=\"http://cartodb.com/attributions#basemaps\">CartoDB</a>, under <a href=\"https://creativecommons.org/licenses/by/3.0/\" target=\"_blank\">CC BY 3.0</a>. Data by <a href=\"http://www.openstreetmap.org/\" target=\"_blank\">OpenStreetMap</a>, under ODbL.'
 	});
 
 
 	// add these tiles to our map
 	mapDrawNeighborhood.map.addLayer(CartoDBTiles);
-	
+
     // enable events
     mapDrawNeighborhood.map.doubleClickZoom.enable();
     mapDrawNeighborhood.map.scrollWheelZoom.enable();
 
-    // create feature group for draw tools 
+    // create feature group for draw tools
 	mapDrawNeighborhood.FEATURELAYER = new L.FeatureGroup();
 
 	// clear previous data
@@ -49,7 +49,7 @@ mapDrawNeighborhood.initialize = function () {
 mapDrawNeighborhood.loadDrawnGeojson = function (){
 	$.ajax({
 		type: "GET",
-		url: "/getdrawngeojson/"+ objectID +"/",
+		url: "/getdrawngeojson/",
 		success: function(data){
 			// load the draw tools
 			if (data) {
@@ -60,7 +60,7 @@ mapDrawNeighborhood.loadDrawnGeojson = function (){
 					// create latlngs array from feature layer
 					mapDrawNeighborhood.LATLNGS.push(layer.getLatLngs());
 					mapDrawNeighborhood.FEATURELAYER.addLayer(layer);
-				});				
+				});
 				var bounds = mapDrawNeighborhood.FEATURELAYER.getBounds();
 				mapDrawNeighborhood.map.fitBounds(bounds);
 				mapDrawNeighborhood.zoomCenter = bounds.getCenter();
@@ -97,7 +97,7 @@ mapDrawNeighborhood.loadNTA = function (){
 
 }
 
-mapDrawNeighborhood.onEachFeature_NTA = function(feature,layer){	
+mapDrawNeighborhood.onEachFeature_NTA = function(feature,layer){
 	// zoom map to the selected neighborhood
 	if (feature.properties.NTAName == objectMyNeighborhood) {
 		// create latlngs array from feature layer
@@ -110,9 +110,9 @@ mapDrawNeighborhood.onEachFeature_NTA = function(feature,layer){
 	}
 
 
-	// add geojson to form field 
+	// add geojson to form field
 	mapDrawNeighborhood.GEOJSON = mapDrawNeighborhood.FEATURELAYER.toGeoJSON();
-	$('#id_drawnNeighborhood').val(JSON.stringify(mapDrawNeighborhood.GEOJSON));		
+	$('#id_drawnNeighborhood').val(JSON.stringify(mapDrawNeighborhood.GEOJSON));
 
 }
 
@@ -131,7 +131,7 @@ mapDrawNeighborhood.loadDrawTools = function(){
 	mapDrawNeighborhood.freedraw.on('markers', function getMarkers(eventData) {
 		mapDrawNeighborhood.FEATURELAYER.clearLayers();
 		for (var i = mapDrawNeighborhood.freedraw.polygons.length - 1; i >= 0; i--) {
-			mapDrawNeighborhood.FEATURELAYER.addLayer(mapDrawNeighborhood.freedraw.polygons[i]); 
+			mapDrawNeighborhood.FEATURELAYER.addLayer(mapDrawNeighborhood.freedraw.polygons[i]);
 		}
 		mapDrawNeighborhood.GEOJSON = mapDrawNeighborhood.FEATURELAYER.toGeoJSON();
 		$('#id_drawnNeighborhood').val(JSON.stringify(mapDrawNeighborhood.GEOJSON));
@@ -139,7 +139,7 @@ mapDrawNeighborhood.loadDrawTools = function(){
 
 	mapDrawNeighborhood.map.addLayer(mapDrawNeighborhood.freedraw);
 
-	for (var i = mapDrawNeighborhood.LATLNGS.length - 1; i >= 0; i--) {	
+	for (var i = mapDrawNeighborhood.LATLNGS.length - 1; i >= 0; i--) {
 		// test if mapDrawNeighborhood.LATLNGS is and array of arrays
 		if (typeof mapDrawNeighborhood.LATLNGS[0][0].lat === "undefined") {
 		    // loop again
@@ -168,5 +168,3 @@ mapDrawNeighborhood.initStyle = {
         fillOpacity: 0.5,
         fillColor: "#D7217E",
     };
-
-

@@ -6,11 +6,8 @@ function ajaxApplication() {}
 
 ajaxApplication.nextPickNeighborhood = function () {
 	var timeout = window.setTimeout(slow, 200);
-	if (objectID != 'None') {
-		var url = "/nextPickNeighborhood/"+ objectID +"/";
-	} else {
-		var url = "/nextPickNeighborhood/";
-	}
+	var url = "/nextPickNeighborhood/";
+
 	function slow() {
 		$.ajax({
 			type: "GET",
@@ -25,11 +22,8 @@ ajaxApplication.nextPickNeighborhood = function () {
 
 ajaxApplication.nextDrawNeighborhood = function () {
 	var timeout = window.setTimeout(slow, 200);
-	if (objectID != 'None') {
-		var url = "/nextPickNeighborhood/"+ objectID +"/";
-	} else {
-		var url = "/nextPickNeighborhood/";
-	}
+	var url = "/nextPickNeighborhood/";
+
 	function slow() {
 		var f = $("#pickNeighborhoodMapForm");
 		//create on submit listener
@@ -54,11 +48,8 @@ ajaxApplication.nextDrawNeighborhood = function () {
 
 ajaxApplication.nextNameNeighborhood = function () {
 	var timeout = window.setTimeout(slow, 200);
-	if (objectID != 'None') {
-		var url = "/nextDrawNeighborhood/"+ objectID +"/";
-	} else {
-		var url = "/nextDrawNeighborhood/";
-	}
+	var url = "/nextDrawNeighborhood/";
+
 	function slow() {
 		var f = $("#drawNeighborhoodForm");
 		//create on submit listener
@@ -83,11 +74,8 @@ ajaxApplication.nextNameNeighborhood = function () {
 
 ajaxApplication.nextKnowBestNeighborhood = function () {
 	var timeout = window.setTimeout(slow, 200);
-	if (objectID != 'None') {
-		var url = "/nextNameNeighborhood/"+ objectID +"/";
-	} else {
-		var url = "/nextNameNeighborhood/";
-	}
+	var url = "/nextNameNeighborhood/";
+
 	function slow() {
 		var f = $("#nameNeighborhoodForm");
 		//create on submit listener
@@ -136,11 +124,8 @@ ajaxApplication.nextKnowBestNeighborhood = function () {
 
 ajaxApplication.nextKnowBestPlaces = function () {
 	var timeout = window.setTimeout(slow, 200);
-	if (objectID != 'None') {
-		var url = "/nextKnowBestNeighborhood/"+ objectID +"/";
-	} else {
-		var url = "/nextKnowBestNeighborhood/";
-	}
+	var url = "/nextKnowBestNeighborhood/";
+
 	function slow() {
 		var f = $("#knowBestNeighborhoodMapForm");
 		//create on submit listener
@@ -165,11 +150,8 @@ ajaxApplication.nextKnowBestPlaces = function () {
 
 ajaxApplication.nextknowBestSurveyQuestions = function () {
 	var timeout = window.setTimeout(slow, 200);
-	if (objectID != 'None') {
-		var url = "/nextKnowBestPlaces/"+ objectID +"/";
-	} else {
-		var url = "/nextKnowBestPlaces/";
-	}
+	var url = "/nextKnowBestPlaces/";
+
 	function slow() {
 		var f = $("#knowBestPlacesForm");
 		//create on submit listener
@@ -195,11 +177,8 @@ ajaxApplication.nextknowBestSurveyQuestions = function () {
 
 ajaxApplication.nextResults = function () {
 	var timeout = window.setTimeout(slow, 200);
-	if (objectID != 'None') {
-		var url = "/nextKnowBestSurveyQuestions/"+ objectID +"/";
-	} else {
-		var url = "/nextKnowBestSurveyQuestions/";
-	}
+	var url = "/nextKnowBestSurveyQuestions/";
+
 	function slow() {
 		var f = $("#knowBestSurveyQuestionsForm");
 		//create on submit listener
@@ -228,12 +207,12 @@ ajaxApplication.nextResults = function () {
 
 
 // back buttons
-ajaxApplication.backNeighborhoodMap = function (id) {
+ajaxApplication.backNeighborhoodMap = function () {
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
 		$.ajax({
 			type: "GET",
-			url: "/nextPickNeighborhood/"+id+"/",
+			url: "/nextPickNeighborhood/",
 			success: function(data){
 				$('#content').html(data);
 				$(".fadein").fadeIn("slow");
@@ -242,13 +221,13 @@ ajaxApplication.backNeighborhoodMap = function (id) {
 	}
 }
 
-ajaxApplication.backDrawNeighborhoodMap = function (id) {
+ajaxApplication.backDrawNeighborhoodMap = function () {
 	console.log(id);
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
 		$.ajax({
 			type: "GET",
-			url: "/nextDrawNeighborhood/"+id+"/",
+			url: "/nextDrawNeighborhood/",
 			success: function(data){
 				$('#content').html(data);
 				$(".fadein").fadeIn("slow");
@@ -257,13 +236,13 @@ ajaxApplication.backDrawNeighborhoodMap = function (id) {
 	}
 }
 
-ajaxApplication.backNameNeighborhood = function (id) {
+ajaxApplication.backNameNeighborhood = function () {
 	console.log(id);
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
 		$.ajax({
 			type: "GET",
-			url: "/nextNameNeighborhood/"+id+"/",
+			url: "/nextNameNeighborhood/",
 			success: function(data){
 				$('#content').html(data);
 				$(".fadein").fadeIn("slow");
@@ -286,12 +265,12 @@ ajaxApplication.backNameNeighborhood = function (id) {
 	}
 }*/
 
-ajaxApplication.backKnowBestNeighborhood = function (id) {
+ajaxApplication.backKnowBestNeighborhood = function () {
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
 		$.ajax({
 			type: "GET",
-			url: "/nextKnowBestNeighborhood/"+id+"/",
+			url: "/nextKnowBestNeighborhood/",
 			success: function(data){
 				$('#content').html(data);
 				$(".fadein").fadeIn("slow");
@@ -300,12 +279,12 @@ ajaxApplication.backKnowBestNeighborhood = function (id) {
 	}
 }
 
-ajaxApplication.backKnowBestPlaces = function (id) {
+ajaxApplication.backKnowBestPlaces = function () {
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
 		$.ajax({
 			type: "GET",
-			url: "/nextKnowBestPlaces/"+id+"/",
+			url: "/nextKnowBestPlaces/",
 			success: function(data){
 				$('#content').html(data);
 				$(".fadein").fadeIn("slow");
@@ -314,12 +293,12 @@ ajaxApplication.backKnowBestPlaces = function (id) {
 	}
 }
 
-ajaxApplication.backKnowBestSurveyQuestions= function (id) {
+ajaxApplication.backKnowBestSurveyQuestions= function () {
 	var timeout = window.setTimeout(slow, 200);
 	function slow() {
 		$.ajax({
 			type: "GET",
-			url: "/nextKnowBestSurveyQuestions/"+id+"/",
+			url: "/nextKnowBestSurveyQuestions/",
 			success: function(data){
 				$('#content').html(data);
 				$(".fadein").fadeIn("slow");
@@ -327,8 +306,3 @@ ajaxApplication.backKnowBestSurveyQuestions= function (id) {
 		});
 	}
 }
-
-
-
-
-

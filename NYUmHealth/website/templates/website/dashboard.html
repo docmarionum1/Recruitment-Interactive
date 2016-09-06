@@ -9,7 +9,7 @@
 {% block head_js_block %}
 <script type="text/javascript" src="{% static 'website/js/controllers.js' %}"></script>
 {% endblock %}
-	
+
 {% block body_block %}
 <div id="content">
 	<div class="fadein">
@@ -29,7 +29,7 @@
 							{% endfor %}
 							</ul>
 	                    </div>
-	                    <a class="btn btn-primary" href="{% url 'index' id=NYURespondentsObject.id %}">Back to Survey</a>
+	                    <a class="btn btn-primary" href="{% url 'index' %}">Back to Survey</a>
 	                    <a class="btn btn-primary" href="#">Link here to MapMob Tracking</a>
 
 	                </div>
@@ -37,7 +37,7 @@
 	        </div>
 	    </div>
 
-	</div>  
+	</div>
 </div>
 {% endblock %}
 
@@ -46,8 +46,3 @@
 
 {% block js_block %}
 {% endblock %}
-
-
-	
-	
-
